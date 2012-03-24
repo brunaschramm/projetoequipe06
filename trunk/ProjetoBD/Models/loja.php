@@ -39,10 +39,5 @@ class loja {
     public function getEndereco() {
         return $this->endereco;
     }
-
-    public function cadastrar() {
-//        echo $this->nome . "\n" . $this->email . "\n" . $this->endereco;
-        return true;
-    }
 }
 ?>

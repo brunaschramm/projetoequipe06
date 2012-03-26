@@ -13,17 +13,16 @@ function enviardados(){
 		return false;
 	}
 	
-	if( document.dados.loj_email.value=="" || document.dados.loj_email.value.indexOf('@')==-1 || document.dados.loj_email.value.indexOf('.')==-1 )
+        if(document.dados.loj_email.value=="" && document.dados.loj_endereco.value=="") {
+                alert( "Preencha o campo E-MAIL ou ENDEREÇO!" );
+		document.dados.loj_email.focus();
+		return false;
+        }
+        
+	if(document.dados.loj_email.value!="" && (document.dados.loj_email.value.indexOf('@')==-1 || document.dados.loj_email.value.indexOf('.')==-1 ))
 	{
 		alert( "Preencha o campo E-MAIL corretamente!" );
 		document.dados.loj_email.focus();
-		return false;
-	}
-	
-	if (document.dados.loj_endereco.value=="")
-	{
-		alert( "Preencha o campo ENDEREÇO corretamente!" );	
-		document.dados.loj_endereco.focus();
 		return false;
 	}
 }

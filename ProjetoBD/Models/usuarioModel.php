@@ -1,4 +1,5 @@
 <?php
+include_once ("usuario.php");
 
 class usuarioModel extends usuario{
     public function cadastrar() {
@@ -6,5 +7,4 @@ class usuarioModel extends usuario{
     }
 }
 $model = new usuarioModel();
-
 ?>

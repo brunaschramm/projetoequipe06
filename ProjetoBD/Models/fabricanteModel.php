@@ -1,4 +1,5 @@
 <?php
+include_once ("fabricante.php");
 
 class fabricanteModel extends fabricante{
     public function cadastrar() {

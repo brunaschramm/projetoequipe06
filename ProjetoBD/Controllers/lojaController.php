@@ -15,7 +15,8 @@ class lojaController {
                 if($model->cadastrar()){
                     header("Location: ../Views/cadastrado.html");
                 } else {
-                    header("Location: ../Views/cadastroLoja.html");
+                    
+                    header("Location: ../Views/cadastroLoja.php");
                 }
                 break;
             }

@@ -16,7 +16,7 @@ class usuarioController {
                 if($model->cadastrar()){
                     header("Location: ../Views/cadastrado.html");
                 } else {
-                    header("Location: ../Views/cadastroUsuario.html");
+                    header("Location: ../Views/cadastroUsuario.php");
                 }
                 break;
             }

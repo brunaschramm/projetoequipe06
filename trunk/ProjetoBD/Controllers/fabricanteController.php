@@ -14,7 +14,7 @@ class fabricanteController {
                 if($model->cadastrar()){
                     header("Location: ../Views/cadastrado.html");
                 } else {
-                    header("Location: ../Views/cadastroFabricante.html");
+                    header("Location: ../Views/cadastroFabricante.php");
                 }
                 break;
             }

@@ -1,0 +1,33 @@
+<?php
+
+class Banco {
+        
+    private $host = "localhost";
+    private $user = "postgres";
+    private $password = "postgres";
+    private $dbname = "postgres";
+//    private $host = "10.208.200.9";
+//    private $user = "equipe6";
+//    private $password = "ufam@06";
+//    private $dbname = "1db012012";
+    protected $con = null;
+
+#método que inicia conexao
+
+    function open() {
+        $this->con = pg_connect("host = $this->host user = $this->user password = $this->password dbname = $this->dbname");
+        if (!$this->con) {
+            echo 'Erro ao tentar obter conexão com o BD';            
+        } else {
+            return $this->conexao;
+        }
+    }
+
+#método que encerra a conexao
+
+    function close() {
+        pg_close($this->con);
+    }
+}
+
+?>

@@ -1,9 +1,7 @@
 <?php
-
 include_once ("../Dao/FabricanteDAO.php");
 
 class FabricanteController {
-
     function __construct() {
         $model = new FabricanteDAO();
 
@@ -32,8 +30,6 @@ class FabricanteController {
         
         return $fabricantes;
     }
-    
 }
-
 $controle = new FabricanteController();
 ?>

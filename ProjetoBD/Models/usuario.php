@@ -7,6 +7,8 @@ class usuario {
     private $email;
     private $apelido;
     
+    public function __construct(){}
+    
     public function setCodigo($codigo){
         $this->codigo = $codigo;
     }
@@ -43,5 +45,4 @@ class usuario {
         $this->apelido = $apelido;
     }
 }
-
 ?>

@@ -23,24 +23,20 @@ class LojaDAO extends Loja{
         }                                               
     }
     
-    public function todasLojas(){
-        $sql = "SELECT * FROM tbusuarios06";
-        
-        $result = pg_query($sql);                
-        
-        $numeroLinhas = pg_num_rows($result);
-        
-        $array = array();        
-        
-        for($i = 0; $i < $numeroLinhas; $i++){
-            $array[] = pg_fetch_array($result);
-        }               
-                        
-        return $array;        
+    public function gatAll(){
+//        $sql = "SELECT * FROM tblojas06 ORDER BY nome";
+//        
+//        $result = pg_query($sql);            
+//        
+//        $numeroLinhas = pg_num_rows($result);
+//        
+//        $array = array();        
+//        
+//        for($i = 0; $i < $numeroLinhas; $i++){
+//            $array[$i] = pg_fetch_array($result); //--------
+//        }               
+//                        
+//        return $array;
     }
-    
-    
 }
-
-$lojaDAO = new LojaDAO();
 ?>

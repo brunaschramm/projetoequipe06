@@ -7,8 +7,8 @@ class FabricanteDAO extends Fabricante {
     private $conexao;
     
     public function __construct() {
-        //$this->conexao = new Banco();
-        //$this->conexao->open();
+        $this->conexao = new Banco();
+        $this->conexao->open();
     }
     
     public function salvar(){

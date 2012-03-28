@@ -5,6 +5,8 @@ class fabricante {
     private $nome;
     private $nacionalidade;
     
+    function __construct() {}
+    
     public function setCodigo($nome){
         $this->codigo = $nome;
     }

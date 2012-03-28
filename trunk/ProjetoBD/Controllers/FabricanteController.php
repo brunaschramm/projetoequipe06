@@ -14,9 +14,9 @@ class FabricanteController {
                 $model->setNome($_POST['fab_nome']);
                 $model->setNacionalidade($_POST['fab_nacionalidade']);
 
-                $resulto = $model->salvar();
+                $resultado = $model->salvar();
 
-                if ($resulto == 1) {
+                if ($resultado == 1) {
                     header("Location: ../Views/cadastrado.html");
                 } else {
                     header("Location: ../Views/cadastroFabricante.php");
@@ -25,6 +25,14 @@ class FabricanteController {
         }
     }
 
+    function getAllFabricantes(){
+        $model = new FabricanteDAO();
+        
+        $fabricantes = $model->getAll();
+        
+        return $fabricantes;
+    }
+    
 }
 
 $controle = new FabricanteController();

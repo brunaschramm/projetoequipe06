@@ -59,7 +59,7 @@
     </head>
 
     <body>
-        <form action="../pagina de ação" method="post" name="dados" onSubmit="return enviardados();" >
+        <form action="../Controllers/ProdutoController?acao=cadastrar" method="post" name="dados" onSubmit="return enviardados();" >
 
             <table width="588" border="0" >
                 <tr>
@@ -90,21 +90,50 @@
                     <td><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Fabricante:</font></td>
                     <td><select name="fabricante" id="">
                             <?php
-//                            $re = pg_query("select * from fabricantes order by fabricante");
-//                            while ($l = mysql_fetch_array($re)) {
-//                                //$codigo = $l["codigo"];
-//                                $nome = $l["nome"];
-//                                echo "<option value=\"$nome</option>\n";
-//                            }
-//                            @mysql_close();
+                            include_once ("../Models/fabricante.php");
+                            //$model = new FabricanteDAO();
+                            //$fabricantes = $model->getAll();
+                            $fab1 = new fabricante();
+                            $fab1->setNome("fabricante1");
+                            $fab1->setCodigo(1);
+                            $fab2 = new fabricante();
+                            $fab2->setNome("fabricante2");
+                            $fab2->setCodigo(2);
+                            $fab3 = new fabricante();
+                            $fab3->setNome("fabricante3");
+                            $fab3->setCodigo(3);
+                            $fabricantes = array($fab1, $fab2, $fab3);
+                            $tam = count($fabricantes);
+                            for ($i = 0; $i < $tam; $i++) {
+                                echo "<option value=\"".$fabricantes[$i]->getCodigo()."\">".$fabricantes[$i]->getNome()."</option>\n";
+                            }
                             ?>
                         </select></td>
                 </tr>
 
                 <tr>
                     <td><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Loja:</font></td>
-                    <td><font size="2">
-                            <input name="us_email" type="text" id="us_email" size="52" maxlength="150" class="formbutton"/></font></td>
+                    <td><select name="fabricante" id="">
+                            <?php
+                            include_once ("../Models/loja.php");
+                            //$model = new lojaDAO();
+                            //$loja = $model->getAll();
+                            $loj1 = new loja();
+                            $loj1->setNome("loja1");
+                            $loj1->setCodigo(1);
+                            $loj2 = new loja();
+                            $loj2->setNome("loja2");
+                            $loj2->setCodigo(2);
+                            $loj3 = new loja();
+                            $loj3->setNome("loja3");
+                            $loj3->setCodigo(3);
+                            $lojas = array($loj1, $loj2, $loj3);
+                            $tam = count($lojas);
+                            for ($i = 0; $i < $tam; $i++) {
+                                echo "<option value=\"".$lojas[$i]->getCodigo()."\">".$lojas[$i]->getNome()."</option>\n";
+                            }
+                            ?>
+                        </select></td>
                 </tr>
 
                 <tr>

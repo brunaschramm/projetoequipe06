@@ -47,7 +47,7 @@
     </head>
 
     <body>
-        <form action="../Controllers/validaLogin.php" method="POST" name="dados" onSubmit="return enviardados();" >
+        <form action="../Controllers/ValidaLogin.php" method="POST" name="dados" onSubmit="return enviardados();" >
 
             <table width="588" border="0" >
                 <tr>

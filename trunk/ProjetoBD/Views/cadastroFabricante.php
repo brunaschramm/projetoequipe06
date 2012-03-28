@@ -26,7 +26,7 @@
     </head>
 
     <body>
-        <form action="../Controllers/fabricanteController.php?acao=cadastrar" method="POST" name="dados" onSubmit="return enviardados();" >
+        <form action="../Controllers/FabricanteController.php?acao=cadastrar" method="POST" name="dados" onSubmit="return enviardados();" >
 
             <table width="588" border="0" >
                 <tr>

@@ -59,7 +59,7 @@
     </head>
 
     <body>
-        <form action="../Controllers/usuarioController.php?acao=cadastrar" method="post" name="dados" onSubmit="return enviardados();" >
+        <form action="../Controllers/UsuarioController.php?acao=cadastrar" method="post" name="dados" onSubmit="return enviardados();" >
 
             <table width="588" border="0" >
                 <tr>

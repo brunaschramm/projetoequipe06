@@ -30,13 +30,12 @@
     </head>
 
     <body>
-        <form action="../Controllers/lojaController.php?acao=cadastrar" method="POST" name="dados" onSubmit="return enviardados();" >
+        <form action="../Controllers/LojaController.php?acao=cadastrar" method="POST" name="dados" onSubmit="return enviardados();" >
 
             <table width="588" border="0" >
                 <tr>
 
                     <tr>
-                        <
                         <td width="118"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Nome:</font></td>
                         <td width="460">
                             <input name="loj_nome" type="text" class="formbutton" id="loj_nome" size="52" maxlength="150"/></td>

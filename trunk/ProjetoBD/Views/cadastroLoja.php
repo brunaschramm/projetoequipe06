@@ -66,6 +66,9 @@
 
                     </tr>
             </table>
+            <?if($_GET['flag'] == "t"){
+                echo "<font size=\"2\" face=\"Verdana, Arial, Helvetica, sans-serif\" color=\"#FF0000\">Erro no cadastro, tente novamente!</font>";
+            }?>
         </form>
     </body>
 </html>

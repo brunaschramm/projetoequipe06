@@ -1,23 +1,22 @@
 <?php
-include_once ("../Dao/FabricanteDAO.php");
+include_once ("../Dao/FornecedorDAO.php");
 
-class FabricanteController {
+class FornecedorController {
     function __construct() {
-        $model = new FabricanteDAO();
+        $model = new FornecedorDAO();
 
         $acao = $_GET['acao'];
 
         switch ($acao) {
             case 'cadastrar':
-                $model->setNome($_POST['fab_nome']);
-                $model->setNacionalidade($_POST['fab_nacionalidade']);
+                $model->setNome($_POST['for_nome']);
 
                 $resultado = $model->salvar();
 
                 if ($resultado == 1) {
                     header("Location: ../Views/cadastrado.html");
                 } else {
-                    header("Location: ../Views/cadastroFabricante.php?flag=t");
+                    header("Location: ../Views/cadastroFornecedor.php?flag=t");
                 }
                 break;
         }

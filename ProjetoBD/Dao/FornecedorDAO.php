@@ -1,8 +1,8 @@
 <?php
 include_once ("../Banco/Banco.php");
-include_once ("../Models/Loja.php");
+include_once ("../Models/Fornecedor.php");
 
-class LojaDAO extends Loja {
+class FornecedorDAO extends Fornecedor {
 
     private $conexao;
 
@@ -12,7 +12,8 @@ class LojaDAO extends Loja {
     }
 
     public function salvar() {
-        $sql = "INSERT INTO tblojas06 (nome, endereco, email) values ('" . $this->getNome() . "', '" . $this->getEndereco() . "', '" . $this->getEmail() . "')";
+        $sql = "INSERT INTO tbfornecedor (nome) VALUES ('" . $this->getNome() . "')";
+
         $result = pg_query($sql);
 
         if (!$result) {
@@ -23,21 +24,20 @@ class LojaDAO extends Loja {
     }
 
     public function getAll() {
-        $sql = "SELECT * FROM tbloja ORDER BY nome";
-
-        $result = pg_query($sql);
-
-        $numeroLinhas = pg_num_rows($result);
-        echo "$numeroLinhas";
-
-        $array = array();       
+        $sql = "SELECT * FROM tbfornecedor ORDER BY nome";
         
+        $result = pg_query($sql);
+        
+        $numeroLinhas = pg_num_rows($result);
+        
+        $array = array();
+
         for($i = 0; $i < $numeroLinhas; $i++){
             $array[] = pg_fetch_array($result);
         }               
+                        
         return $array;
     }
 }
-
-$loja = new LojaDAO();
+$fornecedor = new FornecedorDAO();
 ?>

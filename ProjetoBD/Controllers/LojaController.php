@@ -1,9 +1,7 @@
 <?php
-
 include_once("../Dao/LojaDAO.php");
 
 class LojaController {
-
     function __construct() {
         $acao = $_GET['acao'];
 
@@ -11,7 +9,6 @@ class LojaController {
 
         switch ($acao) {
             case 'cadastrar':
-
                 $model->setNome($_POST['loj_nome']);
                 $model->setEmail($_POST['loj_email']);
                 $model->setEndereco($_POST['loj_endereco']);
@@ -21,7 +18,7 @@ class LojaController {
                 if ($resultado == 1) {
                     header("Location: ../Views/cadastrado.html");
                 } else {
-                    header("Location: ../Views/cadastroLoja.php");
+                    header("Location: ../Views/cadastroLoja.php?flag=t");
                 }
                 break;
             case 'excluir':
@@ -33,8 +30,6 @@ class LojaController {
                 break;
         }
     }
-
 }
-
 $controle = new LojaController();
 ?>

@@ -90,22 +90,13 @@
                     <td><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Fabricante:</font></td>
                     <td><select name="fabricante" id="">
                             <?php
-                            include_once ("../Models/fabricante.php");
-                            //$model = new FabricanteDAO();
-                            //$fabricantes = $model->getAll();
-                            $fab1 = new fabricante();
-                            $fab1->setNome("fabricante1");
-                            $fab1->setCodigo(1);
-                            $fab2 = new fabricante();
-                            $fab2->setNome("fabricante2");
-                            $fab2->setCodigo(2);
-                            $fab3 = new fabricante();
-                            $fab3->setNome("fabricante3");
-                            $fab3->setCodigo(3);
-                            $fabricantes = array($fab1, $fab2, $fab3);
+                            include_once ("../Dao/FabricanteDAO.php");
+                            $model = new FabricanteDAO();
+                            $fabricantes = $model->getAll();
                             $tam = count($fabricantes);
                             for ($i = 0; $i < $tam; $i++) {
-                                echo "<option value=\"".$fabricantes[$i]->getCodigo()."\">".$fabricantes[$i]->getNome()."</option>\n";
+                                $aux = $loja[$i];
+                                echo "<option value=\"".$aux["codigo"]."\">".$aux["nome"]."</option>\n";
                             }
                             ?>
                         </select></td>
@@ -113,24 +104,31 @@
 
                 <tr>
                     <td><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Loja:</font></td>
-                    <td><select name="fabricante" id="">
+                    <td><select name="loja" id="">
                             <?php
-                            include_once ("../Models/loja.php");
-                            //$model = new lojaDAO();
-                            //$loja = $model->getAll();
-                            $loj1 = new loja();
-                            $loj1->setNome("loja1");
-                            $loj1->setCodigo(1);
-                            $loj2 = new loja();
-                            $loj2->setNome("loja2");
-                            $loj2->setCodigo(2);
-                            $loj3 = new loja();
-                            $loj3->setNome("loja3");
-                            $loj3->setCodigo(3);
-                            $lojas = array($loj1, $loj2, $loj3);
+                            include_once ("../Dao/LojaDAO.php");
+                            $model = new LojaDAO();
+                            $lojas = $model->getAll();
                             $tam = count($lojas);
                             for ($i = 0; $i < $tam; $i++) {
-                                echo "<option value=\"".$lojas[$i]->getCodigo()."\">".$lojas[$i]->getNome()."</option>\n";
+                                $aux = $lojas[$i];
+                                echo "<option value=\"".$aux["codigo"]."\">".$aux["nome"]."</option>\n";
+                            }
+                            ?>
+                        </select></td>
+                </tr>
+                
+                <tr>
+                    <td><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Fornecedor:</font></td>
+                    <td><select name="fornecedor" id="">
+                            <?php
+                            include_once ("../Dao/FornecedorDAO.php");
+                            $model = new FornecedorDAO();
+                            $fornecedores = $model->getAll();
+                            $tam = count($fornecedores);
+                            for ($i = 0; $i < $tam; $i++) {
+                                $aux = $fornecedores[$i];
+                                echo "<option value=\"".$aux["codigo"]."\">".$aux["nome"]."</option>\n";
                             }
                             ?>
                         </select></td>
@@ -157,6 +155,9 @@
 
                 </tr>
             </table>
+            <?if($_GET['flag'] == "t"){
+                echo "<font size=\"2\" face=\"Verdana, Arial, Helvetica, sans-serif\" color=\"#FF0000\">Erro no cadastro, tente novamente!</font>";
+            }?>
         </form>
     </body>
 </html>

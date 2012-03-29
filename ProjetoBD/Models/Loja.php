@@ -1,6 +1,6 @@
 <?php
 
-class loja {
+class Loja {
     private $codigo;
     private $nome;
     private $email;

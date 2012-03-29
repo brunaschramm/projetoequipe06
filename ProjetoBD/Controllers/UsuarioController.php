@@ -19,7 +19,7 @@ class UsuarioController {
                     if ($model->salvar()) {
                         header("Location: ../Views/cadastrado.html");
                     } else {
-                        header("Location: ../Views/cadastroUsuario.php");
+                        header("Location: ../Views/cadastroUsuario.php?flag=t");
                     }
                     break;                                                                            
         }

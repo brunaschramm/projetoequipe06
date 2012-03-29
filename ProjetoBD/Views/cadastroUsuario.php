@@ -87,17 +87,6 @@
                 </tr>
 
                 <tr>
-                    <td><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Amigos:</font></td>
-                    <td rowspan="2"><font size="2">
-                            <textarea name="us_amigos" cols="50" rows="8" class="formbutton" id="us_amigos" input ></textarea></font></td>
-                </tr>
-
-                <tr>
-                    <td height="85"><p><strong><font face="Verdana, Arial, Helvetica, sans-serif"><font size="1"><br>
-                                    </font></font></strong></p></td>
-                </tr>
-
-                <tr>
                     <td height="22"> </td>
 
                     <td>
@@ -107,6 +96,9 @@
 
                 </tr>
             </table>
+            <?if($_GET['flag'] == "t"){
+                echo "<font size=\"2\" face=\"Verdana, Arial, Helvetica, sans-serif\" color=\"#FF0000\">Erro no cadastro, tente novamente!</font>";
+            }?>
         </form>
     </body>
 </html>

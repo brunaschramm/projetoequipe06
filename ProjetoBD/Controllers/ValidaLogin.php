@@ -13,7 +13,7 @@ class ValidaLogin {
         //$resultado = $model->valida($email, $cpf);
         //if($resultado){
         if ($cpf == "00691023255" && $email == "brunabas22@gmail.com") {
-            Header("Location: ../Views/index.html");
+            header("Location: ../Views/index.html");
         } else {
             echo "Erro no Login";
         }    

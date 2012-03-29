@@ -1,9 +1,10 @@
 <?php
-include_once ("../Dao/FabricanteDAO.php");
 
-class FabricanteController {
+include_once ("../Dao/ProdutoDAO.php");
+
+class ProdutoController {
     function __construct() {
-        $model = new FabricanteDAO();
+        $model = new ProdutoDAO();
 
         $acao = $_GET['acao'];
 
@@ -23,7 +24,7 @@ class FabricanteController {
         }
     }
 
-    function getAll(){
+    function getAllFabricantes(){
         $model = new FabricanteDAO();
         
         $fabricantes = $model->getAll();
@@ -31,5 +32,5 @@ class FabricanteController {
         return $fabricantes;
     }
 }
-$controle = new FabricanteController();
+$controle = new ProdutoController();
 ?>

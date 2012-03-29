@@ -1,6 +1,6 @@
 <?php
 
-class fabricante {
+class Fabricante {
     private $codigo;
     private $nome;
     private $nacionalidade;

@@ -59,7 +59,7 @@
                 <tr>
                     <td><font size="1" face="Verdana, Arial, Helvetica, sans-serif">CPF:</font></td>
                     <td><font size="2">
-                            <input name="cpf" type="password" id="cpf" size="52" maxlength="150" class="formbutton"></font></td>
+                            <input name="cpf" type="text" id="cpf" size="52" maxlength="150" class="formbutton"></font></td>
                 </tr>
                 <tr>
                 </tr>

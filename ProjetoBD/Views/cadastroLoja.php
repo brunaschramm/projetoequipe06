@@ -13,15 +13,8 @@
                     return false;
                 }
 	
-                if(document.dados.loj_email.value=="" && document.dados.loj_endereco.value=="") {
-                    alert( "Preencha o campo E-MAIL ou ENDEREÇO!" );
-                    document.dados.loj_email.focus();
-                    return false;
-                }
-        
-                if(document.dados.loj_email.value!="" && (document.dados.loj_email.value.indexOf('@')==-1 || document.dados.loj_email.value.indexOf('.')==-1 ))
-                {
-                    alert( "Preencha o campo E-MAIL corretamente!" );
+                if(document.dados.loj_endereco.value=="") {
+                    alert( "Preencha o campo ENDEREÇO!" );
                     document.dados.loj_email.focus();
                     return false;
                 }
@@ -39,12 +32,6 @@
                         <td width="118"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Nome:</font></td>
                         <td width="460">
                             <input name="loj_nome" type="text" class="formbutton" id="loj_nome" size="52" maxlength="150"/></td>
-                    </tr>
-
-                    <tr>
-                        <td><font size="1" face="Verdana, Arial, Helvetica, sans-serif">E-mail:</font></td>
-                        <td><font size="2">
-                                <input name="loj_email" type="text" id="loj_email" size="52" maxlength="150" class="formbutton"/></font></td>
                     </tr>
 
                     <tr>

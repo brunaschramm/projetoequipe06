@@ -15,19 +15,30 @@ class FabricanteController {
                 $resultado = $model->salvar();
 
                 if ($resultado == 1) {
-                    header("Location: ../Views/cadastrado.html");
+                    header("Location: ../Views/fabricantes.php?flag=f");
                 } else {
                     header("Location: ../Views/cadastroFabricante.php?flag=t");
+                }
+                break;
+            case 'excluir':
+                $model->setCodigo($_GET['id']);
+
+                $resultado = $model->excluir();
+
+                if ($resultado == 1) {
+                    header("Location: ../Views/fabricantes.php?flag=f");
+                } else {
+                    header("Location: ../Views/fabricantes.php?flag=t");
                 }
                 break;
         }
     }
 
-    function getAll(){
+    function getAll() {
         $model = new FabricanteDAO();
-        
+
         $fabricantes = $model->getAll();
-        
+
         return $fabricantes;
     }
 }

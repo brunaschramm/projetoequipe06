@@ -16,7 +16,9 @@ class UsuarioController {
                 $model->setEmail($_POST["us_email"]);
                 $model->setApelido($_POST["us_apelido"]);
 
-                if ($model->salvar()) {
+                $resultado = $model->salvar();
+
+                if ($resultado == 1) {
                     header("Location: ../Views/usuarios.php?flag=f");
                 } else {
                     header("Location: ../Views/cadastroUsuario.php?flag=t");

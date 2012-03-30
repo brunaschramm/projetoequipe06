@@ -21,6 +21,18 @@ class LojaDAO extends Loja {
             return true;
         }
     }
+    
+    public function excluir() {
+        $sql = "DELETE FROM tblojas06 WHERE codigo=".$this->getCodigo();
+
+        $result = pg_query($sql);
+
+        if (!$result) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 
     public function getAll() {
         $sql = "SELECT * FROM tbloja ORDER BY nome";
@@ -28,7 +40,6 @@ class LojaDAO extends Loja {
         $result = pg_query($sql);
 
         $numeroLinhas = pg_num_rows($result);
-        echo "$numeroLinhas";
 
         $array = array();       
         

@@ -95,8 +95,8 @@
                             $fabricantes = $model->getAll();
                             $tam = count($fabricantes);
                             for ($i = 0; $i < $tam; $i++) {
-                                $aux = $loja[$i];
-                                echo "<option value=\"".$aux["codigo"]."\">".$aux["nome"]."</option>\n";
+                                $aux = $fabricantes[$i];
+                                echo "<option value=\"".$aux["codigo"]."\">".$aux["fabricante"]."</option>\n";
                             }
                             ?>
                         </select></td>

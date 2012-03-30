@@ -16,13 +16,21 @@ class LojaController {
                 $resultado = $model->salvar();
 
                 if ($resultado == 1) {
-                    header("Location: ../Views/cadastrado.html");
+                    header("Location: ../Views/loja.php?flag=f");
                 } else {
                     header("Location: ../Views/cadastroLoja.php?flag=t");
                 }
                 break;
             case 'excluir':
-                echo 'Mudou';
+                $model->setCodigo($_GET['id']);
+
+                $resultado = $model->excluir();
+
+                if ($resultado == 1) {
+                    header("Location: ../Views/loja.php?flag=f");
+                } else {
+                    header("Location: ../Views/loja.php?flag=t");
+                }
                 break;
             case 'pesquisarTodas':
                 $todasLojas = $model->todasLojas();                                

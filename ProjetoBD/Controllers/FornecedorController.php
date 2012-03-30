@@ -1,7 +1,9 @@
 <?php
+
 include_once ("../Dao/FornecedorDAO.php");
 
 class FornecedorController {
+
     function __construct() {
         $model = new FornecedorDAO();
 
@@ -14,21 +16,34 @@ class FornecedorController {
                 $resultado = $model->salvar();
 
                 if ($resultado == 1) {
-                    header("Location: ../Views/cadastrado.html");
+                    header("Location: ../Views/fornecedores.php?flag=f");
                 } else {
                     header("Location: ../Views/cadastroFornecedor.php?flag=t");
+                }
+                break;
+            case 'excluir':
+                $model->setCodigo($_GET['id']);
+
+                $resultado = $model->excluir();
+
+                if ($resultado == 1) {
+                    header("Location: ../Views/fornecedores.php?flag=f");
+                } else {
+                    header("Location: ../Views/fornecedores.php?flag=f");
                 }
                 break;
         }
     }
 
-    function getAll(){
+    function getAll() {
         $model = new FabricanteDAO();
-        
+
         $fabricantes = $model->getAll();
-        
+
         return $fabricantes;
     }
+
 }
+
 $controle = new FabricanteController();
 ?>

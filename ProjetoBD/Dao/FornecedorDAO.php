@@ -22,6 +22,18 @@ class FornecedorDAO extends Fornecedor {
             return true;
         }
     }
+    
+    public function excluir() {
+        $sql = "DELETE FROM tbfornecedor WHERE codigo=".$this->getCodigo();
+
+        $result = pg_query($sql);
+
+        if (!$result) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 
     public function getAll() {
         $sql = "SELECT * FROM tbfornecedor ORDER BY nome";

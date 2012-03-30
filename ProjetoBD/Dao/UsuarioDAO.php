@@ -25,6 +25,18 @@ class UsuarioDAO extends Usuario {
             return true;
         }
     }
+    
+    public function excluir() {
+        $sql = "DELETE FROM tbusuario WHERE codigo=".$this->getCodigo();
+
+        $result = pg_query($sql);
+
+        if (!$result) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 
     public function valida($email, $cpf) {
         $sql = "SELECT * FROM tbusuario WHERE email = '$email' AND cpf = '$cpf'";

@@ -49,26 +49,6 @@
 
                 </tr>
             </table>
-            <table>
-                <tr>
-                    <td>Código</td>
-                    <td>Fabricantes</td>
-                    <td>Nacionalidade</td>
-                </tr>
-                <?php
-                include_once ("../Dao/FabricanteDAO.php");
-                $model = new FabricanteDAO();
-                $fabricantes = $model->getAll();
-                $tam = count($fabricantes);
-                echo $tam;
-                for ($i = 0; $i < $tam; $i++) {
-                    $aux = $fabricantes[$i];
-                    echo "<tr><td>".$aux["codigo"]."</td><td>".$aux["fabricante"]."</td><td>".$aux["nacionalidade"]."</td></tr>\n";
-                    //echo "<tr><td>0</td><td>fabricante</td><td>brasileiro</td></tr>\n";
-                }
-                ?>
-            </table>
-            
             <?
             if ($_GET['flag'] == "t") {
                 echo "<font size=\"2\" face=\"Verdana, Arial, Helvetica, sans-serif\" color=\"#FF0000\">Erro no cadastro, tente novamente!</font>";

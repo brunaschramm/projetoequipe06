@@ -14,7 +14,19 @@ class FabricanteDAO extends Fabricante {
 
     public function salvar() {
         $sql = "INSERT INTO tbfabricantes06 (fabricante, nacionalidade) VALUES ('" . $this->getNome() . "', '" . $this->getNacionalidade() . "')";
-//
+
+        $result = pg_query($sql);
+
+        if (!$result) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+    
+    public function excluir() {
+        $sql = "DELETE FROM tbfabricantes06 WHERE codigo=".$this->getCodigo();
+
         $result = pg_query($sql);
 
         if (!$result) {

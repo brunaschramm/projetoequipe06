@@ -30,48 +30,25 @@
     </head>
 
     <body>
-        <form action="../Controllers/LojaController.php?acao=cadastrar" method="POST" name="dados" onSubmit="return enviardados();" >
-
-            <table width="588" border="0" >
-                <tr>
-
-                    <tr>
-                        <td width="118"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Nome:</font></td>
-                        <td width="460">
-                            <input name="loj_nome" type="text" class="formbutton" id="loj_nome" size="52" maxlength="150"/></td>
-                    </tr>
-                    <tr>
-                        <td height="22"> </td>
-
-                        <td>
-                            <input name="Submit" type="submit" class="formobjects" value="Pesquisar"/>
-                        </td>
-
-                    </tr>
-            </table>
-            <table>
-                <tr>
-                    <td><a href="../Views/cadastroLoja.php?flag=f"><img src="../Imagens/adicionar.png" width="20" height="20"></a></td>
-                </tr>
-                <tr>
-                    <td>Loja</td>
-                    <td>Endereco</td>
-                </tr>
-                <?php
-                include_once ("../Dao/LojaDAO.php");
-                include_once ("../Controller/LojaController.php");
-                $model = new LojaDAO();
-                $lojas = $model->getAll();
-                $tam = count($lojas);
-                for ($i = 0; $i < $tam; $i++) {
-                    $aux = $lojas[$i];
-                    echo "<tr><td>".$aux["nome"]."</td><td>".$aux["endereco"]."</td><td><a href=\"../Controllers/LojaController.php?acao=excluir&id=".$aux["codigo"]."\"><img src=\"../Imagens/excluir.png\" width=\"20\" height=\"20\"></a></td></tr>\n";
-                }
-                ?>
-            </table>
-            <?if($_GET['flag'] == "t"){
-                echo "<font size=\"2\" face=\"Verdana, Arial, Helvetica, sans-serif\" color=\"#FF0000\">Erro no cadastro, tente novamente!</font>";
-            }?>
-        </form>
+        <table>
+            <tr>
+                <td><a href="../Views/cadastroLoja.php?flag=f"><img src="../Imagens/adicionar.png" width="20" height="20"></a></td>
+            </tr>
+            <tr>
+                <td>Loja</td>
+                <td>Endereco</td>
+            </tr>
+            <?php
+            include_once ("../Dao/LojaDAO.php");
+            include_once ("../Controller/LojaController.php");
+            $model = new LojaDAO();
+            $lojas = $model->getAll();
+            $tam = count($lojas);
+            for ($i = 0; $i < $tam; $i++) {
+                $aux = $lojas[$i];
+                echo "<tr><td>" . $aux["nome"] . "</td><td>" . $aux["endereco"] . "</td><td><a href=\"../Controllers/LojaController.php?acao=excluir&id=" . $aux["codigo"] . "\"><img src=\"../Imagens/excluir.png\" width=\"20\" height=\"20\"></a></td></tr>\n";
+            }
+            ?>
+        </table>
     </body>
 </html>

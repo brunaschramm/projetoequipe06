@@ -17,13 +17,13 @@ class UsuarioDAO extends Usuario {
 
         echo $sql;
 
-       // $result = pg_query($sql);
+        $result = pg_query($sql);
 
-//        if (!$result) {
-//            return false;
-//        } else {
-//            return true;
-//        }
+        if (!$result) {
+            return false;
+        } else {
+            return true;
+        }
     }
     
     public function excluir() {

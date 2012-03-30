@@ -11,8 +11,14 @@ class LojaDAO extends Loja {
         $this->conexao->open();
     }
 
-    public function salvar() {
-        $sql = "INSERT INTO tbloja (nome, endereco) values ('" . $this->getNome() . "', '" . $this->getEndereco() . "')";
+    public function salvar() {   
+        $sql = "INSERT INTO tbprodutos (descricao, titulo, ano, preco, formato,
+            genero, censura, regiao, grupo, fabricante, loja, fornecedor, produtora)
+            values ('" . $this->getDescricao() . "', '" . $this->getTitulo() . "',
+                '". $this->getAno() . "', '". $this->getPreco() . "', '". $this->getFormato() .
+                "', '". $this->getGenero() . "', '". $this->getCensura() . "', '"
+                .$this->getRegiao() . "', '". $this->getGrupo() . "', '". $this->getFabricante().
+                "', '". $this->getLoja() . "', '". $this->getFornecedor() . "', '". $this->getProdutora(). "')";
         
         $result = pg_query($sql);
 
@@ -24,7 +30,7 @@ class LojaDAO extends Loja {
     }
     
     public function excluir() {
-        $sql = "DELETE FROM tbloja WHERE codigo=".$this->getCodigo();
+        $sql = "DELETE FROM tbprodutos WHERE codigo=".$this->getCodigo();
 
         $result = pg_query($sql);
 
@@ -36,7 +42,7 @@ class LojaDAO extends Loja {
     }
 
     public function getAll() {
-        $sql = "SELECT * FROM tbloja ORDER BY nome";
+        $sql = "SELECT * FROM tbprodutos ORDER BY nome";
 
         $result = pg_query($sql);
 
@@ -50,6 +56,5 @@ class LojaDAO extends Loja {
         return $array;
     }
 }
-
 $loja = new LojaDAO();
 ?>

@@ -10,13 +10,12 @@ class LojaController {
         switch ($acao) {
             case 'cadastrar':
                 $model->setNome($_POST['loj_nome']);
-                $model->setEmail($_POST['loj_email']);
                 $model->setEndereco($_POST['loj_endereco']);
 
                 $resultado = $model->salvar();
 
                 if ($resultado == 1) {
-                    header("Location: ../Views/loja.php?flag=f");
+                    header("Location: ../Views/lojas.php?flag=f");
                 } else {
                     header("Location: ../Views/cadastroLoja.php?flag=t");
                 }
@@ -27,9 +26,9 @@ class LojaController {
                 $resultado = $model->excluir();
 
                 if ($resultado == 1) {
-                    header("Location: ../Views/loja.php?flag=f");
+                    header("Location: ../Views/lojas.php?flag=f");
                 } else {
-                    header("Location: ../Views/loja.php?flag=t");
+                    header("Location: ../Views/lojas.php?flag=t");
                 }
                 break;
             case 'pesquisarTodas':

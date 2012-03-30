@@ -27,34 +27,6 @@
                     return false;
                 }
             }
-
-            function vercpf (cpf) 
-            {
-                if (cpf.length != 11 || cpf == "00000000000" 
-                    || cpf == "11111111111" || cpf == "22222222222"
-                    || cpf == "33333333333" || cpf == "44444444444"
-                    || cpf == "55555555555" || cpf == "66666666666"
-                    || cpf == "77777777777" || cpf == "88888888888"
-                    || cpf == "99999999999")
-                    return false;
-                add = 0;
-                for (i=0; i < 9; i ++)
-                    add += parseInt(cpf.charAt(i)) * (10 - i);
-                rev = 11 - (add % 11);
-                if (rev == 10 || rev == 11)
-                    rev = 0;
-                if (rev != parseInt(cpf.charAt(9)))
-                    return false;
-                add = 0;
-                for (i = 0; i < 10; i ++)
-                    add += parseInt(cpf.charAt(i)) * (11 - i);
-                rev = 11 - (add % 11);
-                if (rev == 10 || rev == 11)
-                    rev = 0;
-                if (rev != parseInt(cpf.charAt(10)))
-                    return false;
-                return true;
-            }
         </script>
     </head>
 
@@ -129,6 +101,86 @@
                             for ($i = 0; $i < $tam; $i++) {
                                 $aux = $fornecedores[$i];
                                 echo "<option value=\"".$aux["codigo"]."\">".$aux["nome"]."</option>\n";
+                            }
+                            ?>
+                        </select></td>
+                </tr>
+                
+                <tr>
+                    <td><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Produtor:</font></td>
+                    <td><select name="produtor" id="">
+                            <?php
+                            include_once ("../Dao/ProdutorDAO.php");
+                            $model = new ProdutorDAO();
+                            $produtores = $model->getAll();
+                            $tam = count($produtores);
+                            for ($i = 0; $i < $tam; $i++) {
+                                $aux = $produtores[$i];
+                                echo "<option value=\"".$aux["codigo"]."\">".$aux["produtora"]."</option>\n";
+                            }
+                            ?>
+                        </select></td>
+                </tr>
+                
+                <tr>
+                    <td><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Formato Tela:</font></td>
+                    <td><select name="formato" id="">
+                            <?php
+                            include_once ("../Dao/CaracteristicasDAO.php");
+                            $model = new CaracteristicasDAO();
+                            $produtores = $model->getFormatos();
+                            $tam = count($produtores);
+                            for ($i = 0; $i < $tam; $i++) {
+                                $aux = $produtores[$i];
+                                echo "<option value=\"".$aux["codigo"]."\">".$aux["formato"]."</option>\n";
+                            }
+                            ?>
+                        </select></td>
+                </tr>
+                
+                <tr>
+                    <td><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Censura:</font></td>
+                    <td><select name="formato" id="">
+                            <?php
+                            include_once ("../Dao/CaracteristicasDAO.php");
+                            $model = new CaracteristicasDAO();
+                            $censuras = $model->getCensura();
+                            $tam = count($censuras);
+                            for ($i = 0; $i < $tam; $i++) {
+                                $aux = $censuras[$i];
+                                echo "<option value=\"".$aux["codigo"]."\">".$aux["censura"]."</option>\n";
+                            }
+                            ?>
+                        </select></td>
+                </tr>
+                
+                <tr>
+                    <td><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Região:</font></td>
+                    <td><select name="formato" id="">
+                            <?php
+                            include_once ("../Dao/CaracteristicasDAO.php");
+                            $model = new CaracteristicasDAO();
+                            $regioes = $model->getRegioes();
+                            $tam = count($regioes);
+                            for ($i = 0; $i < $tam; $i++) {
+                                $aux = $regioes[$i];
+                                echo "<option value=\"".$aux["codigo"]."\">".$aux["regiao"]."</option>\n";
+                            }
+                            ?>
+                        </select></td>
+                </tr>
+                
+                <tr>
+                    <td><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Grupo:</font></td>
+                    <td><select name="formato" id="">
+                            <?php
+                            include_once ("../Dao/CaracteristicasDAO.php");
+                            $model = new CaracteristicasDAO();
+                            $grupos = $model->getGrupos();
+                            $tam = count($grupos);
+                            for ($i = 0; $i < $tam; $i++) {
+                                $aux = $grupos[$i];
+                                echo "<option value=\"".$aux["codigo"]."\">".$aux["grupo"]."</option>\n";
                             }
                             ?>
                         </select></td>

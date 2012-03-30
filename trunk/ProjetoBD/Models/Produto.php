@@ -2,6 +2,7 @@
 
 class Produto {
     private $codigo;
+    private $descricao;
     private $titulo;
     private $ano;
     private $preco;
@@ -10,6 +11,50 @@ class Produto {
     private $censura;
     private $regiao;
     private $grupo;
+    private $fabricante;
+    private $loja;
+    private $fornecedor;
+    private $produtora;
+    
+    public function setProdutora($produtora){
+        $this->produtora = $produtora;
+    }
+    
+    public function getProdutora(){
+        return $this->produtora;
+    }
+    
+    public function setFornecedor($fornecedor){
+        $this->fornecedor = $fornecedor;
+    }
+    
+    public function getFornecedor(){
+        return $this->fornecedor;
+    }
+    
+    public function setLoja($loja){
+        $this->loja = $loja;
+    }
+    
+    public function getLoja(){
+        return $this->loja;
+    }
+    
+    public function setFabricante($fabricante){
+        $this->fabricante = $fabricante;
+    }
+    
+    public function getFabricante(){
+        return $this->fabricante;
+    }
+    
+    public function setDescricao($descricao){
+        $this->descricao = $descricao;
+    }
+    
+    public function getDescricao(){
+        return $this->descricao;
+    }
     
     public function setCodigo($novo) {
         $this->codigo = $novo;

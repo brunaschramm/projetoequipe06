@@ -11,19 +11,33 @@ class ProdutoController {
 
         switch ($acao) {
             case 'cadastrar':
-                $model->setDescricao($_POST['pr_descricao']);
-                $model->setTitulo($_POST['pr_titulo']);
-                $model->setAno($_POST['pr_ano']);
-                $model->setPreco($_POST['pr_preco']);
-                $model->setFormato($_POST['pr_formato']);
-                $model->setTitulo($_POST['pr_genero']);
-                $model->setCensura($_POST['pr_censura']);
-                $model->setTitulo($_POST['pr_regiao']);
-                $model->setTitulo($_POST['pr_grupo']);
-                $model->setTitulo($_POST['pr_fabricante']);
-                $model->setTitulo($_POST['pr_loja']);
-                $model->setTitulo($_POST['pr_fornecedor']);
-                $model->setTitulo($_POST['pr_produtora']);
+                $model->setDescricao($_POST['descricao']);
+                $model->setTitulo($_POST['titulo']);
+                $model->setAno($_POST['ano']);
+                $model->setPreco($_POST['preco']);
+                $model->setFormato($_POST['formato']);
+                $model->setGenero($_POST['genero']);
+                $model->setCensura($_POST['censura']);
+                $model->setRegiao($_POST['regiao']);
+                $model->setGrupo($_POST['grupo']);
+                $model->setFabricante($_POST['fabricante']);
+                $model->setLoja($_POST['loja']);
+                $model->setFornecedor($_POST['fornecedor']);
+                $model->setProdutora($_POST['produtora']);
+                
+                echo $model->getDescricao();
+                
+                echo "\n".$model->getAno();
+                echo "\n".$model->getPreco();
+                echo "\n".$model->getFormato();
+                echo "\n".$model->getTitulo();
+                echo "\n".$model->getCensura();
+                echo "\n".$model->getTitulo();
+                echo "\n".$model->getGrupo();
+                echo "\n".$model->getFabricante();
+                echo "\n".$model->getLoja();
+                echo "\n".$model->getFornecedor();
+                echo "\n".$model->getProdutora();
 
                 $resultado = $model->salvar();
 

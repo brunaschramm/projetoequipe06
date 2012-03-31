@@ -31,36 +31,45 @@
     </head>
 
     <body>
-        <form action="../Controllers/ProdutoController?acao=cadastrar" method="post" name="dados" onSubmit="return enviardados();" >
-
+        <form action="../Controllers/ProdutoController.php?acao=cadastrar" method="post" name="dados" onSubmit="return enviardados();" >
             <table width="588" border="0" >
                 <tr>
                     <td width="118"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Título:</font></td>
                     <td width="460">
-                        <input name="pr_titulo" type="text" class="formbutton" id="pr_titulo" size="52" maxlength="150"></td>
+                        <input name="titulo" type="text" class="formbutton" id="titulo" size="52" maxlength="150"></td>
                 </tr>
 
                 <tr>
                     <td width="118"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Preço:</font></td>
                     <td width="460">
-                        <input name="pr_preco" type="text" class="formbutton" id="pr_preco" size="30" maxlength="20"></td>
+                        <input name="preco" type="text" class="formbutton" id="preco" size="30" maxlength="20"></td>
                 </tr>
 
                 <tr>
                     <td><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Ano:</font></td>
                     <td><font size="2">
-                            <input name="pr_ano" type="text" id="pr_ano" size="11" maxlength="11" class="formbutton"></font></td>
+                            <input name="ano" type="text" id="ano" size="11" maxlength="11" class="formbutton"></font></td>
                 </tr>
 
                 <tr>
                     <td><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Gênero:</font></td>
-                    <td><font size="2">
-                            <input name="pr_genero" type="text" id="pr_genero" size="52" maxlength="150" class="formbutton"></font></td>
+                    <td><select name="genero" id="genero">
+                            <?php
+                            include_once ("../Dao/CaracteristicasDAO.php");
+                            $model = new CaracteristicasDAO();
+                            $generos = $model->getGeneros();
+                            $tam = count($generos);
+                            for ($i = 0; $i < $tam; $i++) {
+                                $aux = $generos[$i];
+                                echo "<option value=\"" . $aux["codigo"] . "\">" . $aux["genero"] . "</option>\n";
+                            }
+                            ?>
+                        </select></td>
                 </tr>
 
                 <tr>
                     <td><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Fabricante:</font></td>
-                    <td><select name="fabricante" id="">
+                    <td><select name="fabricante" id="fabricante">
                             <?php
                             include_once ("../Dao/FabricanteDAO.php");
                             $model = new FabricanteDAO();
@@ -68,7 +77,7 @@
                             $tam = count($fabricantes);
                             for ($i = 0; $i < $tam; $i++) {
                                 $aux = $fabricantes[$i];
-                                echo "<option value=\"".$aux["codigo"]."\">".$aux["fabricante"]."</option>\n";
+                                echo "<option value=\"" . $aux["codigo"] . "\">" . $aux["nome"] . "</option>\n";
                             }
                             ?>
                         </select></td>
@@ -76,7 +85,7 @@
 
                 <tr>
                     <td><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Loja:</font></td>
-                    <td><select name="loja" id="">
+                    <td><select name="loja" id="loja">
                             <?php
                             include_once ("../Dao/LojaDAO.php");
                             $model = new LojaDAO();
@@ -84,15 +93,15 @@
                             $tam = count($lojas);
                             for ($i = 0; $i < $tam; $i++) {
                                 $aux = $lojas[$i];
-                                echo "<option value=\"".$aux["codigo"]."\">".$aux["nome"]."</option>\n";
+                                echo "<option value=\"" . $aux["codigo"] . "\">" . $aux["nome"] . "</option>\n";
                             }
                             ?>
                         </select></td>
                 </tr>
-                
+
                 <tr>
                     <td><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Fornecedor:</font></td>
-                    <td><select name="fornecedor" id="">
+                    <td><select name="fornecedor" id="fornecedor">
                             <?php
                             include_once ("../Dao/FornecedorDAO.php");
                             $model = new FornecedorDAO();
@@ -100,31 +109,31 @@
                             $tam = count($fornecedores);
                             for ($i = 0; $i < $tam; $i++) {
                                 $aux = $fornecedores[$i];
-                                echo "<option value=\"".$aux["codigo"]."\">".$aux["nome"]."</option>\n";
+                                echo "<option value=\"" . $aux["codigo"] . "\">" . $aux["nome"] . "</option>\n";
                             }
                             ?>
                         </select></td>
                 </tr>
-                
+
                 <tr>
-                    <td><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Produtor:</font></td>
-                    <td><select name="produtor" id="">
+                    <td><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Produtora:</font></td>
+                    <td><select name="produtora" id="produtora">
                             <?php
-                            include_once ("../Dao/ProdutorDAO.php");
-                            $model = new ProdutorDAO();
-                            $produtores = $model->getAll();
+                            include_once ("../Dao/CaracteristicasDAO.php");
+                            $model = new CaracteristicasDAO();
+                            $produtores = $model->getProdutoras();
                             $tam = count($produtores);
                             for ($i = 0; $i < $tam; $i++) {
                                 $aux = $produtores[$i];
-                                echo "<option value=\"".$aux["codigo"]."\">".$aux["produtora"]."</option>\n";
+                                echo "<option value=\"" . $aux["codigo"] . "\">" . $aux["produtora"] . "</option>\n";
                             }
                             ?>
                         </select></td>
                 </tr>
-                
+
                 <tr>
                     <td><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Formato Tela:</font></td>
-                    <td><select name="formato" id="">
+                    <td><select name="formato" id="formato">
                             <?php
                             include_once ("../Dao/CaracteristicasDAO.php");
                             $model = new CaracteristicasDAO();
@@ -132,47 +141,42 @@
                             $tam = count($produtores);
                             for ($i = 0; $i < $tam; $i++) {
                                 $aux = $produtores[$i];
-                                echo "<option value=\"".$aux["codigo"]."\">".$aux["formato"]."</option>\n";
+                                echo "<option value=\"" . $aux["codigo"] . "\">" . $aux["formato"] . "</option>\n";
                             }
                             ?>
                         </select></td>
                 </tr>
-                
+
                 <tr>
                     <td><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Censura:</font></td>
-                    <td><select name="formato" id="">
+                    <td><select name="censura" id="censura">
                             <?php
                             include_once ("../Dao/CaracteristicasDAO.php");
                             $model = new CaracteristicasDAO();
-                            $censuras = $model->getCensura();
+                            $censuras = $model->getCensuras();
                             $tam = count($censuras);
                             for ($i = 0; $i < $tam; $i++) {
                                 $aux = $censuras[$i];
-                                echo "<option value=\"".$aux["codigo"]."\">".$aux["censura"]."</option>\n";
+                                echo "<option value=\"" . $aux["codigo"] . "\">" . $aux["censura"] . "</option>\n";
                             }
                             ?>
                         </select></td>
                 </tr>
-                
+
                 <tr>
                     <td><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Região:</font></td>
-                    <td><select name="formato" id="">
+                    <td><select name="regiao" id="regiao">
                             <?php
-                            include_once ("../Dao/CaracteristicasDAO.php");
-                            $model = new CaracteristicasDAO();
-                            $regioes = $model->getRegioes();
-                            $tam = count($regioes);
-                            for ($i = 0; $i < $tam; $i++) {
-                                $aux = $regioes[$i];
-                                echo "<option value=\"".$aux["codigo"]."\">".$aux["regiao"]."</option>\n";
+                            for ($i = 1; $i < 7; $i++) {
+                                echo "<option value=\"" . $i . "\">" . $i . "</option>\n";
                             }
                             ?>
                         </select></td>
                 </tr>
-                
+
                 <tr>
                     <td><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Grupo:</font></td>
-                    <td><select name="formato" id="">
+                    <td><select name="grupo" id="grupo">
                             <?php
                             include_once ("../Dao/CaracteristicasDAO.php");
                             $model = new CaracteristicasDAO();
@@ -180,7 +184,7 @@
                             $tam = count($grupos);
                             for ($i = 0; $i < $tam; $i++) {
                                 $aux = $grupos[$i];
-                                echo "<option value=\"".$aux["codigo"]."\">".$aux["grupo"]."</option>\n";
+                                echo "<option value=\"" . $aux["codigo"] . "\">" . $aux["grupo"] . "</option>\n";
                             }
                             ?>
                         </select></td>
@@ -189,7 +193,7 @@
                 <tr>
                     <td><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Descrição:</font></td>
                     <td rowspan="2"><font size="2">
-                            <textarea name="pr_descricao" cols="50" rows="8" class="formbutton" id="pr_descricao" input ></textarea></font></td>
+                            <textarea name="descricao" cols="50" rows="8" class="formbutton" id="descricao" input ></textarea></font></td>
                 </tr>
 
                 <tr>
@@ -207,9 +211,11 @@
 
                 </tr>
             </table>
-            <?if($_GET['flag'] == "t"){
+            <?
+            if ($_GET['flag'] == "t") {
                 echo "<font size=\"2\" face=\"Verdana, Arial, Helvetica, sans-serif\" color=\"#FF0000\">Erro no cadastro, tente novamente!</font>";
-            }?>
+            }
+            ?>
         </form>
     </body>
 </html>

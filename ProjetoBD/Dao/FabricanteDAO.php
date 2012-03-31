@@ -13,7 +13,7 @@ class FabricanteDAO extends Fabricante {
     }
 
     public function salvar() {
-        $sql = "INSERT INTO tbfabricantes06 (fabricante, nacionalidade) VALUES ('" . $this->getNome() . "', '" . $this->getNacionalidade() . "')";
+        $sql = "INSERT INTO tbfabricantes06 (nome, nacionalidade) VALUES ('" . $this->getNome() . "', '" . $this->getNacionalidade() . "')";
 
         $result = pg_query($sql);
 
@@ -37,7 +37,7 @@ class FabricanteDAO extends Fabricante {
     }
 
     public function getAll() {
-        $sql = "SELECT * FROM tbfabricantes06 ORDER BY fabricante";
+        $sql = "SELECT * FROM tbfabricantes06 ORDER BY nome";
         
         $result = pg_query($sql);
         

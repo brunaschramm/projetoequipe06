@@ -2,31 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>Cadastro de Loja</title>
-
-        <script language="JavaScript" >
-            function enviardados(){	
-                if(document.dados.loj_nome.value=="")
-                {
-                    alert("Preencha o campo NOME corretamente!");
-                    document.dados.loj_nome.focus();	
-                    return false;
-                }
-	
-                if(document.dados.loj_email.value=="" && document.dados.loj_endereco.value=="") {
-                    alert( "Preencha o campo E-MAIL ou ENDEREÇO!" );
-                    document.dados.loj_email.focus();
-                    return false;
-                }
-        
-                if(document.dados.loj_email.value!="" && (document.dados.loj_email.value.indexOf('@')==-1 || document.dados.loj_email.value.indexOf('.')==-1 ))
-                {
-                    alert( "Preencha o campo E-MAIL corretamente!" );
-                    document.dados.loj_email.focus();
-                    return false;
-                }
-            }
-        </script>
+        <title>Loja</title>
     </head>
 
     <body>

@@ -31,9 +31,7 @@
             include_once ("../Dao/UsuarioDAO.php");
             include_once ("../Controller/UsuarioController.php");
             $model = new UsuarioDAO();
-            if (!$_GET["filter"]) {
-                $usuarios = $model->getAll();
-            }
+            $usuarios = $model->getAll();
             $tam = count($usuarios);
             for ($i = 0; $i < $tam; $i++) {
                 $aux = $usuarios[$i];

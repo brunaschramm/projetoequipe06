@@ -2,6 +2,8 @@
 class Fornecedor {
     private $nome;
     private $codigo;
+    
+    function __construct() {}
 
     public function setNome($nome) {
         $this->nome = $nome;
@@ -12,11 +14,11 @@ class Fornecedor {
     }
     
     public function setCodigo($codigo) {
-        $this->cogido = $codigo;
+        $this->codigo = $codigo;
     }
     
     public function getCodigo(){
-        return $this->Codigo;
+        return $this->codigo;
     }
 }
 ?>

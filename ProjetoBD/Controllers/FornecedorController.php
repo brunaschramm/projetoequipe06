@@ -45,5 +45,5 @@ class FornecedorController {
 
 }
 
-$controle = new FabricanteController();
+$controle = new FornecedorController();
 ?>

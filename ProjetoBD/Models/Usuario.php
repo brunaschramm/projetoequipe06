@@ -44,5 +44,9 @@ class Usuario {
     public function setApelido($apelido){
         $this->apelido = $apelido;
     }
+    
+    public function getApelido(){
+        return $this->apelido;
+    }
 }
 ?>

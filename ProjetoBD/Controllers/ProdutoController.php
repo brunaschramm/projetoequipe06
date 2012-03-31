@@ -24,20 +24,6 @@ class ProdutoController {
                 $model->setLoja($_POST['loja']);
                 $model->setFornecedor($_POST['fornecedor']);
                 $model->setProdutora($_POST['produtora']);
-                
-                echo $model->getDescricao();
-                
-                echo "\n".$model->getAno();
-                echo "\n".$model->getPreco();
-                echo "\n".$model->getFormato();
-                echo "\n".$model->getTitulo();
-                echo "\n".$model->getCensura();
-                echo "\n".$model->getTitulo();
-                echo "\n".$model->getGrupo();
-                echo "\n".$model->getFabricante();
-                echo "\n".$model->getLoja();
-                echo "\n".$model->getFornecedor();
-                echo "\n".$model->getProdutora();
 
                 $resultado = $model->salvar();
 

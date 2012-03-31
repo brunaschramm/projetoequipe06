@@ -31,10 +31,6 @@ class LojaController {
                     header("Location: ../Views/lojas.php?flag=t");
                 }
                 break;
-            case 'pesquisarTodas':
-                $todasLojas = $model->todasLojas();                                
-                
-                break;
         }
     }
 }

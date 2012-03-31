@@ -1,20 +1,21 @@
 <?php
-
 include_once ("../Dao/UsuarioDAO.php");
 
 class UsuarioController {
-
-    public function __construct() {
-        $acao = $_GET['acao'];
-
+    function __construct() {
+        
         $model = new UsuarioDAO();
+
+        $acao = $_GET['acao'];
 
         switch ($acao) {
             case 'cadastrar':
-                $model->setNome($_POST["us_nome"]);
-                $model->setCpf($_POST["us_cpf"]);
-                $model->setEmail($_POST["us_email"]);
-                $model->setApelido($_POST["us_apelido"]);
+
+                $model->setNome($_POST['us_nome']);
+                $model->setApelido($_POST['us_apelido']);
+                $model->setCpf($_POST['us_cpf']);
+                $model->setEmail($_POST['us_email']);
+
 
                 $resultado = $model->salvar();
 
@@ -37,8 +38,6 @@ class UsuarioController {
                 break;
         }
     }
-
 }
-
 $controller = new UsuarioController();
 ?>

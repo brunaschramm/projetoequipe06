@@ -10,7 +10,7 @@
                 if(document.dados.for_nome.value=="")
                 {
                     alert("Preencha o campo NOME corretamente!");
-                    document.dados.fab_nome.focus();	
+                    document.dados.for_nome.focus();	
                     return false;
                 }
             }
@@ -36,10 +36,13 @@
 
                 </tr>
             </table>
-            <?if($_GET['flag'] == "t"){
-                echo "<font size=\"2\" face=\"Verdana, Arial, Helvetica, sans-serif\" color=\"#FF0000\">Erro no cadastro, tente novamente!</font>";
-            }?>
         </form>
+        <?
+        if ($_GET['flag'] == "t") {
+            echo "<font size=\"2\" face=\"Verdana, Arial, Helvetica, sans-serif\" color=\"#FF0000\">Erro no cadastro, tente novamente!</font>";
+        }
+        ?>
+
     </body>
 </html>
 

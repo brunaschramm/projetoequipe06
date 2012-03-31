@@ -25,9 +25,9 @@ class UsuarioDAO extends Usuario {
             return true;
         }
     }
-    
+
     public function excluir() {
-        $sql = "DELETE FROM tbusuario WHERE codigo=".$this->getCodigo();
+        $sql = "DELETE FROM tbusuario WHERE codigo=" . $this->getCodigo();
 
         $result = pg_query($sql);
 
@@ -40,10 +40,10 @@ class UsuarioDAO extends Usuario {
 
     public function valida($email, $cpf) {
         $sql = "SELECT * FROM tbusuario WHERE email = '$email' AND cpf = '$cpf'";
-        
+
         $result = pg_query($sql);
-        
-        if (!$result){
+
+        if (!$result) {
             return null;
         } else {
             session_start();
@@ -54,5 +54,21 @@ class UsuarioDAO extends Usuario {
             return $result;
         }
     }
+
+    public function getAll() {
+        $sql = "SELECT * FROM tbusuario";
+
+        $result = pg_query($sql);
+        
+        $numeroLinhas = pg_num_rows($result);
+
+        $array = array();
+
+        for ($i = 0; $i < $numeroLinhas; $i++) {
+            $array[] = pg_fetch_array($result);
+        }
+        return $array;
+    }
 }
+
 ?>

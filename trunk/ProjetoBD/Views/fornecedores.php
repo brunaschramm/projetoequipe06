@@ -4,21 +4,9 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>Fornecedor</title>
-
-        <script language="JavaScript" >
-            function enviardados(){	
-                if(document.dados.for_nome.value=="")
-                {
-                    alert("Preencha o campo NOME corretamente!");
-                    document.dados.fab_nome.focus();	
-                    return false;
-                }
-            }
-        </script>
     </head>
 
     <body>
-
         <table>
             <tr>
                 <td><a href="../Views/cadastroFornecedor.php?flag=f"><img src="../Imagens/adicionar.png" width="20" height="20"></a></td>

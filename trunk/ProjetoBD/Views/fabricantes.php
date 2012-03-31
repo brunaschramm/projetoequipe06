@@ -4,17 +4,6 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>Fabricante</title>
-
-        <script language="JavaScript" >
-            function enviardados(){	
-                if(document.dados.pesquisa.value=="")
-                {
-                    alert("Preencha o campo PESQUISA!");
-                    document.dados.pesquisa.focus();	
-                    return false;
-                }
-            }
-        </script>
     </head>
 
     <body>

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>Cadastro de Usuário</title>
+        <title>Amigos</title>
 
         <script language="JavaScript" >
             function enviardados(){	
@@ -17,7 +17,7 @@
     </head>
 
     <body>
-        <form action="../Controllers/UsuarioController.php?acao=cadastrar" method="post" name="dados" onSubmit="return enviardados();" >
+        <form action="../Controllers/UsuarioController.php?acao=amigo" method="post" name="dados" onSubmit="return enviardados();" >
 
             <table width="588" border="0" >
                 <tr>
@@ -33,28 +33,29 @@
                     </td>
                 </tr>
             </table>
-            <table>
-                <?php
-                include_once ("../Dao/UsuarioDAO.php");
-                $model = new UsuarioDAO();
-                $amigos = $model->getAmigos();
-                $tam = count($amigos);
-                for ($i = 0; $i < $tam; $i++) {
-                    $aux = $loja[$i];
-                    echo "<tr><td>".$aux["codigo"]."</td><td>".$aux["nome"]."</td><td>".$aux["email"]."</td></tr><td>".$aux["apelido"]."</td>\n";
-                }
-                ?>
-                <tr>
-                    <td>
-                        $
-                    </td>
-                </tr>
-            </table>
-            <?
-            if ($_GET['flag'] == "t") {
-                echo "<font size=\"2\" face=\"Verdana, Arial, Helvetica, sans-serif\" color=\"#FF0000\">Erro no cadastro, tente novamente!</font>";
+        </form>
+        <table>
+            <?php
+            include_once ("../Dao/UsuarioDAO.php");
+            $model = new UsuarioDAO();
+            $amigos = $model->getAmigos();
+            $tam = count($amigos);
+            for ($i = 0; $i < $tam; $i++) {
+                $aux = $amigos[$i];
+                echo "<tr><td>" . $aux["nome_amigo"] . "</td><td>" . $aux["email_amigo"] . "</td></tr><td>" . $aux["apelido"] . "</td><td><a href=\"../Controllers/UsuarioController.php?acao=excluirAmigo&id=" 
+                        . $aux["cod_amigo"] . "\"><img src=\"../Imagens/excluir.png\" width=\"20\" height=\"20\"></a></td></tr>\n";
             }
             ?>
-        </form>
+            <tr>
+                <td>
+                    
+                </td>
+            </tr>
+        </table>
+        <?
+        if ($_GET['flag'] == "t") {
+            echo "<font size=\"2\" face=\"Verdana, Arial, Helvetica, sans-serif\" color=\"#FF0000\">Erro no cadastro, tente novamente!</font>";
+        }
+        ?>
     </body>
 </html>

@@ -59,7 +59,7 @@ class UsuarioDAO extends Usuario {
         $sql = "SELECT * FROM tbusuario";
 
         $result = pg_query($sql);
-        
+
         $numeroLinhas = pg_num_rows($result);
 
         $array = array();
@@ -68,6 +68,54 @@ class UsuarioDAO extends Usuario {
             $array[] = pg_fetch_array($result);
         }
         return $array;
+    }
+
+    public function getAmigos() {
+        //$sql = "SELECT * FROM tbusuario";
+        $sql = "SELECT * FROM tbusuario, tbamigos06 WHERE tbusuario.codigo = '" . $_SESSION['codigo'] . "' 
+            AND tbamigos06.codigo = tbusuario.codigo";
+
+        $result = pg_query($sql);
+
+        $numeroLinhas = pg_num_rows($result);
+
+        $array = array();
+
+        for ($i = 0; $i < $numeroLinhas; $i++) {
+            $array[] = pg_fetch_array($result);
+        }
+        return $array;
+    }
+
+    public function adicionarAmigo() {
+        $sql = "SELECT * FROM tbusuario WHERE email = " . $_POST['email'];
+        $result = pg_query($sql);
+
+        $numeroLinhas = pg_num_rows($result);
+
+        $array = array();
+
+        if ($numeroLinhas) {
+            $sql = "INSERT INTO tbamigos06 (codigo, cod_amigo, nivel) values ('" . $_SESSION['codigo'] . "', '" . $result["codigo"] . "', '" . $this->getEmail() . "')";
+            $result = pg_query($sql);
+            for ($i = 0; $i < $numeroLinhas; $i++) {
+                $array[] = pg_fetch_array($result);
+            }
+            return $array;
+        }
+        return false;
+    }
+
+    public function removerAmigo() {
+        $sql = "DELETE FROM tbamigos06 WHERE codigo=" . $_SESSION['codigo']. "AND cod_amigo".$this->getCodigo();
+
+        $result = pg_query($sql);
+
+        if (!$result) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }
 

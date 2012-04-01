@@ -6,24 +6,24 @@
 
         <script language="JavaScript" >
             function enviardados(){	
-                if(document.dados.us_nome.value=="")
+                if(document.dados.titulo.value=="")
                 {
-                    alert("Preencha o campo NOME corretamente!");
-                    document.dados.us_nome.focus();	
+                    alert("Preencha o campo TITULO corretamente!");
+                    document.dados.titulo.focus();	
                     return false;
                 }
 	
-                if (!vercpf(document.dados.us_cpf.value)) 
+                if( document.dados.preco.value=="")
                 {
-                    alert("Preencha o campo CPF corretamente!");
-                    document.dados.us_cpf.focus();
+                    alert( "Preencha o campo PRECO corretamente!" );
+                    document.dados.preco.focus();
                     return false;
                 }
-	
-                if( document.dados.us_email.value=="" || document.dados.us_email.value.indexOf('@')==-1 || document.dados.us_email.value.indexOf('.')==-1 )
+                
+                if( document.dados.ano.value=="")
                 {
-                    alert( "Preencha o campo E-MAIL corretamente!" );
-                    document.dados.us_email.focus();
+                    alert( "Preencha o campo ANO corretamente!" );
+                    document.dados.ano.focus();
                     return false;
                 }
             }

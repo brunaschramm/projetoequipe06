@@ -1,9 +1,11 @@
 <?php
+
 include_once ("../Dao/UsuarioDAO.php");
 
 class UsuarioController {
+
     function __construct() {
-        
+
         $model = new UsuarioDAO();
 
         $acao = $_GET['acao'];
@@ -36,8 +38,32 @@ class UsuarioController {
                     header("Location: ../Views/usuarios.php?flag=t");
                 }
                 break;
+            case 'amigo':
+                $model->setEmail($_GET['am_email']);
+
+                $resultado = $model->adicionarAmigo();
+
+                if ($resultado == 1) {
+                    header("Location: ../Views/cadastroAmigos.php?flag=f");
+                } else {
+                    header("Location: ../Views/cadastroAmigos.php?flag=t");
+                }
+                break;
+            case 'excluirAmigo':
+                $model->setCodigo($_GET['id']);
+
+                $resultado = $model->removerAmigo();
+
+                if ($resultado == 1) {
+                    header("Location: ../Views/cadastroAmigos.php?flag=f");
+                } else {
+                    header("Location: ../Views/cadastroAmigos.php?flag=t");
+                }
+                break;
         }
     }
+
 }
+
 $controller = new UsuarioController();
 ?>

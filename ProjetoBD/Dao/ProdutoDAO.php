@@ -70,22 +70,24 @@ class ProdutoDAO extends Produto {
         return $array;
     }
     
-    public function consultar($pesquisa) {
+    public function consultar($titulo, $preco, $ano, $genero, $fabricante, $loja, $fornecedor, $produtora, $formato, $censura, $regiao, $grupo) {
         $sql = "SELECT tbprodutos06.titulo, tbprodutos06.descricao, tbprodutos06.preco, tbprodutos06.ano,
                 tbfabricantes06.nome AS fabricante, tbloja.nome AS loja, tbprodutoras06.produtora,
                 tbformatostela06.formato, tbgeneros06.genero, tbcensuras06.censura, tbprodutos06.regiao,
                 tbgrupos06.grupo, tbfornecedor.nome AS fornecedor, tbprodutos06.codigo
                 FROM tbprodutos06, tbgeneros06, tbfabricantes06, tbfornecedor, tbcensuras06,
                 tbformatostela06, tbgrupos06, tbloja, tbprodutoras06
-                WHERE  tbprodutos06.titulo LIKE '%".$pesquisa."%'
-                AND tbprodutos06.cod_genero = tbgeneros06.codigo
-                AND tbprodutos06.cod_fabricante = tbfabricantes06.codigo
-                AND tbprodutos06.cod_fornecedor = tbfornecedor.codigo
-                AND tbprodutos06.cod_censura = tbcensuras06.codigo
-                AND tbprodutos06.cod_formato = tbformatostela06.codigo
-                AND tbprodutos06.cod_grupo = tbgrupos06.codigo
-                AND tbprodutos06.cod_loja = tbloja.codigo
-                AND tbprodutos06.cod_produtora = tbprodutoras06.codigo ORDER BY tbprodutos06.titulo";
+                WHERE  tbprodutos06.titulo LIKE '%".$titulo."%'
+                AND tbprodutos06.preco = ".$preco."
+                AND tbprodutos06.ano = ".$ano."
+                AND tbprodutos06.cod_genero = tbgeneros06.codigo = ".$genero."
+                AND tbprodutos06.cod_fabricante = tbfabricantes06.codigo = ".$fabricante."
+                AND tbprodutos06.cod_fornecedor = tbfornecedor.codigo = ".$fornecedor."
+                AND tbprodutos06.cod_censura = tbcensuras06.codigo = ".$censura."
+                AND tbprodutos06.cod_formato = tbformatostela06.codigo = ".$formato."
+                AND tbprodutos06.cod_grupo = tbgrupos06.codigo = ".$grupo."
+                AND tbprodutos06.cod_loja = tbloja.codigo = ".$loja."
+                AND tbprodutos06.cod_produtora = tbprodutoras06.codigo = ".$produtora."ORDER BY tbprodutos06.titulo";
 
         $result = pg_query($sql);
 

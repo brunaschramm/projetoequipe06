@@ -10,13 +10,13 @@
         <table>
             <form action="" method="POST" name="dados">
                 <tr>
-                    <td width="118"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Consultar:</font></td>
+                    <td width="118"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Fornecedor:</font></td>
                     <td width="460">
                         <input name="consulta" type="text" class="formbutton" id="consulta" size="50" maxlength="50"/>
                     </td>
                     <td height="22"> </td>
                     <td>
-                        <input name="Submit" type="submit" class="formobjects" value="Pesquisar"/>
+                        <input name="Submit" type="submit" class="formobjects" value="Consultar"/>
                     </td>
                 </tr>
             </form>

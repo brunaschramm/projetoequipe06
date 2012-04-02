@@ -10,15 +10,22 @@
         <table>
             <form action="" method="POST" name="dados">
                 <tr>
-                    <td width="118"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Consultar:</font></td>
+                    <td width="118"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Fabricante:</font></td>
                     <td width="460">
-                        <input name="consulta" type="text" class="formbutton" id="consulta" size="50" maxlength="50"/>
+                        <input name="fabricante" type="text" class="formbutton" id="fabricante" size="50" maxlength="50"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="118"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Nacionalidade:</font></td>
+                    <td width="460">
+                        <input name="nacionalidade" type="text" class="formbutton" id="nacionalidade" size="50" maxlength="50"/>
                     </td>
                     <td height="22"> </td>
                     <td>
-                        <input name="Submit" type="submit" class="formobjects" value="Pesquisar"/>
+                        <input name="Submit" type="submit" class="formobjects" value="Consultar"/>
                     </td>
                 </tr>
+                
             </form>
             <tr>
                 <td><a href="../Views/cadastroFabricante.php?flag=f"><img src="../Imagens/adicionar.png" width="20" height="20"></a></td>
@@ -31,7 +38,7 @@
             include_once ("../Dao/FabricanteDAO.php");
             $model = new FabricanteDAO();
             if (isset($_POST["Submit"])) {
-                $fabricantes = $model->consultar($_POST["consulta"]);
+                $fabricantes = $model->consultar($_POST["fabricante"], $_POST["nacionalidade"]);
             } else {
                 $fabricantes = $model->getAll();
             }

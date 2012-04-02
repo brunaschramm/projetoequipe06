@@ -52,7 +52,7 @@ class FornecedorDAO extends Fornecedor {
         return $array;
     }
 
-    public function filtrar($pesquisa) {
+    public function consultar($pesquisa) {
         $sql = "SELECT * FROM tbfornecedor WHERE nome LIKE '%".$pesquisa."%' ORDER BY nome";
 
         $result = pg_query($sql);

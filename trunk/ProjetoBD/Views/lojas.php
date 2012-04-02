@@ -9,13 +9,17 @@
         <table>
             <form action="" method="POST" name="dados">
                 <tr>
-                    <td width="118"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Consultar:</font></td>
+                    <td width="118"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Nome:</font></td>
                     <td width="460">
-                        <input name="consulta" type="text" class="formbutton" id="consulta" size="50" maxlength="50"/>
+                        <input name="nome" type="text" class="formbutton" id="nome" size="50" maxlength="50"/>
+                </tr>
+                <tr>
+                    <td width="118"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Endereço:</font></td>
+                    <td width="460">
+                        <input name="endereco" type="text" class="formbutton" id="endereco" size="50" maxlength="50"/>
                     </td>
-                    <td height="22"> </td>
                     <td>
-                        <input name="Submit" type="submit" class="formobjects" value="Pesquisar"/>
+                        <input name="Submit" type="submit" class="formobjects" value="Consultar"/>
                     </td>
                 </tr>
             </form>
@@ -30,7 +34,7 @@
             include_once ("../Dao/LojaDAO.php");
             $model = new LojaDAO();
             if(isset($_POST["Submit"])) {
-                $lojas = $model->filtrar($_POST["consulta"]);
+                $lojas = $model->consultar($_POST["nome"], $_POST["endereco"]);
             } else {
                 $lojas = $model->getAll();
             }

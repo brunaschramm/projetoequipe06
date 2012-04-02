@@ -31,7 +31,7 @@
             include_once ("../Dao/FornecedorDAO.php");
             $model = new FornecedorDAO();
             if(isset($_POST["Submit"])) {
-                $fornecedores = $model->filtrar($_POST["consulta"]);
+                $fornecedores = $model->consultar($_POST["consulta"]);
             } else {
                 $fornecedores = $model->getAll();
             }

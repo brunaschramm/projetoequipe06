@@ -50,9 +50,9 @@ class LojaDAO extends Loja {
         return $array;
     }
     
-    public function filtrar($pesquisa) {
+    public function consultar($nome, $endereco) {
         //$sql = "SELECT * FROM tbloja WHERE nome LIKE '%".$pesquisa."%' OR endereco LIKE '%".$pesquisa."%' ORDER BY nome";
-        $sql = "SELECT * FROM tbloja WHERE nome LIKE '%".$pesquisa."%' ORDER BY nome";
+        $sql = "SELECT * FROM tbloja WHERE nome LIKE '%".$nome."%' AND endereco LIKE '%".$endereco."%' ORDER BY nome";
 
         $result = pg_query($sql);
 

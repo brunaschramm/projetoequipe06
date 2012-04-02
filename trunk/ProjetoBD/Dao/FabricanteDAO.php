@@ -51,6 +51,23 @@ class FabricanteDAO extends Fabricante {
                         
         return $array;
     }
+    
+    public function filtrar($pesquisa) {
+        //$sql = "SELECT * FROM tbfabricantes06 WHERE nome LIKE '%".$pesquisa."%' OR nacionalidade LIKE '%".$pesquisa."%' ORDER BY nome";
+        $sql = "SELECT * FROM tbfabricantes06 WHERE nome LIKE '%".$pesquisa."%' ORDER BY nome";
+
+        $result = pg_query($sql);
+
+        $numeroLinhas = pg_num_rows($result);
+
+        $array = array();
+
+        for ($i = 0; $i < $numeroLinhas; $i++) {
+            $array[] = pg_fetch_array($result);
+        }
+
+        return $array;
+    }
 }
 $fabricante = new FabricanteDAO();
 ?>

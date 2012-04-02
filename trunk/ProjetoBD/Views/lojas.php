@@ -7,6 +7,18 @@
 
     <body>
         <table>
+            <form action="" method="POST" name="dados">
+                <tr>
+                    <td width="118"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Consultar:</font></td>
+                    <td width="460">
+                        <input name="consulta" type="text" class="formbutton" id="consulta" size="50" maxlength="50"/>
+                    </td>
+                    <td height="22"> </td>
+                    <td>
+                        <input name="Submit" type="submit" class="formobjects" value="Pesquisar"/>
+                    </td>
+                </tr>
+            </form>
             <tr>
                 <td><a href="../Views/cadastroLoja.php?flag=f"><img src="../Imagens/adicionar.png" width="20" height="20"></a></td>
             </tr>
@@ -16,9 +28,12 @@
             </tr>
             <?php
             include_once ("../Dao/LojaDAO.php");
-            include_once ("../Controller/LojaController.php");
             $model = new LojaDAO();
-            $lojas = $model->getAll();
+            if(isset($_POST["Submit"])) {
+                $lojas = $model->filtrar($_POST["consulta"]);
+            } else {
+                $lojas = $model->getAll();
+            }
             $tam = count($lojas);
             for ($i = 0; $i < $tam; $i++) {
                 $aux = $lojas[$i];

@@ -34,16 +34,6 @@ class FornecedorController {
                 break;
         }
     }
-
-    function getAll() {
-        $model = new FabricanteDAO();
-
-        $fabricantes = $model->getAll();
-
-        return $fabricantes;
-    }
-
 }
-
 $controle = new FornecedorController();
 ?>

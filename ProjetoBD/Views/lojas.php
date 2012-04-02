@@ -9,7 +9,7 @@
         <table>
             <form action="" method="POST" name="dados">
                 <tr>
-                    <td width="118"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Nome:</font></td>
+                    <td width="118"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Loja:</font></td>
                     <td width="460">
                         <input name="nome" type="text" class="formbutton" id="nome" size="50" maxlength="50"/>
                 </tr>

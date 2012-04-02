@@ -52,7 +52,7 @@ class FabricanteDAO extends Fabricante {
         return $array;
     }
     
-    public function filtrar($pesquisa) {
+    public function consultar($pesquisa) {
         //$sql = "SELECT * FROM tbfabricantes06 WHERE nome LIKE '%".$pesquisa."%' OR nacionalidade LIKE '%".$pesquisa."%' ORDER BY nome";
         $sql = "SELECT * FROM tbfabricantes06 WHERE nome LIKE '%".$pesquisa."%' ORDER BY nome";
 

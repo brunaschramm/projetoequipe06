@@ -70,7 +70,7 @@ class ProdutoDAO extends Produto {
         return $array;
     }
     
-    public function filtrar($pesquisa) {
+    public function consultar($pesquisa) {
         $sql = "SELECT tbprodutos06.titulo, tbprodutos06.descricao, tbprodutos06.preco, tbprodutos06.ano,
                 tbfabricantes06.nome AS fabricante, tbloja.nome AS loja, tbprodutoras06.produtora,
                 tbformatostela06.formato, tbgeneros06.genero, tbcensuras06.censura, tbprodutos06.regiao,

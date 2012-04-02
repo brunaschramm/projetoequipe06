@@ -43,7 +43,7 @@
             include_once ("../Controller/ProdutoController.php");
             $model = new ProdutoDAO();
             if(isset($_POST["Submit"])) {
-                $produtos = $model->filtrar($_POST["consulta"]);
+                $produtos = $model->consultar($_POST["consulta"]);
             } else {
                 $produtos = $model->getAll();
             }            

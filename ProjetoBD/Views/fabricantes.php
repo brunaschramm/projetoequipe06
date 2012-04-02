@@ -31,7 +31,7 @@
             include_once ("../Dao/FabricanteDAO.php");
             $model = new FabricanteDAO();
             if (isset($_POST["Submit"])) {
-                $fabricantes = $model->filtrar($_POST["consulta"]);
+                $fabricantes = $model->consultar($_POST["consulta"]);
             } else {
                 $fabricantes = $model->getAll();
             }

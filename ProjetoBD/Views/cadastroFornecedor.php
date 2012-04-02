@@ -9,7 +9,7 @@
             function enviardados(){	
                 if(document.dados.for_nome.value=="")
                 {
-                    alert("Preencha o campo NOME corretamente!");
+                    alert("Preencha o campo NOME!");
                     document.dados.for_nome.focus();	
                     return false;
                 }

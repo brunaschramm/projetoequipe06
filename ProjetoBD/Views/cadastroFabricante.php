@@ -9,14 +9,14 @@
             function enviardados(){	
                 if(document.dados.fab_nome.value=="")
                 {
-                    alert("Preencha o campo NOME corretamente!");
+                    alert("Preencha o campo NOME!");
                     document.dados.fab_nome.focus();	
                     return false;
                 }
 	
                 if (document.dados.fab_nacionalidade.value=="") 
                 {
-                    alert("Preencha o campo NACIONALIDADE corretamente!");
+                    alert("Preencha o campo NACIONALIDADE!");
                     document.dados.fab_nacionalidade.focus();
                     return false;
                 }

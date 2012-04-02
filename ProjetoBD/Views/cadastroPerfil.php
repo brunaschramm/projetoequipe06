@@ -12,9 +12,9 @@
                     <td width="118"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Faixa de Preço:[falta ajustar]</font></td>
                     <td><select name="preco" id="preco">
                             <option value="1">até R$15,00</option>;
-                            <option value="2">R$15,00 a R$20,00</option>;
-                            <option value="3">R$20,00 a R$30,00</option>;
-                            <option value="4">a partir de R$30,00</option>;                            
+                            <option value="2">R$15,01 a R$30,00</option>;
+                            <option value="3">R$30,01 a R$45,00</option>;
+                            <option value="4">a partir de R$45,01</option>;                            
                         </select></td>
                 </tr>
 

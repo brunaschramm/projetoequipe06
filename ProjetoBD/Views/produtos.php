@@ -34,6 +34,7 @@
                             $model = new CaracteristicasDAO();
                             $generos = $model->getGeneros();
                             $tam = count($generos);
+                            echo "<option selected value=\"\"></option>";
                             for ($i = 0; $i < $tam; $i++) {
                                 $aux = $generos[$i];
                                 echo "<option value=\"" . $aux["codigo"] . "\">" . $aux["genero"] . "</option>\n";
@@ -50,6 +51,7 @@
                             $model = new FabricanteDAO();
                             $fabricantes = $model->getAll();
                             $tam = count($fabricantes);
+                            echo "<option selected value=\"\"></option>";
                             for ($i = 0; $i < $tam; $i++) {
                                 $aux = $fabricantes[$i];
                                 echo "<option value=\"" . $aux["codigo"] . "\">" . $aux["nome"] . "</option>\n";
@@ -66,6 +68,7 @@
                             $model = new LojaDAO();
                             $lojas = $model->getAll();
                             $tam = count($lojas);
+                            echo "<option selected value=\"\"></option>";
                             for ($i = 0; $i < $tam; $i++) {
                                 $aux = $lojas[$i];
                                 echo "<option value=\"" . $aux["codigo"] . "\">" . $aux["nome"] . "</option>\n";
@@ -82,6 +85,7 @@
                             $model = new FornecedorDAO();
                             $fornecedores = $model->getAll();
                             $tam = count($fornecedores);
+                            echo "<option selected value=\"\"></option>";
                             for ($i = 0; $i < $tam; $i++) {
                                 $aux = $fornecedores[$i];
                                 echo "<option value=\"" . $aux["codigo"] . "\">" . $aux["nome"] . "</option>\n";
@@ -98,6 +102,7 @@
                             $model = new CaracteristicasDAO();
                             $produtores = $model->getProdutoras();
                             $tam = count($produtores);
+                            echo "<option selected value=\"\"></option>";
                             for ($i = 0; $i < $tam; $i++) {
                                 $aux = $produtores[$i];
                                 echo "<option value=\"" . $aux["codigo"] . "\">" . $aux["produtora"] . "</option>\n";
@@ -114,6 +119,7 @@
                             $model = new CaracteristicasDAO();
                             $produtores = $model->getFormatos();
                             $tam = count($produtores);
+                            echo "<option selected value=\"\"></option>";
                             for ($i = 0; $i < $tam; $i++) {
                                 $aux = $produtores[$i];
                                 echo "<option value=\"" . $aux["codigo"] . "\">" . $aux["formato"] . "</option>\n";
@@ -130,6 +136,7 @@
                             $model = new CaracteristicasDAO();
                             $censuras = $model->getCensuras();
                             $tam = count($censuras);
+                            echo "<option selected value=\"\"></option>";
                             for ($i = 0; $i < $tam; $i++) {
                                 $aux = $censuras[$i];
                                 echo "<option value=\"" . $aux["codigo"] . "\">" . $aux["censura"] . "</option>\n";
@@ -142,6 +149,7 @@
                     <td><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Região:</font></td>
                     <td><select name="regiao" id="regiao">
                             <?php
+                            echo "<option selected value=\"\"></option>";
                             for ($i = 1; $i < 7; $i++) {
                                 echo "<option value=\"" . $i . "\">" . $i . "</option>\n";
                             }
@@ -157,23 +165,13 @@
                             $model = new CaracteristicasDAO();
                             $grupos = $model->getGrupos();
                             $tam = count($grupos);
+                            echo "<option selected value=\"\"></option>";
                             for ($i = 0; $i < $tam; $i++) {
                                 $aux = $grupos[$i];
                                 echo "<option value=\"" . $aux["codigo"] . "\">" . $aux["grupo"] . "</option>\n";
                             }
                             ?>
                         </select></td>
-                </tr>
-
-                <tr>
-                    <td><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Descrição:</font></td>
-                    <td rowspan="2"><font size="2">
-                            <textarea name="descricao" cols="50" rows="8" class="formbutton" id="descricao" input ></textarea></font></td>
-                </tr>
-
-                <tr>
-                    <td height="85"><p><strong><font face="Verdana, Arial, Helvetica, sans-serif"><font size="1"><br>
-                                    </font></font></strong></p></td>
                 </tr>
 
                 <tr>

@@ -43,7 +43,6 @@ class ProdutoDAO extends Produto {
     }
 
     public function getAll() {
-//        $sql = "SELECT * FROM tbprodutos06 ORDER BY titulo";
         $sql = "SELECT tbprodutos06.titulo, tbprodutos06.descricao, tbprodutos06.preco, tbprodutos06.ano,
                 tbfabricantes06.nome AS fabricante, tbloja.nome AS loja, tbprodutoras06.produtora,
                 tbformatostela06.formato, tbgeneros06.genero, tbcensuras06.censura, tbprodutos06.regiao,

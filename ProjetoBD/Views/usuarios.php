@@ -18,9 +18,37 @@
 
     <body>
         <table>
+            <form action="" method="POST" name="dados">
+                <tr>
+                    <td width="118"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Nome:</font></td>
+                    <td width="460">
+                        <input name="nome" type="text" class="formbutton" id="nome" size="50" maxlength="50"/>
+                </tr>
+                <tr>
+                    <td width="118"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">CPF:</font></td>
+                    <td width="460">
+                        <input name="cpf" type="text" class="formbutton" id="cpf" size="50" maxlength="50"/>
+                </tr>
+                <tr>
+                    <td width="118"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Apelido:</font></td>
+                    <td width="460">
+                        <input name="apelido" type="text" class="formbutton" id="apelido" size="50" maxlength="50"/>
+                </tr>
+                <tr>
+                    <td width="118"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Email:</font></td>
+                    <td width="460">
+                        <input name="email" type="text" class="formbutton" id="email" size="50" maxlength="50"/>
+                    </td>
+                    <td>
+                        <input name="Submit" type="submit" class="formobjects" value="Consultar"/>
+                    </td>
+                </tr>
+            </form>
             <tr>
                 <td><a href="../Views/cadastroUsuario.php?flag=f"><img src="../Imagens/adicionar.png" width="20" height="20"></a></td>
             </tr>
+        </table>
+        <table>
             <tr>
                 <td>Nome</td>
                 <td>Apelido</td>
@@ -31,7 +59,11 @@
             include_once ("../Dao/UsuarioDAO.php");
             include_once ("../Controller/UsuarioController.php");
             $model = new UsuarioDAO();
-            $usuarios = $model->getAll();
+            if(isset($_POST["Submit"])){
+                $usuarios = $model->consultar($_POST["nome"], $_POST["cpf"], $_POST["apelido"], $_POST["email"]);
+            } else {
+                $usuarios = $model->getAll();
+            }
             $tam = count($usuarios);
             for ($i = 0; $i < $tam; $i++) {
                 $aux = $usuarios[$i];

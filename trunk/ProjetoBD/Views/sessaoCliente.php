@@ -63,7 +63,7 @@
         <div class="container">
             <div id="top">
                 <img src="../Imagens/dvdcabeca2.png">
-                    
+
             </div>
 
             <div id="menu">
@@ -83,14 +83,26 @@
                             <td>
                                 Título:
                                 <br/>
-                                <input name="tituloDVD" type="text" id="titulo" size="14px">
+                                <input name="titulo" type="text" id="titulo" size="14px">
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 Gênero:
                                 <br/>
-                                <input name="generoDVD" type="text" id="genero" size="14px"/>
+                                <select name="genero" id="genero">
+                                    <?php
+                                    include_once ("../Dao/CaracteristicasDAO.php");
+                                    $model = new CaracteristicasDAO();
+                                    $generos = $model->getGeneros();
+                                    $tam = count($generos);
+                                    echo "<option value=\"\">Selecione</option>\n";
+                                    for ($i = 0; $i < $tam; $i++) {
+                                        $aux = $generos[$i];
+                                        echo "<option value=\"" . $aux["codigo"] . "\">" . $aux["genero"] . "</option>\n";
+                                    }
+                                    ?>
+                                </select>
                             </td>
                         </tr>
                         <tr>
@@ -112,21 +124,12 @@
                             <td>
                                 Ano:
                                 <br/>
-                                <select size="1" name="anoDVD">
-                                    <option selected value="Selecione">Ano do filme</option>
-                                    <option value="1">2012</option>
-                                    <option value="2">2011</option>
-                                    <option value="3">2010</option>
-                                    <option value="4">2009</option>
-                                    <option value="5">2008</option>
-                                    <option value="6">2007</option>
-                                    <option value="7">2006</option>
-                                    <option value="8">2005</option>
-                                    <option value="9">2004</option>
-                                    <option value="10">2003</option>
-                                    <option value="11">2002</option>
-                                    <option value="12">2001</option>
-                                    <option value="13">2000</option>
+                                <select name="ano" id="ano">
+                                    <?php
+                                    for ($i = 2012; $i >= 1970; $i--) {
+                                        echo "<option value=\"" . $aux["codigo"] . "\">" . $aux["genero"] . "</option>\n";
+                                    }
+                                    ?>
                                 </select>
                             </td>
                         </tr>
@@ -169,8 +172,8 @@
 
 
             <div id="main">
-                <? 
-                if(isset($_POST["Submit"])){
+                <?
+                if (isset($_POST["Submit"])) {
                     include_once "lojas.php";
                 }else
                     include_once "inicio.html";

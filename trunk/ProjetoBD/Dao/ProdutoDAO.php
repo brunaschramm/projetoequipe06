@@ -43,7 +43,7 @@ class ProdutoDAO extends Produto {
     }
 
     public function getAll() {
-        $sql = "SELECT tbprodutos06.titulo, tbprodutos06.descricao, tbprodutos06.preco, tbprodutos06.ano,
+        $sql = "SELECT tbprodutos06.imagem, tbprodutos06.titulo, tbprodutos06.descricao, tbprodutos06.preco, tbprodutos06.ano,
                 tbfabricantes06.nome AS fabricante, tbloja.nome AS loja, tbprodutoras06.produtora,
                 tbformatostela06.formato, tbgeneros06.genero, tbcensuras06.censura, tbprodutos06.regiao,
                 tbgrupos06.grupo, tbfornecedor.nome AS fornecedor, tbprodutos06.codigo
@@ -121,6 +121,81 @@ class ProdutoDAO extends Produto {
             $sql = $sql . " AND produtoras.codigo = " . $produtora;
         }
         $sql . " ORDER BY produtos.titulo";
+
+        $result = pg_query($sql);
+
+        $numeroLinhas = pg_num_rows($result);
+
+        $array = array();
+
+        for ($i = 0; $i < $numeroLinhas; $i++) {
+            $array[] = pg_fetch_array($result);
+        }
+        return $array;
+    }
+    
+    public function buscaAvancada($titulo, $genero, $preco, $ano, $loja, $produtora) {
+        $sql = "SELECT produtos.titulo, produtos.descricao, produtos.preco, produtos.ano,
+            fabricantes.nome AS fabricante, lojas.nome AS loja, produtoras.produtora,formatos.formato, 
+            generos.genero, censuras.censura, produtos.regiao, grupos.grupo, fornecedores.nome AS fornecedor, 
+            produtos.codigo
+            FROM tbprodutos06 AS produtos INNER JOIN tbfabricantes06 AS fabricantes ON produtos.cod_fabricante = fabricantes.codigo
+            INNER JOIN tbloja AS lojas ON produtos.cod_loja = lojas.codigo
+            INNER JOIN tbprodutoras06 AS produtoras ON produtos.cod_produtora = produtoras.codigo
+            INNER JOIN tbgeneros06 AS generos ON produtos.cod_genero = generos.codigo
+            INNER JOIN tbformatostela06 AS formatos ON produtos.cod_formato = formatos.codigo
+            INNER JOIN tbcensuras06 AS censuras ON produtos.cod_censura = censuras.codigo
+            INNER JOIN tbgrupos06 AS grupos ON produtos.cod_grupo = grupos.codigo
+            INNER JOIN tbfornecedor as fornecedores ON produtos.cod_fornecedor = fornecedores.codigo
+            WHERE 1 = 1";
+        if ($titulo != "") {
+            $sql = $sql . " AND produtos.titulo LIKE '%" . $titulo . "%'";
+        }
+        if ($preco != null) {
+            $sql = $sql . " AND produtos.preco = " . $preco;
+        }
+        if ($ano != null) {
+            $sql = $sql . " AND produtos.ano = " . $ano;
+        }
+        if ($genero != null) {
+            $sql = $sql . " AND generos.codigo = " . $genero;
+        }
+        if ($loja != null) {
+            $sql = $sql . " AND lojas.codigo = " . $loja;
+        }
+        if ($produtora != null) {
+            $sql = $sql . " AND produtoras.codigo = " . $produtora;
+        }
+        $sql . " ORDER BY produtos.titulo";
+
+        $result = pg_query($sql);
+
+        $numeroLinhas = pg_num_rows($result);
+
+        $array = array();
+
+        for ($i = 0; $i < $numeroLinhas; $i++) {
+            $array[] = pg_fetch_array($result);
+        }
+        return $array;
+    }
+    
+    public function buscaSimples($busca) {
+        $sql = "SELECT produtos.titulo, produtos.descricao, produtos.preco, produtos.ano,
+            fabricantes.nome AS fabricante, lojas.nome AS loja, produtoras.produtora,formatos.formato, 
+            generos.genero, censuras.censura, produtos.regiao, grupos.grupo, fornecedores.nome AS fornecedor, 
+            produtos.codigo
+            FROM tbprodutos06 AS produtos INNER JOIN tbfabricantes06 AS fabricantes ON produtos.cod_fabricante = fabricantes.codigo
+            INNER JOIN tbloja AS lojas ON produtos.cod_loja = lojas.codigo
+            INNER JOIN tbprodutoras06 AS produtoras ON produtos.cod_produtora = produtoras.codigo
+            INNER JOIN tbgeneros06 AS generos ON produtos.cod_genero = generos.codigo
+            INNER JOIN tbformatostela06 AS formatos ON produtos.cod_formato = formatos.codigo
+            INNER JOIN tbcensuras06 AS censuras ON produtos.cod_censura = censuras.codigo
+            INNER JOIN tbgrupos06 AS grupos ON produtos.cod_grupo = grupos.codigo
+            INNER JOIN tbfornecedor as fornecedores ON produtos.cod_fornecedor = fornecedores.codigo
+            WHERE produtos.titulo LIKE '%".$busca."%' OR produtos.preco = ".$busca." OR produtos.ano = ".$ano
+            ." OR genero LIKE '%".$genero."%' OR loja LIKE '%".$loja."%' OR produtora LIKE '%".$produtora."%'"
+            ." ORDER BY produtos.titulo";
 
         $result = pg_query($sql);
 

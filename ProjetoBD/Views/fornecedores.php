@@ -7,7 +7,7 @@
     </head>
 
     <body>
-        <table>
+        <table align="center">
             <form action="" method="POST" name="dados">
                 <tr>
                     <td width="118"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Fornecedor:</font></td>

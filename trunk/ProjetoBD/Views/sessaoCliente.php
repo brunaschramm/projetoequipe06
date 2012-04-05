@@ -42,6 +42,7 @@
                 color: #bbb;
                 text-align: center;
                 border-top: 1px dotted #bbb;
+                height: 30px;
 
 
 
@@ -109,8 +110,8 @@
                             <td>
                                 Preço:
                                 <br/>
-                                <select size="1" name="faixaprecoDVD">
-                                    <option selected value="Selecione">Faixa de preço</option>
+                                <select size="1" name="preco">
+                                    <option selected value="">Selecione</option>
                                     <option value="1">até R$ 5,00</option>
                                     <option value="2">R$ 5,01 à R$ 10,00</option>
                                     <option value="3">R$ 10,01 à R$ 25,00</option>
@@ -126,8 +127,9 @@
                                 <br/>
                                 <select name="ano" id="ano">
                                     <?php
+                                    echo "<option value=\"\">Selecione</option>\n";
                                     for ($i = 2012; $i >= 1970; $i--) {
-                                        echo "<option value=\"" . $aux["codigo"] . "\">" . $aux["genero"] . "</option>\n";
+                                        echo "<option value=\"" . $i . "\">" . $i . "</option>\n";
                                     }
                                     ?>
                                 </select>
@@ -137,15 +139,18 @@
                             <td> 
                                 Loja:
                                 <br/>
-                                <select size="1" name="lojaDVD">
-                                    <option selected value="Selecione">loja do produto</option>
-                                    <option value="1">bemol</option>
-                                    <option value="2">livraria saraiva</option>
-                                    <option value="3">submarino</option>
-                                    <option value="4">extra</option>
-                                    <option value="5">siciliano</option>
-                                    <option value="6">ponto frio</option>
-                                    <option value="7">arena DVD</option>
+                                <select name="loja" id="loja">
+                                    <?php
+                                    include_once ("../Dao/LojaDAO.php");
+                                    $model = new LojaDAO();
+                                    $lojas = $model->getAll();
+                                    $tam = count($lojas);
+                                    echo "<option value=\"\">Selecione</option>\n";
+                                    for ($i = 0; $i < $tam; $i++) {
+                                        $aux = $lojas[$i];
+                                        echo "<option value=\"" . $aux["codigo"] . "\">" . $aux["nome"] . "</option>\n";
+                                    }
+                                    ?>
                                 </select>
                             </td>
                         </tr>
@@ -153,11 +158,18 @@
                             <td>
                                 Fabricante:
                                 <br/>
-                                <select size="1" name="fabricanteDVD">
-                                    <option selected value="Selecione">fabricante do produto</option>
-                                    <option value="1">video lar</option>
-                                    <option value="2">disco lazer</option>
-                                    <option value="3">endemol</option>
+                                <select name="produtora" id="produtora">
+                                    <?php
+                                    include_once ("../Dao/CaracteristicasDAO.php");
+                                    $model = new CaracteristicasDAO();
+                                    $produtores = $model->getProdutoras();
+                                    $tam = count($produtores);
+                                    echo "<option value=\"\">Selecione</option>\n";
+                                    for ($i = 0; $i < $tam; $i++) {
+                                        $aux = $produtores[$i];
+                                        echo "<option value=\"" . $aux["codigo"] . "\">" . $aux["produtora"] . "</option>\n";
+                                    }
+                                    ?>
                                 </select>
                             </td>
                         </tr>
@@ -169,12 +181,10 @@
                     </table>
                 </form>
             </div>
-
-
             <div id="main">
                 <?
                 if (isset($_POST["Submit"])) {
-                    include_once "lojas.php";
+                    include_once "inicio.php";
                 }else
                     include_once "inicio.html";
                 ?>

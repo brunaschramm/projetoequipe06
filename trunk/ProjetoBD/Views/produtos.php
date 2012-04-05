@@ -200,7 +200,6 @@
                 <td>Loja</td>
                 <td>Fornecedor</td>
                 <td>Produtora</td>
-                <td>Descricao</td>
             </tr>
             <?php
             include_once ("../Dao/ProdutoDAO.php");
@@ -222,7 +221,7 @@
                 "</td><td>" . $aux["regiao"] . "</td><td>" . $aux["grupo"] .
                 "</td><td>" . $aux["fabricante"] . "</td><td>" . $aux["loja"] .
                 "</td><td>" . $aux["fornecedor"] . "</td><td>" . $aux["produtora"] .
-                "</td><td>" . $aux["descricao"] . "</td><td><a href=\"../Controllers/ProdutoController.php?acao=excluir&id="
+                "</td>"/*<td>" . $aux["descricao"] . "</td>.*/."<td><a href=\"../Controllers/ProdutoController.php?acao=excluir&id="
                 . $aux["codigo"] . "\"><img src=\"../Imagens/excluir.png\" width=\"20\" height=\"20\"></a></td></tr>\n";
             }
             ?>

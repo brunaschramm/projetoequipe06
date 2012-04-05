@@ -13,7 +13,7 @@ class UsuarioDAO extends Usuario {
     }
 
     public function salvar() {
-        $sql = "INSERT INTO tbusuario (nome, cpf, email, apelido) values ('" . $this->getNome() . "', '" . $this->getCpf() . "', '" . $this->getEmail() . "', '" . $this->getApelido() . "')";
+        $sql = "INSERT INTO tempusuarios (nome, cpf, email, apelido) values ('" . $this->getNome() . "', '" . $this->getCpf() . "', '" . $this->getEmail() . "', '" . $this->getApelido() . "')";
 
         echo $sql;
 
@@ -27,7 +27,7 @@ class UsuarioDAO extends Usuario {
     }
 
     public function excluir() {
-        $sql = "DELETE FROM tbusuario WHERE codigo=" . $this->getCodigo();
+        $sql = "DELETE FROM tempusuarios WHERE codigo=" . $this->getCodigo();
 
         $result = pg_query($sql);
 
@@ -39,7 +39,7 @@ class UsuarioDAO extends Usuario {
     }
 
     public function valida($email, $cpf) {
-        $sql = "SELECT * FROM tbusuario WHERE email = '$email' AND cpf = '$cpf'";
+        $sql = "SELECT * FROM tempusuarios WHERE email = '$email' AND cpf = '$cpf'";
 
         $result = pg_query($sql);
 
@@ -56,7 +56,35 @@ class UsuarioDAO extends Usuario {
     }
 
     public function getAll() {
-        $sql = "SELECT * FROM tbusuario";
+        $sql = "SELECT * FROM tempusuarios";
+
+        $result = pg_query($sql);
+
+        $numeroLinhas = pg_num_rows($result);
+
+        $array = array();
+
+        for ($i = 0; $i < $numeroLinhas; $i++) {
+            $array[] = pg_fetch_array($result);
+        }
+        return $array;
+    }
+    
+    public function consultar($nome, $cpf, $apelido, $email) {
+        $sql = "SELECT * FROM tempusuarios WHERE 1=1";
+        if($nome != ""){
+            $sql = $sql." AND nome LIKE '%".$nome."%'";
+        }
+        if($cpf != ""){
+            $sql = $sql." AND cpf = '".$cpf."'";
+        }
+        if($apelido != ""){
+            $sql = $sql." AND apelido LIKE '%".$apelido."%'";
+        }
+        if($email != ""){
+            $sql = $sql." AND email LIKE '%".$email."%'";
+        }
+        $sql = $sql."ORDER BY nome";
 
         $result = pg_query($sql);
 
@@ -72,7 +100,7 @@ class UsuarioDAO extends Usuario {
 
     public function getAmigos() {
         //$sql = "SELECT * FROM tbusuario";
-        $sql = "SELECT * FROM tbusuario, tbamigos06 WHERE tbusuario.codigo = '" . $_SESSION['codigo'] . "' 
+        $sql = "SELECT * FROM tempusuarios AS tbusuario, tbamigos06 WHERE tbusuario.codigo = '" . $_SESSION['codigo'] . "' 
             AND tbamigos06.codigo = tbusuario.codigo";
 
         $result = pg_query($sql);
@@ -88,7 +116,7 @@ class UsuarioDAO extends Usuario {
     }
 
     public function adicionarAmigo() {
-        $sql = "SELECT * FROM tbusuario WHERE email = " . $_POST['email'];
+        $sql = "SELECT * FROM tempusuarios WHERE email = " . $_POST['email'];
         $result = pg_query($sql);
 
         $numeroLinhas = pg_num_rows($result);
@@ -107,7 +135,7 @@ class UsuarioDAO extends Usuario {
     }
 
     public function removerAmigo() {
-        $sql = "DELETE FROM tbamigos06 WHERE codigo=" . $_SESSION['codigo']. "AND cod_amigo".$this->getCodigo();
+        $sql = "DELETE FROM tempusuarios WHERE codigo=" . $_SESSION['codigo']. "AND cod_amigo".$this->getCodigo();
 
         $result = pg_query($sql);
 
@@ -118,5 +146,4 @@ class UsuarioDAO extends Usuario {
         }
     }
 }
-
 ?>

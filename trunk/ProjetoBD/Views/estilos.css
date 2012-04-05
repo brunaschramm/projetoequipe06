@@ -186,9 +186,9 @@ color:#009ACD; /* Cor das letras dos links pares */
 
 
 .buscar2 {
-	background: url(../Imagens/buscar.png) no-repeat;
-	width: 110px;
-	height:55px;
+	background: url(../Imagens/botaobuscar.png) no-repeat;
+        width: 106px;
+	height: 48px;
 	border-style:none
 }
 

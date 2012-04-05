@@ -7,7 +7,7 @@
 
     <body>
         <form action="" method="post" name="dados">
-            <table width="588" border="0" >
+            <table width="588" border="0" align="center" >
                 <tr>
                     <td width="118"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Título:</font></td>
                     <td width="460">

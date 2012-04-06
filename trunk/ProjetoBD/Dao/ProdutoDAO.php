@@ -152,16 +152,6 @@ class ProdutoDAO extends Produto {
             $sql = $sql . " AND produtos.titulo LIKE '%" . $titulo . "%'";
         }
         if ($preco != null) {
-//        <option value = "1">até R$ 10, 00</option>
-//        <option value = "2">R$ 10, 01 à R$ 20, 00</option>
-//        <option value = "3">R$ 20, 01 à R$ 30, 00</option>
-//        <option value = "4">R$ 30, 01 à R$ 40, 00</option>
-//        <option value = "5">R$ 40, 01 à R$ 50, 00</option>
-//        <option value = "6">R$ 50, 01 à R$ 60, 00</option>
-//        <option value = "7">R$ 60, 01 à R$ 70, 00</option>
-//        <option value = "8">R$ 70, 01 à R$ 80, 00</option>
-//        <option value = "9">R$ 80, 01 à R$ 90, 00</option>
-//        <option value = "10">mais de R$ 90, 01</option>
             switch ($preco) {
                 case '1':
                     $sql = $sql . " AND produtos.preco <= 10";

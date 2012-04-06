@@ -9,10 +9,6 @@ class Banco {
 //    private $user = "postgres";
 //    private $password = "postgres";
 //    private $dbname = "postgres";
-//    private $host = "10.208.200.9";
-//    private $user = "equipe6";
-//    private $password = "ufam@06";
-//    private $dbname = "1db012012";
     protected $con = null;
 
     public function __construct() {}

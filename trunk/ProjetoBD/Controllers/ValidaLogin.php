@@ -1,6 +1,6 @@
 <?php
 
-//include_once ("../Dao/UsuarioDAO.php");
+include_once ("../Dao/UsuarioDAO.php");
 
 class ValidaLogin {
 
@@ -8,11 +8,11 @@ class ValidaLogin {
         $email = $_POST["email"];
         $cpf = $_POST["cpf"];
 
-        //$model = new UsuarioDAO();
+       $model = new UsuarioDAO();
         
-        //$resultado = $model->valida($email, $cpf);
-        //if($resultado){
-        if ($cpf == "00691023255" && $email == "brunabas22@gmail.com") {
+        $resultado = $model->valida($email, $cpf);
+        if($resultado){
+//        if ($cpf == "00691023255" && $email == "brunabas22@gmail.com") {
             header("Location: ../Views/index.html");
         } else {
             echo "Erro no Login";

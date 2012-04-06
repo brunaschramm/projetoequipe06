@@ -39,18 +39,19 @@ class UsuarioDAO extends Usuario {
     }
 
     public function valida($email, $cpf) {
-        $sql = "SELECT * FROM tempusuarios WHERE email = '$email' AND cpf = '$cpf'";
+        $sql = "SELECT * FROM tbusuario WHERE email = '$email' AND cpf = '$cpf'";
 
         $result = pg_query($sql);
 
-        if (!$result) {
+        if (!pg_num_rows($result)) {              
             return null;
-        } else {
+        } else {            
             session_start();
-            $_SESSION[nome] = pg_result($result, 0, "NOME");
-            $_SESSION[apelido] = pg_result($result, 0, "APELIDO");
-            $_SESSION[email] = pg_result($result, 0, "EMAIL");
-            $_SESSION[cpf] = pg_result($result, 0, "CPF");
+            $_SESSION['codigo'] = pg_result($result, 0, "CODIGO");                                    
+            $_SESSION['nome'] = pg_result($result, 0, "NOME");
+            $_SESSION['apelido'] = pg_result($result, 0, "APELIDO");
+            $_SESSION['email'] = pg_result($result, 0, "EMAIL");
+            $_SESSION['cpf'] = pg_result($result, 0, "CPF");
             return $result;
         }
     }
@@ -116,7 +117,7 @@ class UsuarioDAO extends Usuario {
     }
 
     public function adicionarAmigo() {
-        $sql = "SELECT * FROM tempusuarios WHERE email = " . $_POST['email'];
+        $sql = "SELECT * FROM tempusuarios WHERE email = " . 'email';
         $result = pg_query($sql);
 
         $numeroLinhas = pg_num_rows($result);
@@ -132,7 +133,7 @@ class UsuarioDAO extends Usuario {
             return $array;
         }
         return false;
-    }
+    }       
 
     public function removerAmigo() {
         $sql = "DELETE FROM tempusuarios WHERE codigo=" . $_SESSION['codigo']. "AND cod_amigo".$this->getCodigo();
@@ -144,6 +145,19 @@ class UsuarioDAO extends Usuario {
         } else {
             return true;
         }
+    }
+    
+    public function pesquisarUsuario($email){
+        $sql = "SELECT * FROM tempusuarios WHERE email = '".$email."'";
+        
+        $result = pg_query($sql);
+        
+        if($result == null){
+            echo 'Não achou';
+        }else{
+            echo 'achou';
+        }
+        
     }
 }
 ?>

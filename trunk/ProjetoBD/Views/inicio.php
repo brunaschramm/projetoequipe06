@@ -16,11 +16,10 @@
                         $produtos = $model->buscaSimples($_POST["busca"]);
                     }
                     if (isset($_POST["Submit"])) {
-                        $produtos = $model()->buscaAvancada($POST_["titulo"], $POST_["genero"], $_POST["preco"], $POST_["ano"], $POST_["loja"], $POST_["produtora"]);
-                        echo $_POST["genero"];
+                        $produtos = $model->buscaAvancada($_POST["titulo"], $_POST["genero"], $_POST["preco"], $_POST["ano"], $_POST["loja"], $_POST["produtora"]);
                     }
                     $tam = count($produtos);
-                    
+
                     for ($i = 0; $i < $tam; $i++) {
                         $aux = $produtos[$i];
                         ?>
@@ -30,23 +29,20 @@
                             </br></br>
                             <div class="css do produto" id="">
                                 <a href="link do produto" class="css de link">
-                                    <img src="../Imagens/Produtos/<?echo $aux["imagem"];?>" width="97" height="132"/>
+                                    <img src="../Imagens/Produtos/<? echo $aux["imagem"]; ?>" width="97" height="132"/>
                                 </a>
                                 </br>
-                                <span class="link"><strong class=""><?echo $aux["titulo"];?></strong></span>
+                                <span class="link"><strong class=""><? echo $aux["titulo"]; ?></strong></span>
                                 </a>
                                 </br>
-
-                                <span class="css dos precos">
-                                    <span class="precode">de R$ 30,00</span></br>
-                                    <span class="precopor">por: <strong>R$ 15,00</strong></span></br>
-                                    <span class="parcelas">ou 3x de R$ 10,00</span></br>
-                                </span>
                             </div>
                         </td>
-                    <? 
-                    } ?>
-
+                        <?
+                        if (($i + 1) % 4 == 0) {
+                            echo "</div></tr><tr bordercolordark=\"#000000\"><td><br><br></td></tr><tr><div>";
+                        }
+                    }
+                    ?>
                 </div></tr>
         </table>
     </body>

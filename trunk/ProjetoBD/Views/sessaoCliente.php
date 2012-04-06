@@ -64,9 +64,7 @@
         <div class="container">
             <div id="top">
                 <img src="../Imagens/dvdcabeca2.png">
-
             </div>
-
             <div id="menu">
                 <form action="" method="POST" name="dados">
                     <table bgcolor="#BFEFFF" align="" class="tabelas">
@@ -183,13 +181,13 @@
             </div>
             <div id="main">
                 <?
-                if (isset($_POST["Submit"])) {
+                if (isset($_POST["Submit"]) || isset($_POST["Submit2"])) {
                     include_once "inicio.php";
-                }else
+                } else {
                     include_once "inicio.html";
+                }
                 ?>
             </div>
-
             <div id="footer">algo</div>
         </div>
     </body>

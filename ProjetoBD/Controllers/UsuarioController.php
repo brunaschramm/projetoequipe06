@@ -39,7 +39,7 @@ class UsuarioController {
                 }
                 break;
             case 'amigo':
-                $model->setEmail($_GET['am_email']);
+                $model->setEmail($_POST['am_email']);
 
                 $resultado = $model->adicionarAmigo();
 

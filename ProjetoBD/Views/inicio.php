@@ -14,20 +14,18 @@
                 $produtos = $model->buscaSimples($_POST["busca"]);
                 $_SESSION["produtos"] = $produtos;
                 session_commit();
-            }
-            if (isset($_POST["Submit"])) {
+            } else if (isset($_POST["Submit"])) {
                 $produtos = $model->buscaAvancada($_POST["titulo"], $_POST["genero"], $_POST["preco"], $_POST["ano"], $_POST["loja"], $_POST["produtora"]);
                 $_SESSION["produtos"] = $produtos;
                 session_commit();
-            }
-            if (isset($_GET["pg"])) {
+            } else if (isset($_GET["pg"])) {
                 $produtos = $_SESSION["produtos"];
             }
             if (!$produtos) {
                 echo "Nenhum produto encontrado!";
             } else {
                 //================ Paginação ==============================
-                $qntd = 8; // qntd de produtos exibidos por pagina
+                $qntd = 5; // qntd de produtos exibidos por pagina
                 $atual = (isset($_GET["pg"])) ? intval($_GET["pg"]) : 1;
                 $pagproduto = array_chunk($produtos, $qntd);
                 $totalPag = count($pagproduto);
@@ -58,19 +56,24 @@
                         echo "</div></tr><tr bordercolordark=\"#000000\"><td><br><br></td></tr><tr><div>";
                     }
                 }
-                //================ Paginação ==============================
-                echo "<tr><div>";
-                if ($atual > 1) {
-                    echo "<a href=\"sessaoCliente.php?pg=" . ($atual-1) . "\">ANT</a>";
-                }
-                if ($atual < $totalPag) {
-                    echo "<a href=\"sessaoCliente.php?pg=" . ($atual+1) . "\">PROX</a>";
-                }
-                echo "</tr></div>";
-                //=========================================================
             }
             ?>
             </div></tr>
+        </table>
+        <table width="100%" class="">
+            <?
+            //================ Paginação ==============================
+            echo "<tr align=\"center\"><div>";
+            echo "<td align=\"center\">";
+            if ($atual > 1) {
+                echo "<a href=\"sessaoCliente.php?pg=" . ($atual - 1) . "\">ANT</a>\n";
+            }
+            if ($atual < $totalPag) {
+                echo "\n<a href=\"sessaoCliente.php?pg=" . ($atual + 1) . "\">PROX</a>";
+            }
+            echo "</td></tr></div>";
+            //=========================================================
+            ?>
         </table>
     </body>
 </html>

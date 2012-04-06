@@ -135,7 +135,7 @@ class ProdutoDAO extends Produto {
     }
     
     public function buscaAvancada($titulo, $genero, $preco, $ano, $loja, $produtora) {
-        $sql = "SELECT produtos.titulo, produtos.descricao, produtos.preco, produtos.ano,
+        $sql = "SELECT produtos.imagem, produtos.titulo, produtos.descricao, produtos.preco, produtos.ano,
             fabricantes.nome AS fabricante, lojas.nome AS loja, produtoras.produtora,formatos.formato, 
             generos.genero, censuras.censura, produtos.regiao, grupos.grupo, fornecedores.nome AS fornecedor, 
             produtos.codigo

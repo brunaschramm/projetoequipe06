@@ -133,7 +133,7 @@ class ProdutoDAO extends Produto {
         }
         return $array;
     }
-    
+
     public function buscaAvancada($titulo, $genero, $preco, $ano, $loja, $produtora) {
         $sql = "SELECT produtos.imagem, produtos.titulo, produtos.descricao, produtos.preco, produtos.ano,
             fabricantes.nome AS fabricante, lojas.nome AS loja, produtoras.produtora,formatos.formato, 
@@ -152,8 +152,50 @@ class ProdutoDAO extends Produto {
             $sql = $sql . " AND produtos.titulo LIKE '%" . $titulo . "%'";
         }
         if ($preco != null) {
-            $sql = $sql . " AND produtos.preco = " . $preco;
+//        <option value = "1">até R$ 10, 00</option>
+//        <option value = "2">R$ 10, 01 à R$ 20, 00</option>
+//        <option value = "3">R$ 20, 01 à R$ 30, 00</option>
+//        <option value = "4">R$ 30, 01 à R$ 40, 00</option>
+//        <option value = "5">R$ 40, 01 à R$ 50, 00</option>
+//        <option value = "6">R$ 50, 01 à R$ 60, 00</option>
+//        <option value = "7">R$ 60, 01 à R$ 70, 00</option>
+//        <option value = "8">R$ 70, 01 à R$ 80, 00</option>
+//        <option value = "9">R$ 80, 01 à R$ 90, 00</option>
+//        <option value = "10">mais de R$ 90, 01</option>
+            switch ($preco) {
+                case '1':
+                    $sql = $sql . " AND produtos.preco <= 10";
+                    break;
+                case '2':
+                    $sql = $sql . " AND produtos.preco BETWEEN 10.01 AND 20";
+                    break;
+                case '3':
+                    $sql = $sql . " AND produtos.preco BETWEEN 20.01 AND 30";
+                    break;
+                case '4':
+                    $sql = $sql . " AND produtos.preco BETWEEN 30.01 AND 40";
+                    break;
+                case '5':
+                    $sql = $sql . " AND produtos.preco BETWEEN 40.01 AND 50";
+                    break;
+                case '6':
+                    $sql = $sql . " AND produtos.preco BETWEEN 50.01 AND 60";
+                    break;
+                case '7':
+                    $sql = $sql . " AND produtos.preco BETWEEN 60.01 AND 70";
+                    break;
+                case '8':
+                    $sql = $sql . " AND produtos.preco BETWEEN 70.01 AND 80";
+                    break;
+                case '9':
+                    $sql = $sql . " AND produtos.preco BETWEEN 80.01 AND 90";
+                    break;
+                case '10':
+                    $sql = $sql . " AND produtos.preco > 90";
+                    break;
+            }
         }
+        
         if ($ano != null) {
             $sql = $sql . " AND produtos.ano = " . $ano;
         }
@@ -179,7 +221,7 @@ class ProdutoDAO extends Produto {
         }
         return $array;
     }
-    
+
     public function buscaSimples($busca) {
         $sql = "SELECT produtos.titulo, produtos.descricao, produtos.preco, produtos.ano,
             fabricantes.nome AS fabricante, lojas.nome AS loja, produtoras.produtora,formatos.formato, 
@@ -193,9 +235,9 @@ class ProdutoDAO extends Produto {
             INNER JOIN tbcensuras06 AS censuras ON produtos.cod_censura = censuras.codigo
             INNER JOIN tbgrupos06 AS grupos ON produtos.cod_grupo = grupos.codigo
             INNER JOIN tbfornecedor as fornecedores ON produtos.cod_fornecedor = fornecedores.codigo
-            WHERE produtos.titulo LIKE '%".$busca."%' OR produtos.preco = ".$busca." OR produtos.ano = ".$ano
-            ." OR genero LIKE '%".$genero."%' OR loja LIKE '%".$loja."%' OR produtora LIKE '%".$produtora."%'"
-            ." ORDER BY produtos.titulo";
+            WHERE produtos.titulo LIKE '%" . $busca . "%' OR produtos.preco = " . $busca . " OR produtos.ano = " . $ano
+                . " OR genero LIKE '%" . $genero . "%' OR loja LIKE '%" . $loja . "%' OR produtora LIKE '%" . $produtora . "%'"
+                . " ORDER BY produtos.titulo";
 
         $result = pg_query($sql);
 
@@ -208,6 +250,8 @@ class ProdutoDAO extends Produto {
         }
         return $array;
     }
+
 }
+
 $produto = new ProdutoDAO();
 ?>

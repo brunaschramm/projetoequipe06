@@ -18,28 +18,32 @@
                     if (isset($_POST["Submit"])) {
                         $produtos = $model->buscaAvancada($_POST["titulo"], $_POST["genero"], $_POST["preco"], $_POST["ano"], $_POST["loja"], $_POST["produtora"]);
                     }
-                    $tam = count($produtos);
+                    if (!$produtos) {
+                        echo "Nenhum produto encontrado!";
+                    } else {
+                        $tam = count($produtos);
 
-                    for ($i = 0; $i < $tam; $i++) {
-                        $aux = $produtos[$i];
-                        ?>
-                        <td align="center">
-                            <a href=""><img src="../Imagens/loja.png" width="70" height="35"></a>
-                            <a href=""><img src="../Imagens/iraloja.png" width="90" height="35"></a>
-                            </br></br>
-                            <div class="css do produto" id="">
-                                <a href="link do produto" class="css de link">
-                                    <img src="../Imagens/Produtos/<? echo $aux["imagem"]; ?>" width="97" height="132"/>
-                                </a>
-                                </br>
-                                <span class="link"><strong class=""><? echo $aux["titulo"]; ?></strong></span>
-                                </a>
-                                </br>
-                            </div>
-                        </td>
-                        <?
-                        if (($i + 1) % 4 == 0) {
-                            echo "</div></tr><tr bordercolordark=\"#000000\"><td><br><br></td></tr><tr><div>";
+                        for ($i = 0; $i < $tam; $i++) {
+                            $aux = $produtos[$i];
+                            ?>
+                            <td align="center">
+                                <a href=""><img src="../Imagens/loja.png" width="70" height="35"></a>
+                                <a href=""><img src="../Imagens/iraloja.png" width="90" height="35"></a>
+                                </br></br>
+                                <div class="css do produto" id="">
+                                    <a href="link do produto" class="css de link">
+                                        <img src="../Imagens/Produtos/<? echo $aux["imagem"]; ?>" width="97" height="132"/>
+                                    </a>
+                                    </br>
+                                    <span class="link"><strong class=""><? echo $aux["titulo"]; ?></strong></span>
+                                    </a>
+                                    </br>
+                                </div>
+                            </td>
+                            <?
+                            if (($i + 1) % 4 == 0) {
+                                echo "</div></tr><tr bordercolordark=\"#000000\"><td><br><br></td></tr><tr><div>";
+                            }
                         }
                     }
                     ?>

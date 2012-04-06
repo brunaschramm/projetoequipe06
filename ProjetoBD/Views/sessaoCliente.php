@@ -154,7 +154,7 @@
                         </tr>
                         <tr>
                             <td>
-                                Fabricante:
+                                Produtora:
                                 <br/>
                                 <select name="produtora" id="produtora">
                                     <?php

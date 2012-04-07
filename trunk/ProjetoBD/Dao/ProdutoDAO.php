@@ -41,26 +41,22 @@ class ProdutoDAO extends Produto {
             return true;
         }
     }
-    
-    public function getProduto($codigo){
-        $sql = "SELECT tbprodutos06.imagem, tbprodutos06.titulo, tbprodutos06.descricao, tbprodutos06.preco, tbprodutos06.ano,
-                tbfabricantes06.nome AS fabricante, tbloja.nome AS loja, tbprodutoras06.produtora,
-                tbformatostela06.formato, tbgeneros06.genero, tbcensuras06.censura, tbprodutos06.regiao,
-                tbgrupos06.grupo, tbfornecedor.nome AS fornecedor, tbprodutos06.codigo
-                FROM tbprodutos06, tbgeneros06, tbfabricantes06, tbfornecedor, tbcensuras06,
-                tbformatostela06, tbgrupos06, tbloja, tbprodutoras06
-                WHERE tbprodutos06.cod_genero = tbgeneros06.codigo
-                AND tbprodutos06.cod_fabricante = tbfabricantes06.codigo
-                AND tbprodutos06.cod_fornecedor = tbfornecedor.codigo
-                AND tbprodutos06.cod_censura = tbcensuras06.codigo
-                AND tbprodutos06.cod_formato = tbformatostela06.codigo
-                AND tbprodutos06.cod_grupo = tbgrupos06.codigo
-                AND tbprodutos06.cod_loja = tbloja.codigo
-                AND tbprodutos06.cod_produtora = tbprodutoras06.codigo
-                AND tbprodutos06.codigo =".$codigo;
-        
+
+    public function getProduto($codigo) {
+        $sql = "SELECT produtos.codigo, produtos.imagem, produtos.descricao, produtos.titulo, produtos.ano, produtos.preco, lojas.nome AS loja, generos.genero,
+                produtoras.produtora, formatos.formato, grupos.grupo, censuras.censura, produtos.regiao,
+                lojas.codigo as cod_loja, generos.codigo AS cod_genero, produtoras.codigo AS cod_produtora,
+                grupos.codigo AS cod_grupo, formatos.codigo AS cod_formato, censuras.codigo AS cod_censura
+                FROM tbprodutos06 AS produtos INNER JOIN tbgeneros06 AS generos ON produtos.cod_genero = generos.codigo
+                INNER JOIN tbprodutoras06 AS produtoras ON produtos.cod_produtora = produtoras.codigo
+                INNER JOIN tbloja AS lojas ON produtos.cod_loja = lojas.codigo
+                INNER JOIN tbgrupos06 AS grupos ON produtos.cod_grupo = grupos.codigo
+                INNER JOIN tbformatostela06 AS formatos ON produtos.cod_formato = formatos.codigo
+                INNER JOIN tbcensuras06 AS censuras ON produtos.cod_censura = censuras.codigo
+                WHERE produtos.codigo =" . $codigo;
+
         $result = pg_query($sql);
-        
+
         $numeroLinhas = pg_num_rows($result);
 
         $array = array();
@@ -214,7 +210,7 @@ class ProdutoDAO extends Produto {
                     break;
             }
         }
-        
+
         if ($ano != null) {
             $sql = $sql . " AND produtos.ano = " . $ano;
         }
@@ -272,5 +268,5 @@ class ProdutoDAO extends Produto {
 
 }
 
-$produto = new ProdutoDAO();
+$model = new ProdutoDAO();
 ?>

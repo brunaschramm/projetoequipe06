@@ -134,7 +134,7 @@
                                 <select name="ano" id="ano">
                                     <?php
                                     echo "<option value=\"\">Selecione</option>\n";
-                                    for ($i = 2012; $i >= 1970; $i--) {
+                                    for ($i = 2012; $i >= 1960; $i--) {
                                         echo "<option value=\"" . $i . "\">" . $i . "</option>\n";
                                     }
                                     ?>

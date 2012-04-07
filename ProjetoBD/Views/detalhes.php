@@ -7,13 +7,16 @@
         <?php
         include_once ("../Dao/ProdutoDAO.php");
         $model = new ProdutoDAO();
-        $produto = $model->getProduto(63);
+        $produto = $model->getProduto($_GET["id"]);
         $aux = $produto[0];
         ?>
         <table width=500 height=100>
             <tr>
                 <td align="center">
-                    <a href="javascript:abrir('inserir perfil usuario');"><img src="../Imagens/loja.png" width="70" height="35"></a>
+                    <a href="../Controllers/PerfilController.php?acao=gostar&id=<? echo $aux['codigo']; ?>"><img src="../Imagens/gostar.png" width="35" height="35"></a>
+                </td>
+                <td align="center">
+                    <a href="recomendar.php?id=<? echo $aux['codigo']; ?>"><img src="../Imagens/recomendar.jpg" width="35" height="35"></a>
                 </td>
             </tr>
             </br></br>

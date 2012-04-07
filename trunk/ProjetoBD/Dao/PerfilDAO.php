@@ -1,12 +1,14 @@
 <?php
+
 include_once ("../Banco/Banco.php");
 include_once ("../Models/Perfil.php");
 
 class PerfilDAO extends Perfil {
 
     private $conexao;
-
+    
     public function __construct() {
+        $_SESSION["codigo"] = 6;
         $this->conexao = new Banco();
         $this->conexao->open();
     }
@@ -28,8 +30,26 @@ class PerfilDAO extends Perfil {
         }
     }
 
+    public function inserirGosto($cod_produto) {
+        include_once ("ProdutoDAO.php");
+        $model = new ProdutoDAO();
+        $aux = $model->getProduto($cod_produto);
+        $produto = $aux[0];
+        $sql = "INSERT INTO tbperfis06 (ano, preco, cod_formato," .
+                "cod_genero, cod_censura, regiao, cod_grupo, cod_loja, cod_produtora, cod_usuario)" .
+                "values (" . $produto["ano"] . "," . $produto["preco"] . "," . $produto["cod_formato"] .
+                "," . $produto["cod_genero"] . "," . $produto["cod_censura"] . ","
+                . $produto["regiao"] . "," . $produto["cod_grupo"] . ","
+                . $produto["cod_loja"] . "," . $produto["cod_produtora"] . " , ".$_SESSION["codigo"].")";
+        $result = pg_query($sql);
+        if (!$result) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
     public function getAll() {
-        $_SESSION["codigo"]=6;
         $sql = "SELECT perfis.preco, perfis.ano, lojas.nome AS loja, produtoras.produtora,formatos.formato, 
                 generos.genero, censuras.censura, perfis.regiao, grupos.grupo, perfis.codigo
                 FROM tbperfis06 AS perfis INNER JOIN tbloja AS lojas ON perfis.cod_loja = lojas.codigo
@@ -38,7 +58,7 @@ class PerfilDAO extends Perfil {
                 INNER JOIN tbformatostela06 AS formatos ON perfis.cod_formato = formatos.codigo
                 INNER JOIN tbcensuras06 AS censuras ON perfis.cod_censura = censuras.codigo
                 INNER JOIN tbgrupos06 AS grupos ON perfis.cod_grupo = grupos.codigo
-                WHERE perfis.cod_usuario =".$_SESSION["codigo"];
+                WHERE perfis.cod_usuario =" . $_SESSION["codigo"];
 
         $result = pg_query($sql);
 
@@ -139,4 +159,5 @@ class PerfilDAO extends Perfil {
 
 }
 
+$perfil = new PerfilDAO();
 ?>

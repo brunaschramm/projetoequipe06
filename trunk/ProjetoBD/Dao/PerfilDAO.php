@@ -184,7 +184,7 @@ class PerfilDAO extends Perfil {
         $distancias = array();
                 
         for ($i = 0; $i < $tam; $i++){
-            $distancias[] = $this->distancia($produto, $perfis[i]);
+            $distancias[] = $this->distancia($produto, $perfis[$i]);
         }
         
         $dist_ordenadas = natsort($distancias);

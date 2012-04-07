@@ -8,7 +8,8 @@ class PerfilDAO extends Perfil {
     private $conexao;
     
     public function __construct() {
-        $_SESSION["codigo"] = 6;
+        $_SESSION["codigo"] = 1;
+        session_commit();
         $this->conexao = new Banco();
         $this->conexao->open();
     }

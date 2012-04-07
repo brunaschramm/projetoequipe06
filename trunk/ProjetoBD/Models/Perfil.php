@@ -11,8 +11,6 @@ class Perfil {
     private $grupo;
     private $produtora;
     private $loja;
-    //private $fornecedor;
-    //private $fabricante;
     
     public function setProdutora($produtora){
         $this->produtora = $produtora;
@@ -87,21 +85,6 @@ class Perfil {
     public function getGrupo(){
         return $this->grupo;
     }
-    
-//    public function setFornecedor($fornecedor){
-//        $this->fornecedor = $fornecedor;
-//    }
-//    
-//    public function getFornecedor(){
-//        return $this->fornecedor;
-//    }
-//    public function setFabricante($fabricante){
-//        $this->fabricante = $fabricante;
-//    }
-//    
-//    public function getFabricante(){
-//        return $this->fabricante;
-//    } 
 }
 
 ?>

@@ -6,7 +6,7 @@ include_once ("../Models/Perfil.php");
 class PerfilDAO extends Perfil {
 
     private $conexao;
-    
+
     public function __construct() {
         $_SESSION["codigo"] = 1;
         session_commit();
@@ -41,7 +41,7 @@ class PerfilDAO extends Perfil {
                 "values (" . $produto["ano"] . "," . $produto["preco"] . "," . $produto["cod_formato"] .
                 "," . $produto["cod_genero"] . "," . $produto["cod_censura"] . ","
                 . $produto["regiao"] . "," . $produto["cod_grupo"] . ","
-                . $produto["cod_loja"] . "," . $produto["cod_produtora"] . " , ".$_SESSION["codigo"].")";
+                . $produto["cod_loja"] . "," . $produto["cod_produtora"] . " , " . $_SESSION["codigo"] . ")";
         $result = pg_query($sql);
         if (!$result) {
             return false;
@@ -156,6 +156,57 @@ class PerfilDAO extends Perfil {
             $array[] = pg_fetch_array($result);
         }
         return $array;
+    }
+
+    /*
+     * Funcao que retorna o perfil(do usuario logado) mais parecido com o produto visualizado
+     */
+
+    function getPerfil($codigo){
+        $sql = "SELECT * FROM tbperfis06 WHERE cod_usuario=" . $codigo;
+        $result = pg_query($sql);
+        $numeroLinhas = pg_num_rows($result);
+
+        $array = array();
+
+        for ($i = 0; $i < $numeroLinhas; $i++) {
+            $array[] = pg_fetch_array($result);
+        }
+        
+        return $array;
+    }
+    
+    public function getPerfilParecido($produto) {
+        $perfis = $this->getPerfil($_SESSION["codigo"]);
+        
+        $tam = count($perfis);
+        
+        $distancias = array();
+                
+        for ($i = 0; $i < $tam; $i++){
+            $distancias[] = $this->distancia($produto, $perfis[i]);
+        }
+        
+        $dist_ordenadas = natsort($distancias);
+        
+        for($i = 0; )
+        
+    }
+
+    /*
+     * Funcao que retorna o perfil do amigo mais parecido com o perfil do usuario logado
+     */
+
+    public function getPerfilAmigo($usuario) {
+        
+    }
+
+    private function distancia($param, $param2) {
+        return sqrt(pow(($param["preco"] - $param2["preco"]), 2) + pow(($param["ano"] - $param2["ano"]), 2)
+                + pow(($param["cod_loja"] - $param2["cod_loja"]), 2) + pow(($param["cod_produtora"] - $param2["cod_produtora"]), 2)
+                + pow(($param["cod_genero"] - $param2["cod_genero"]), 2) + pow(($param["cod_formato"] - $param2["cod_formato"]), 2)
+                + pow(($param["cod_censura"] - $param2["cod_censura"]), 2) + pow(($param["cod_grupo"] - $param2["cod_grupo"]), 2)
+                + pow(($param["regiao"] - $param2["regiao"]), 2));
     }
 
 }

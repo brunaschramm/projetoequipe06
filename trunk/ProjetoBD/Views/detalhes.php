@@ -8,6 +8,11 @@
         include_once ("../Dao/ProdutoDAO.php");
         $model = new ProdutoDAO();
         $produto = $model->getProduto($_GET["id"]);
+        if(!isset($_SESSION)){
+	    session_start();
+	}
+        $_SESSION["produto"] = $produto;
+        session_commit();
         $aux = $produto[0];
         ?>
         <table width=500 height=100>

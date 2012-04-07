@@ -44,7 +44,7 @@ class AmigoDAO extends Amigo {
                 usuarios.cpf AS cpf_amigo, usuarios.email as email_amigo, usuarios2.apelido as apelido_usuario, usuarios.apelido as apelido_amigo
                 FROM tbamigos06 AS amigos INNER JOIN tempusuarios AS usuarios ON amigos.cod_amigo = usuarios.codigo
                 INNER JOIN tempusuarios AS usuarios2 ON amigos.cod_usuario = usuarios2.codigo
-                WHERE usuarios2.codigo =1 ORDER BY nome_amigo";
+                WHERE usuarios2.codigo =".$_SESSION["codigo"]."ORDER BY nome_amigo";
 
         $result = pg_query($sql);
 

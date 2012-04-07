@@ -32,10 +32,12 @@ class AmigoDAO extends Amigo {
 //        }
     }
 
-    public function getAmigos($codigo) {
+    public function getAmigos() {
         if (!isset($_SESSION)) {
             session_start();
         }
+        $_SESSION["codigo"] = 1;
+        session_commit();
 
         $sql = "SELECT usuarios2.nome AS nome_usuario, usuarios2.codigo AS cod_usuario, usuarios2.cpf AS cpf_usuario,
                 usuarios2.email as email_usuario, usuarios.nome AS nome_amigo, usuarios.codigo AS cod_amigo, 

@@ -199,7 +199,6 @@ class PerfilDAO extends Perfil {
     /*
      * Funcao que retorna o perfil do amigo mais parecido com o perfil do usuario logado
      */
-
     public function getPerfilAmigo($usuario) {
         
     }

@@ -189,8 +189,11 @@ class PerfilDAO extends Perfil {
         
         $dist_ordenadas = natsort($distancias);
         
-        for($i = 0; )
+        $mais_parecido = $dist_ordenadas[0];
         
+        $ind = array_search($mais_parecido);
+        
+        return $perfis[$ind];
     }
 
     /*

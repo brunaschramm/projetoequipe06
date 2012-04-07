@@ -1,4 +1,5 @@
 <?
+
 include_once ("../Dao/PerfilDAO.php");
 
 class PerfilController {
@@ -18,9 +19,7 @@ class PerfilController {
                 $model->setCensura($_POST['censura']);
                 $model->setRegiao($_POST['regiao']);
                 $model->setGrupo($_POST['grupo']);
-//                $model->setFabricante($_POST['fabricante']);
                 $model->setLoja($_POST['loja']);
-//                $model->setFornecedor($_POST['fornecedor']);
                 $model->setProdutora($_POST['produtora']);
 
 
@@ -43,6 +42,12 @@ class PerfilController {
 //                    header("Location: ../Views/usuarios.php?flag=t");
 //                }
 //                break;
+            case 'gostar':
+                $resultado = $model->inserirGosto($_GET["id"]);
+
+                header("Location: ../Views/detalhes.php?id=" . $_GET["id"] . "");
+
+                break;
         }
     }
 

@@ -41,6 +41,35 @@ class ProdutoDAO extends Produto {
             return true;
         }
     }
+    
+    public function getProduto($codigo){
+        $sql = "SELECT tbprodutos06.imagem, tbprodutos06.titulo, tbprodutos06.descricao, tbprodutos06.preco, tbprodutos06.ano,
+                tbfabricantes06.nome AS fabricante, tbloja.nome AS loja, tbprodutoras06.produtora,
+                tbformatostela06.formato, tbgeneros06.genero, tbcensuras06.censura, tbprodutos06.regiao,
+                tbgrupos06.grupo, tbfornecedor.nome AS fornecedor, tbprodutos06.codigo
+                FROM tbprodutos06, tbgeneros06, tbfabricantes06, tbfornecedor, tbcensuras06,
+                tbformatostela06, tbgrupos06, tbloja, tbprodutoras06
+                WHERE tbprodutos06.cod_genero = tbgeneros06.codigo
+                AND tbprodutos06.cod_fabricante = tbfabricantes06.codigo
+                AND tbprodutos06.cod_fornecedor = tbfornecedor.codigo
+                AND tbprodutos06.cod_censura = tbcensuras06.codigo
+                AND tbprodutos06.cod_formato = tbformatostela06.codigo
+                AND tbprodutos06.cod_grupo = tbgrupos06.codigo
+                AND tbprodutos06.cod_loja = tbloja.codigo
+                AND tbprodutos06.cod_produtora = tbprodutoras06.codigo
+                AND tbprodutos06.codigo =".$codigo;
+        
+        $result = pg_query($sql);
+        
+        $numeroLinhas = pg_num_rows($result);
+
+        $array = array();
+
+        for ($i = 0; $i < $numeroLinhas; $i++) {
+            $array[] = pg_fetch_array($result);
+        }
+        return $array;
+    }
 
     public function getAll() {
         $sql = "SELECT tbprodutos06.imagem, tbprodutos06.titulo, tbprodutos06.descricao, tbprodutos06.preco, tbprodutos06.ano,

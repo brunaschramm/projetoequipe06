@@ -27,18 +27,6 @@ class RecomendacaoDAO extends Recomendacao {
             return true;
         }
     }
-    
-    public function excluir() {
-        $sql = "DELETE FROM tbloja WHERE codigo=".$this->getCodigo();
-
-        $result = pg_query($sql);
-
-        if (!$result) {
-            return false;
-        } else {
-            return true;
-        }
-    }
 
     public function getAll() {
         $sql = "SELECT * FROM tbloja ORDER BY nome";
@@ -52,23 +40,6 @@ class RecomendacaoDAO extends Recomendacao {
         for($i = 0; $i < $numeroLinhas; $i++){
             $array[] = pg_fetch_array($result);
         }               
-        return $array;
-    }
-    
-    public function consultar($nome, $endereco) {
-        //$sql = "SELECT * FROM tbloja WHERE nome LIKE '%".$pesquisa."%' OR endereco LIKE '%".$pesquisa."%' ORDER BY nome";
-        $sql = "SELECT * FROM tbloja WHERE nome LIKE '%".$nome."%' AND endereco LIKE '%".$endereco."%' ORDER BY nome";
-
-        $result = pg_query($sql);
-
-        $numeroLinhas = pg_num_rows($result);
-
-        $array = array();
-
-        for ($i = 0; $i < $numeroLinhas; $i++) {
-            $array[] = pg_fetch_array($result);
-        }
-
         return $array;
     }
 }

@@ -36,9 +36,32 @@ class PerfilDAO extends Perfil {
         $model = new ProdutoDAO();
         $aux = $model->getProduto($cod_produto);
         $produto = $aux[0];
+
+        if($produto["preco"] <= 10){
+            $preco = 1;
+        } else if($produto["preco"] > 10 && $produto["preco"] <= 20){
+            $preco = 2;
+        } else if($produto["preco"] > 20 && $produto["preco"] <= 30){
+            $preco = 3;
+        } else if($produto["preco"] > 30 && $produto["preco"] <= 40){
+            $preco = 4;
+        } else if($produto["preco"] > 40 && $produto["preco"] <= 50){
+            $preco = 5;
+        } else if($produto["preco"] > 50 && $produto["preco"] <= 60){
+            $preco = 6;
+        } else if($produto["preco"] > 60 && $produto["preco"] <= 70){
+            $preco = 7;
+        } else if($produto["preco"] > 70 && $produto["preco"] <= 80){
+            $preco = 8;
+        } else if($produto["preco"] > 80 && $produto["preco"] <= 90){
+            $preco = 9;
+        } else if($produto["preco"] > 90){
+            $preco = 10;
+        }
+
         $sql = "INSERT INTO tbperfis06 (ano, preco, cod_formato," .
                 "cod_genero, cod_censura, regiao, cod_grupo, cod_loja, cod_produtora, cod_usuario)" .
-                "values (" . $produto["ano"] . "," . $produto["preco"] . "," . $produto["cod_formato"] .
+                "values (" . $produto["ano"] . "," . $preco . "," . $produto["cod_formato"] .
                 "," . $produto["cod_genero"] . "," . $produto["cod_censura"] . ","
                 . $produto["regiao"] . "," . $produto["cod_grupo"] . ","
                 . $produto["cod_loja"] . "," . $produto["cod_produtora"] . " , " . $_SESSION["codigo"] . ")";
@@ -158,11 +181,7 @@ class PerfilDAO extends Perfil {
         return $array;
     }
 
-    /*
-     * Funcao que retorna o perfil(do usuario logado) mais parecido com o produto visualizado
-     */
-
-    function getPerfil($codigo){
+    function getPerfil($codigo) {
         $sql = "SELECT * FROM tbperfis06 WHERE cod_usuario=" . $codigo;
         $result = pg_query($sql);
         $numeroLinhas = pg_num_rows($result);
@@ -172,43 +191,50 @@ class PerfilDAO extends Perfil {
         for ($i = 0; $i < $numeroLinhas; $i++) {
             $array[] = pg_fetch_array($result);
         }
-        
+
         return $array;
     }
-    
+
+    /*
+     * Funcao que retorna o perfil(do usuario logado) mais parecido com o produto visualizado
+     */
+
     public function getPerfilParecido($produto) {
         $perfis = $this->getPerfil($_SESSION["codigo"]);
-        
+
         $tam = count($perfis);
-        
+
         $distancias = array();
-                
-        for ($i = 0; $i < $tam; $i++){
+
+        for ($i = 0; $i < $tam; $i++) {
             $distancias[] = $this->distancia($produto, $perfis[$i]);
         }
-        
+
         $dist_ordenadas = natsort($distancias);
-        
+
         $mais_parecido = $dist_ordenadas[0];
-        
+
         $ind = array_search($mais_parecido);
-        
+
         return $perfis[$ind];
     }
 
     /*
      * Funcao que retorna o perfil do amigo mais parecido com o perfil do usuario logado
      */
-    public function getPerfilAmigo($usuario) {
-        
+
+    public function getPerfilAmigo($perfil) {
+        include_once ("AmigoDAO.php");
+        $model = AmigoDAO();
+        $amigos = $model->getAmigos();
     }
 
     private function distancia($param, $param2) {
         return sqrt(pow(($param["preco"] - $param2["preco"]), 2) + pow(($param["ano"] - $param2["ano"]), 2)
-                + pow(($param["cod_loja"] - $param2["cod_loja"]), 2) + pow(($param["cod_produtora"] - $param2["cod_produtora"]), 2)
-                + pow(($param["cod_genero"] - $param2["cod_genero"]), 2) + pow(($param["cod_formato"] - $param2["cod_formato"]), 2)
-                + pow(($param["cod_censura"] - $param2["cod_censura"]), 2) + pow(($param["cod_grupo"] - $param2["cod_grupo"]), 2)
-                + pow(($param["regiao"] - $param2["regiao"]), 2));
+                        + pow(($param["cod_loja"] - $param2["cod_loja"]), 2) + pow(($param["cod_produtora"] - $param2["cod_produtora"]), 2)
+                        + pow(($param["cod_genero"] - $param2["cod_genero"]), 2) + pow(($param["cod_formato"] - $param2["cod_formato"]), 2)
+                        + pow(($param["cod_censura"] - $param2["cod_censura"]), 2) + pow(($param["cod_grupo"] - $param2["cod_grupo"]), 2)
+                        + pow(($param["regiao"] - $param2["regiao"]), 2));
     }
 
 }

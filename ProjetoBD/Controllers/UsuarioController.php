@@ -18,7 +18,6 @@ class UsuarioController {
                 $model->setCpf($_POST['us_cpf']);
                 $model->setEmail($_POST['us_email']);
 
-
                 $resultado = $model->salvar();
 
                 if ($resultado == 1) {

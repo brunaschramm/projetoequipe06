@@ -1,3 +1,12 @@
+<?php
+session_start();
+if (!isset($_SESSION['codigo'])) {
+    header("Location: ../Views/login.php");
+} else {
+    echo 'falta definir';
+}
+?>
+
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
@@ -17,13 +26,19 @@
     </head>
 
     <body>
-        <form action="../Controllers/UsuarioController.php?acao=amigo" method="post" name="dados" onSubmit="return enviardados();" >
+        <form action="../Controllers/AmigoController.php?acao=cadastrar" method="post" name="dados" onSubmit="return enviardados();" >
 
             <table width="588" border="0" >
                 <tr>
                     <td width="118"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Email do amigo:</font></td>
                     <td width="460">
                         <input name="am_email" type="text" class="formbutton" id="am_email" size="52" maxlength="150"/></td>
+                    <td width="118"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Nível de Amizade:</font></td>
+                    <td><select  name="niv_amizade">
+                        <option selected value="Selecione"></option>
+                        <option value="Amigos">Amigos</option>
+                        <option value="Super Amigos">Super Amigos</option>
+                    </select></td>
                 </tr>
 
                 <tr>
@@ -42,13 +57,13 @@
             $tam = count($amigos);
             for ($i = 0; $i < $tam; $i++) {
                 $aux = $amigos[$i];
-                echo "<tr><td>" . $aux["nome_amigo"] . "</td><td>" . $aux["email_amigo"] . "</td></tr><td>" . $aux["apelido"] . "</td><td><a href=\"../Controllers/UsuarioController.php?acao=excluirAmigo&id=" 
-                        . $aux["cod_amigo"] . "\"><img src=\"../Imagens/excluir.png\" width=\"20\" height=\"20\"></a></td></tr>\n";
+                echo "<tr><td>" . $aux["nome_amigo"] . "</td><td>" . $aux["email_amigo"] . "</td></tr><td>" . $aux["apelido"] . "</td><td><a href=\"../Controllers/UsuarioController.php?acao=excluirAmigo&id="
+                . $aux["cod_amigo"] . "\"><img src=\"../Imagens/excluir.png\" width=\"20\" height=\"20\"></a></td></tr>\n";
             }
             ?>
             <tr>
                 <td>
-                    
+
                 </td>
             </tr>
         </table>

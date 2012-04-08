@@ -266,6 +266,107 @@ class ProdutoDAO extends Produto {
         return $array;
     }
 
+    /*
+     * Função que recomenda os produtos a partir das diferenças entre
+     * o perfil do usuario logado e o perfil do amigo mais parecido com ele
+     */
+
+    public function getRecomendacoes($perfil, $amigo, $produto) {
+        $diferenca = false;
+
+        $sql = "SELECT * FROM tbprodutos06 WHERE 1=0";
+
+        if ($perfil["preco"] != $amigo["preco"]) {
+            switch ($amigo["preco"]) {
+                case '1':
+                    $sql = $sql . " OR produtos.preco <= 10";
+                    break;
+                case '2':
+                    $sql = $sql . " OR produtos.preco BETWEEN 10.01 AND 20";
+                    break;
+                case '3':
+                    $sql = $sql . " OR produtos.preco BETWEEN 20.01 AND 30";
+                    break;
+                case '4':
+                    $sql = $sql . " OR produtos.preco BETWEEN 30.01 AND 40";
+                    break;
+                case '5':
+                    $sql = $sql . " OR produtos.preco BETWEEN 40.01 AND 50";
+                    break;
+                case '6':
+                    $sql = $sql . " OR produtos.preco BETWEEN 50.01 AND 60";
+                    break;
+                case '7':
+                    $sql = $sql . " OR produtos.preco BETWEEN 60.01 AND 70";
+                    break;
+                case '8':
+                    $sql = $sql . " OR produtos.preco BETWEEN 70.01 AND 80";
+                    break;
+                case '9':
+                    $sql = $sql . " OR produtos.preco BETWEEN 80.01 AND 90";
+                    break;
+                case '10':
+                    $sql = $sql . " OR produtos.preco > 90";
+                    break;
+            }
+        }
+
+        if ($perfil["ano"] != $amigo["ano"]) {
+            $diferenca = true;
+            $sql = $sql . " OR ano =" . $amigo["ano"];
+        }
+        if ($perfil["loja"] != $amigo["loja"]) {
+            $diferenca = true;
+            $sql = $sql . " OR cod_loja =" . $amigo["loja"];
+        }
+        if ($perfil["produtora"] != $amigo["produtora"]) {
+            $diferenca = true;
+            $sql = $sql . " OR cod_produtora =" . $amigo["produtora"];
+        }
+        if ($perfil["genero"] != $amigo["genero"]) {
+            $diferenca = true;
+            $sql = $sql . " OR cod_genero =" . $amigo["genero"];
+        }
+        if ($perfil["formato"] != $amigo["formato"]) {
+            $diferenca = true;
+            $sql = $sql . " OR cod_formato =" . $amigo["formato"];
+        }
+        if ($perfil["censura"] != $amigo["censura"]) {
+            $diferenca = true;
+            $sql = $sql . " OR cod_censura =" . $amigo["censura"];
+        }
+        if ($perfil["grupo"] != $amigo["grupo"]) {
+            $diferenca = true;
+            $sql = $sql . " OR cod_grupo =" . $amigo["grupo"];
+        }
+        if ($perfil["regiao"] != $amigo["regiao"]) {
+            $diferenca = true;
+            $sql = $sql . " OR cod_regiao =" . $amigo["regiao"];
+        }
+        /*
+         * Se não houver diferenca entre os perfis,
+         * seleciona produtos similares com base nas principais características:
+         * Genero, Loja, Produtora, Grupo e Ano
+         */
+        if (!$diferenca) {
+            $sql = $sql . " OR ano =" . $amigo["regiao"] . " OR cod_loja=" . $amigo["loja"]
+                    . " OR cod_produtora=" . $amigo["produtora"] . " OR cod_genero=" . $amigo["genero"]
+                    . " OR cod_grupo=" . $amigo["grupo"];
+        }
+        $sql = $sql . " AND codigo <> " . $produto["codigo"];
+        
+        $result = pg_query($sql);
+
+        $numeroLinhas = pg_num_rows($result);
+
+        $array = array();
+
+        for ($i = 0; $i < $numeroLinhas; $i++) {
+            $array[] = pg_fetch_array($result);
+        }
+        return $array;
+    }
+
 }
 
 $model = new ProdutoDAO();

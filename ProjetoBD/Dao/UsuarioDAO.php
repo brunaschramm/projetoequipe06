@@ -39,7 +39,8 @@ class UsuarioDAO extends Usuario {
     }
 
     public function valida($email, $cpf) {
-        $sql = "SELECT * FROM tbusuario WHERE email = '$email' AND cpf = '$cpf'";
+//        $sql = "SELECT * FROM tbusuario WHERE email = '$email' AND cpf = '$cpf'";
+        $sql = "SELECT * FROM view_usuarios06 WHERE email = '$email' AND cpf = '$cpf'";
 
         $result = pg_query($sql);
 
@@ -52,6 +53,7 @@ class UsuarioDAO extends Usuario {
             $_SESSION['apelido'] = pg_result($result, 0, "APELIDO");
             $_SESSION['email'] = pg_result($result, 0, "EMAIL");
             $_SESSION['cpf'] = pg_result($result, 0, "CPF");
+            $_SESSION['admin'] = pg_result($result, 0, "ADMIN");
             session_commit();
             return $result;
         }

@@ -279,34 +279,34 @@ class ProdutoDAO extends Produto {
         if ($perfil["preco"] != $amigo["preco"]) {
             switch ($amigo["preco"]) {
                 case '1':
-                    $sql = $sql . " OR produtos.preco <= 10";
+                    $sql = $sql . " OR preco <= 10";
                     break;
                 case '2':
-                    $sql = $sql . " OR produtos.preco BETWEEN 10.01 AND 20";
+                    $sql = $sql . " OR preco BETWEEN 10.01 AND 20";
                     break;
                 case '3':
-                    $sql = $sql . " OR produtos.preco BETWEEN 20.01 AND 30";
+                    $sql = $sql . " OR preco BETWEEN 20.01 AND 30";
                     break;
                 case '4':
-                    $sql = $sql . " OR produtos.preco BETWEEN 30.01 AND 40";
+                    $sql = $sql . " OR preco BETWEEN 30.01 AND 40";
                     break;
                 case '5':
-                    $sql = $sql . " OR produtos.preco BETWEEN 40.01 AND 50";
+                    $sql = $sql . " OR preco BETWEEN 40.01 AND 50";
                     break;
                 case '6':
-                    $sql = $sql . " OR produtos.preco BETWEEN 50.01 AND 60";
+                    $sql = $sql . " OR preco BETWEEN 50.01 AND 60";
                     break;
                 case '7':
-                    $sql = $sql . " OR produtos.preco BETWEEN 60.01 AND 70";
+                    $sql = $sql . " OR preco BETWEEN 60.01 AND 70";
                     break;
                 case '8':
-                    $sql = $sql . " OR produtos.preco BETWEEN 70.01 AND 80";
+                    $sql = $sql . " OR preco BETWEEN 70.01 AND 80";
                     break;
                 case '9':
-                    $sql = $sql . " OR produtos.preco BETWEEN 80.01 AND 90";
+                    $sql = $sql . " OR preco BETWEEN 80.01 AND 90";
                     break;
                 case '10':
-                    $sql = $sql . " OR produtos.preco > 90";
+                    $sql = $sql . " OR preco > 90";
                     break;
             }
         }

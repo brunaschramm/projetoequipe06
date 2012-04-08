@@ -52,6 +52,7 @@ class UsuarioDAO extends Usuario {
             $_SESSION['apelido'] = pg_result($result, 0, "APELIDO");
             $_SESSION['email'] = pg_result($result, 0, "EMAIL");
             $_SESSION['cpf'] = pg_result($result, 0, "CPF");
+            session_commit();
             return $result;
         }
     }

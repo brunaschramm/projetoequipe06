@@ -8,16 +8,17 @@ class ValidaLogin {
         $email = $_POST["email"];
         $cpf = $_POST["cpf"];
 
-       $model = new UsuarioDAO();
-        
-        $resultado = $model->valida($email, $cpf);                
-        
-        if($resultado){
+        $model = new UsuarioDAO();
+
+        $resultado = $model->valida($email, $cpf);
+
+        if ($resultado) {
             header("Location: ../Views/sessaoCliente.php");
         } else {
             echo "Erro no Login";
-        }    
+        }
     }
 }
+
 $controle = new ValidaLogin();
 ?>

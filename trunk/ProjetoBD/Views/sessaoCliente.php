@@ -1,3 +1,11 @@
+<?php
+session_start();
+if (isset($_SESSION['codigo'])) {
+    echo "Codigo usuario = ". $_SESSION['codigo'];
+}
+?>
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
@@ -48,12 +56,7 @@
 
 
             }
-        </style>
-        <?
-        if(!isset($_SESSION)){
-	    session_start();
-	}
-        ?>
+        </style>        
     </head> 
     <!--
         <frameset rows="136,500" cols="*" frameborder="0" >

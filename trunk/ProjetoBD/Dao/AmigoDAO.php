@@ -13,23 +13,23 @@ class AmigoDAO extends Amigo {
     }
 
     public function salvar() {
-        $usuario = new Usuario();
-        $usuario = $this->getUsuario();
+        session_start();
+        $cod_usuario = $_SESSION['codigo'];        
 
         $amigo = new Usuario();
         $amigo = $this->getAmigo();
 
-
-
-//        $sql = "INSERT INTO tbamigos06 (cod_usuario, cod_amigo, nivel_amizade) values (".$usuario->getCodigo().", ".$amigo->getCodigo().", '".$this->getNivelAmizade()."')";
-//        
-//        $result = pg_query($sql);                
-//        
-//        if($result){
-//            echo 'Amigos Agora';
-//        }else{
-//            echo 'Não Amigos';
-//        }
+        $sql = "INSERT INTO tbamigos06 (cod_usuario, cod_amigo, nivel_amizade) values (".$cod_usuario.", ".$amigo->getCodigo().", '".$this->getNivelAmizade()."')";
+                
+        echo $sql;
+        
+        $result = pg_query($sql);                
+        
+        if($result){
+            return TRUE;
+        }else{
+            return FALSE;
+        }
     }
 
     public function getAmigos() {

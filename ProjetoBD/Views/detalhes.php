@@ -5,15 +5,17 @@
     </head>
     <body>
         <?php
+        include_once ("../Dao/PerfilDAO.php");
+        $modelPerfil = new PerfilDAO();
         include_once ("../Dao/ProdutoDAO.php");
         $model = new ProdutoDAO();
         $produto = $model->getProduto($_GET["id"]);
-        if(!isset($_SESSION)){
-	    session_start();
-	}
-        $_SESSION["produto"] = $produto;
-        session_commit();
+        if (!isset($_SESSION)) {
+            session_start();
+        }
         $aux = $produto[0];
+        $_SESSION["produto"] = $aux;
+        session_commit();
         ?>
         <table width=500 height=100>
             <tr>
@@ -27,7 +29,7 @@
             </br></br>
             <tr>
                 <td align = center>
-                        <img src="../Imagens/Produtos/<? echo $aux['imagem']; ?>" width="97" height="132"/>
+                    <img src="../Imagens/Produtos/<? echo $aux['imagem']; ?>" width="97" height="132"/>
                 </td>
                 <td align = center>
                     <table>
@@ -85,6 +87,53 @@
             <tr>
                 <td colspan = 2>
                     <? echo $aux['descricao']; ?>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <table>
+                        <tr>
+                            <td>
+                                Sugerimos para você:
+                            </td>
+                        </tr>
+                        <tr>
+                            <?php
+                            $perfil = $modelPerfil->getPerfilParecido($aux);
+                            //print_r($perfil);
+                            $amigo = $modelPerfil->getPerfilAmigo($perfil);
+                            //print_r($amigo);
+                            $recomendacoes = $model->getRecomendacoes($perfil, $amigo, $aux);
+                            //print_r($recomendacoes);
+                            $tam = count($recomendacoes); // Qntd de recomendacoes exibidas
+                            if ($tam > 4)
+                                $tam = 4;
+                            echo "<tr><div>";
+                            echo "tam ->" . $tam;
+                            for ($i = 0; $i < $tam; $i++) {
+                                $aux = $recomendacoes[$i];
+                                ?>
+                                <td align="center">
+                                    <a href="javascript:abrir('detalhes.php?id=<?  echo $aux['codigo']      ?>');"><img src="../Imagens/loja.png" width="70" height="35"></a>
+                                    <a href=""><img src="../Imagens/iraloja.png" width="90" height="35"></a>
+                                    </br></br>
+                                    <div class="css do produto" id="">
+                                        <a href="link do produto" class="css de link">
+                                            <img src="../Imagens/Produtos/<? echo $aux["imagem"];      ?>" width="97" height="132"/>
+                                        </a>
+                                        </br>
+                                        <span class="link"><strong class=""><? echo $aux["titulo"];      ?></strong></span>
+                                        </a>
+                                        </br>
+                                    </div>
+                                </td>
+                                <?
+                                if (($i + 1) % 4 == 0) {
+                                    echo "</div></tr><tr bordercolordark=\"#000000\"><td><br><br></td></tr><tr><div>";
+                                }
+                            }
+                            ?>
+                    </table>
                 </td>
             </tr>
         </table>

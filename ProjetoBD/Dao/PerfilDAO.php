@@ -1,5 +1,4 @@
 <?php
-
 include_once ("../Banco/Banco.php");
 include_once ("../Models/Perfil.php");
 include_once ("AmigoDAO.php");
@@ -9,8 +8,7 @@ class PerfilDAO extends Perfil {
     private $conexao;
 
     public function __construct() {
-        $_SESSION["codigo"] = 1;
-        session_commit();
+        session_start();
         $this->conexao = new Banco();
         $this->conexao->open();
     }
@@ -245,7 +243,7 @@ class PerfilDAO extends Perfil {
     public function getPerfilAmigo($perfil) {
         $modelAmigo = new AmigoDAO();
         $amigos = $modelAmigo->getAmigos();
-        
+
         $tam = count($amigos);
         $sql = "SELECT * FROM tbperfis06 WHERE cod_usuario IN (6,7)";
 //        if($tam) {
@@ -260,7 +258,7 @@ class PerfilDAO extends Perfil {
 //            }
 //            $sql = $sql.")";
 //        }
-                
+
         $result = pg_query($sql);
 
         $numeroLinhas = pg_num_rows($result);
@@ -272,7 +270,7 @@ class PerfilDAO extends Perfil {
         }
 
         $distancias = array();
-        
+
         $tam = count($array);
 
         for ($i = 0; $i < $tam; $i++) {
@@ -329,8 +327,6 @@ class PerfilDAO extends Perfil {
                         + pow(($param["cod_genero"] - $param2["cod_genero"]), 2) + pow(($param["cod_formato"] - $param2["cod_formato"]), 2)
                         + pow(($param["cod_censura"] - $param2["cod_censura"]), 2) + pow(($param["cod_grupo"] - $param2["cod_grupo"]), 2)
                         + pow(($param["regiao"] - $param2["regiao"]), 2));
-//        $aux = "regiao";
-//        return $param[$aux]." ".$param2[$aux];
     }
 
 }

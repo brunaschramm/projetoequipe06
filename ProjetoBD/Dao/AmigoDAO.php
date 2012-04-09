@@ -8,12 +8,7 @@ class AmigoDAO extends Amigo {
     private $conexao;
 
     function __construct() {
-        if (!isset($_SESSION)) {
-            session_start();
-        }
-
-        $_SESSION["codigo"] = 1;
-        session_commit();
+        session_start();
         $this->conexao = new Banco();
         $this->conexao->open();
     }

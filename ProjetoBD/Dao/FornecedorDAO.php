@@ -8,6 +8,7 @@ class FornecedorDAO extends Fornecedor {
     private $conexao;
 
     public function __construct() {
+        session_start();
         $this->conexao = new Banco();
         $this->conexao->open();
     }

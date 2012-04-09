@@ -162,7 +162,7 @@
                         $page = "NAOMEXE.php";
                 }
 
-                    include_once("inicio.html");
+                    include_once($page);
 
                 ?>
 

@@ -25,7 +25,7 @@
     <body>
         <form action="../Controllers/LojaController.php?acao=cadastrar" method="POST" name="dados" onSubmit="return enviardados();" >
 
-            <table width="588" border="0" >
+            <table width="588" border="0" align="center">
                 <tr>
 
                     <tr>

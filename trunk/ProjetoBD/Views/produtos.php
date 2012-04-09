@@ -234,18 +234,18 @@
         </form>
         <table align="center" class="tabelas">
             <tr>
-                <td>Titulo</td>
-                <td>Ano</td>
-                <td>Preco</td>
-                <td>Formato da Tela</td>
-                <td>Genero</td>
-                <td>Censura</td>
-                <td>Regiao</td>
-                <td>Grupo</td>
-                <td>Fabricante</td>
-                <td>Loja</td>
-                <td>Fornecedor</td>
-                <td>Produtora</td>
+                <td><h3>Titulo</h3></td>
+                <td><h3>Ano</h3></td>
+                <td><h3>Preco</h3></td>
+                <td><h3>Formato da Tela</h3></td>
+                <td><h3>Genero</h3></td>
+                <td><h3>Censura</h3></td>
+                <td><h3>Regiao</h3></td>
+                <td><h3>Grupo</h3></td>
+                <td><h3>Fabricante</h3></td>
+                <td><h3>Loja</h3></td>
+                <td><h3>Fornecedor</h3></td>
+                <td><h3>Produtora</h3></td>
                 <td><a href="../Views/cadastroProduto.php?flag=f"><img src="../Imagens/adicionar.png" width="20" height="20"></a></td>
             </tr>
             <?php

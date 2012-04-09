@@ -23,7 +23,7 @@
         </table>
         <table align="center" class="tabelas">
             <tr>
-                <td>Fornecedor</td>
+                <td><h3>Fornecedor</h3></td>
                 <td><a href="../Views/cadastroFornecedor.php?flag=f"><img src="../Imagens/adicionar.png" width="20" height="20"></a></td>
             </tr>
             <?php

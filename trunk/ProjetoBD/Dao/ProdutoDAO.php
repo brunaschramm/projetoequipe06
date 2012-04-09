@@ -274,7 +274,7 @@ class ProdutoDAO extends Produto {
     public function getRecomendacoes($perfil, $amigo, $produto) {
         $diferenca = false;
 
-        $sql = "SELECT * FROM tbprodutos06 WHERE 1=0";
+        $sql = "SELECT * FROM tbprodutos06 WHERE (1=0";
 
         if ($perfil["preco"] != $amigo["preco"]) {
             switch ($amigo["preco"]) {
@@ -353,7 +353,7 @@ class ProdutoDAO extends Produto {
                     . " OR cod_produtora=" . $amigo["produtora"] . " OR cod_genero=" . $amigo["genero"]
                     . " OR cod_grupo=" . $amigo["grupo"];
         }
-        $sql = $sql . " AND codigo <> " . $produto["codigo"];
+        $sql = $sql . ") AND codigo <> " . $produto["codigo"];
         
         $result = pg_query($sql);
 

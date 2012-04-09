@@ -8,8 +8,7 @@
         if (!isset($_SESSION)) {
             session_start();
         }
-        $produto = $_SESSION["produto"];
-        $aux = $produto[0];
+        $aux = $_SESSION["produto"];
         ?>
         <table width=500 height=100>
             <tr>

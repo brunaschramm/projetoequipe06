@@ -4,52 +4,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>Principal</title>
         <link href="estilos.css" rel="stylesheet" type="text/css"/>
-        <style>
 
-            
-
-            .container {
-                border: 0px solid black;
-                width: 1206px;
-                height: 675px;
-                margin: 0px auto;
-            }
-
-            #top {
-                height: 230px;
-                border: 0px solid blue;
-            }
-
-            #menu {
-                width: 180px;
-                margin-top: 5px;
-                border: 0px solid red;
-                float: left;
-                height: 360px;
-            }
-
-            #main {
-                width: 1010px;
-                margin-top: 5px;
-                border: 0px solid green;
-                float: right;
-                height: auto;
-            }
-
-            #footer {
-                width: 1205px;
-                float: right;
-                
-                margin-top: 5px;
-                height: 70px;
-                clear: both;
-                
-                color: #bbb;
-                text-align: center;
-                border-top: 1px dotted #bbb;
-                
-            }
-        </style>
     </head>
     <!--
         <frameset rows="136,500" cols="*" frameborder="0" >

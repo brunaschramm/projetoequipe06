@@ -7,40 +7,11 @@
         <script language="JavaScript" >
             function enviardados(){
                 if((document.dados.email.value=="" || document.dados.cpf.value=="") 
-                    || (document.dados.email.value.indexOf('@')==-1 || document.dados.email.value.indexOf('.')==-1) 
-                    /*|| (!vercpf(document.dados.us_cpf.value))*/)
+                    || (document.dados.email.value.indexOf('@')==-1 || document.dados.email.value.indexOf('.')==-1))
                 {
                     alert("Preencha os campos LOGIN e SENHA corretamente!");
                     document.dados.login.focus();
                     return false;
-                }
-                
-                function vercpf (cpf) 
-                {
-                    if (cpf.length != 11 || cpf == "00000000000" 
-                        || cpf == "11111111111" || cpf == "22222222222"
-                        || cpf == "33333333333" || cpf == "44444444444"
-                        || cpf == "55555555555" || cpf == "66666666666"
-                        || cpf == "77777777777" || cpf == "88888888888"
-                        || cpf == "99999999999")
-                        return false;
-                    add = 0;
-                    for (i=0; i < 9; i ++)
-                        add += parseInt(cpf.charAt(i)) * (10 - i);
-                    rev = 11 - (add % 11);
-                    if (rev == 10 || rev == 11)
-                        rev = 0;
-                    if (rev != parseInt(cpf.charAt(9)))
-                        return false;
-                    add = 0;
-                    for (i = 0; i < 10; i ++)
-                        add += parseInt(cpf.charAt(i)) * (11 - i);
-                    rev = 11 - (add % 11);
-                    if (rev == 10 || rev == 11)
-                        rev = 0;
-                    if (rev != parseInt(cpf.charAt(10)))
-                        return false;
-                    return true;
                 }
             }
         </script>        
@@ -48,9 +19,7 @@
 
     <body>
         <form action="../Controllers/ValidaLogin.php" method="POST" name="dados" onSubmit="return enviardados();" >
-
             <br/><br/><br/><br/>
-            
             <table width="320" border="0" >
                 <tr>
                     <td width="70" align="center"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">E-mail:</font></td>

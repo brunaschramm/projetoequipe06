@@ -23,12 +23,12 @@
                     </td>
                 </tr>
             </form>
+        </table>
+        <table align="center" class="tabelas">
             <tr>
+                <td><h3>Loja</h3></td>
+                <td><h3>Endereco</h3></td>
                 <td><a href="../Views/cadastroLoja.php?flag=f"><img src="../Imagens/adicionar.png" width="20" height="20"></a></td>
-            </tr>
-            <tr>
-                <td>Loja</td>
-                <td>Endereco</td>
             </tr>
             <?php
             include_once ("../Dao/LojaDAO.php");

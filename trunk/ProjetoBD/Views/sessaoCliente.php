@@ -1,3 +1,4 @@
+
 <? session_start(); ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -6,36 +7,360 @@
         <title>Principal</title>
         <link href="estilos.css" rel="stylesheet" type="text/css"/>
 
+        <style>
+            .conteudo {
+                background-image: url(../JPEG/conteudo.gif);
+                background-repeat: no-repeat;
+            }
+            .barradobanner {
+                background-image: url(../JPEG/banner/images/banner_calouro_05.jpg);
+                background-repeat: no-repeat;
+            }
+            .texto {
+                font-family: Verdana, Arial, Helvetica, sans-serif;
+                font-size: 11px;
+                color: #000000;
+            }
+            .botao {
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 20px ;
+                background-color: #D1EEB4;
+                border: 1px solid #333333;
+            }
+
+
+
+            .meuselect {
+                width:135px; /* Largura da janela do menu */
+                background:#F0FFF0; /* Cor do fundo do menu
+                em repouso */
+                font:11px arial, helvetica,
+                    sans-serif; /* Tamanho e tipo das letras */
+                color:#36648B; /* Cor das letras do Título do menu */
+            }
+            .meuselect option.stit {
+                width:135px; /* Largura da janela do menu para NN */
+                background-color:#C1CDCD; /* Cor do fundo dos
+                Subtítulos */
+                color:#003366; /* Cor das letras dos Subtítulos */
+            }
+            .sep {
+                width:135px;  /* Largura da janela do menu para NN */
+                background-color:#FFFFFF; /* Cor do fundo dos
+                separadores */
+                color:#000000; /* Cor dos traços dos separadores */
+            }
+            .meuselect option.impar {
+                width:135px; /* Largura da janela do menu para NN */
+                background-color:#E0EEE0; /* Cor do fundo dos
+                links impares */
+                color:#00008B; /* Cor das letras dos links impares */
+            }
+            .meuselect option.par {
+                width:135px;  /* Largura da janela do menu para NN */
+                background-color:#F0FFF0; /* Cor do fundo dos
+                links pares */
+                color:#009ACD; /* Cor das letras dos links pares */
+            }
+
+
+
+
+
+            #cadastrar {
+                position:absolute;
+                top:-1px;
+                left:0px;
+                color:#69F;
+                text-decoration: none;
+                font: Arial, Helvetica, sans-serif;
+            }
+
+            .sombra  {
+                position:absolute;
+                margin-top:15px;
+                margin-left:1050px;
+                color:#006;
+                font: 16px Arial, Helvetica, sans-serif
+            }
+
+            /* links-sombra = administrdor */
+
+            .sombraFab  {
+                position:absolute;
+                margin-top: 0px;
+                margin-left: 40px;
+                color:#006;
+                font: 16px Arial, Helvetica, sans-serif
+            }
+
+            #cadastrarFab {
+                position:absolute;
+                top:-1px;
+                left:0px;
+                color:#69F;
+                text-decoration: none;
+                font: Arial, Helvetica, sans-serif;
+            }
+
+            #cadastrarLoja {
+                position:absolute;
+                top:-1px;
+                left:0px;
+                color:#69F;
+                text-decoration: none;
+                font: Arial, Helvetica, sans-serif;
+            }
+
+            .sombraLoja  {
+                position:absolute;
+                margin-top: 0px;
+                margin-left: 170px;
+                color:#006;
+                font: 16px Arial, Helvetica, sans-serif
+            }
+
+            #cadastrarUsuario {
+                position:absolute;
+                top:-1px;
+                left:0px;
+                color:#69F;
+                text-decoration: none;
+                font: Arial, Helvetica, sans-serif;
+            }
+
+            .sombraUsuario  {
+                position:absolute;
+                margin-top: 0px;
+                margin-left: 250px;
+                font: 16px Arial, Helvetica, sans-serif
+            }
+
+            #cadastrarProduto {
+                position:absolute;
+                top:-1px;
+                left:0px;
+                color:#69F;
+                text-decoration: none;
+                font: Arial, Helvetica, sans-serif;
+            }
+
+            .sombraProduto  {
+                position:absolute;
+                margin-top: 0px;
+                margin-left: 350px;
+                color:#006;
+                font: 16px Arial, Helvetica, sans-serif
+            }
+
+            #cadastrarFornecedor {
+                position:absolute;
+                top:-1px;
+                left:0px;
+                color:#69F;
+                text-decoration: none;
+                font: Arial, Helvetica, sans-serif;
+            }
+
+            .sombraFornecedor  {
+                position:absolute;
+                margin-top: 0px;
+                margin-left: 460px;
+                color:#006;
+                font: 16px Arial, Helvetica, sans-serif
+            }
+
+            /* links-sombra = administrdor */
+
+
+            /* container principal*/
+
+            .container {
+                border: 0px solid black;
+                width: 1206px;
+                height: 675px;
+                margin: 0px auto;
+            }
+
+            #top {
+                height: 230px;
+                border: 0px solid blue;
+            }
+
+            #menu {
+                width: 180px;
+                margin-top: 5px;
+                border: 0px solid red;
+                float: left;
+                height: 360px;
+            }
+
+            #main {
+                width: 1010px;
+                margin-top: 5px;
+                border: 0px solid green;
+                float: right;
+                height: auto;
+            }
+
+            #footer {
+                width: 1205px;
+                float: right;
+
+                margin-top: 5px;
+                height: 70px;
+                clear: both;
+
+                color: #bbb;
+                text-align: center;
+                border-top: 1px dotted #bbb;
+
+            }
+
+            /* container principal */
+
+
+            .login{
+
+                color:#69F;
+                font: 15px Verdana, Geneva, sans-serif;
+
+            }
+
+
+            .buscar {
+                background: url(../Imagens/buscar2.png) no-repeat;
+                width: 110px;
+                height:55px;
+                border-style:none
+            }
+
+            .buscar:hover {
+                background: url(../Imagens/buscar-hover.png) no-repeat;
+                width: 115px;
+                height: 55px;
+            }
+
+
+            .buscar2 {
+                background: url(../Imagens/botaobuscar.png) no-repeat;
+                width: 105px;
+                height: 48px;
+                border-style:none;
+            }
+
+            .parcelas {
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 15px;
+
+
+            }
+            .cadastro {
+                font-family: Verdana, Arial, Helvetica, sans-serif;
+                font-size: 10px;
+                color: #000000;
+            }
+            a:hover {
+                text-decoration: underline;
+            }
+            .tabelas {
+                border: 1px solid #D6EFB5;
+                font-family: Verdana, Arial, Helvetica, sans-serif;
+                font-size: 12px;
+                color: #000000;
+            }
+            .textoverdana {
+                font-family: Verdana, Arial, Helvetica, sans-serif;
+                font-size: 11px;
+                color: #000000;
+            }
+            .divisao {
+                border-top-width: 1px;
+                border-right-width: 1px;
+                border-bottom-width: 1px;
+                border-left-width: 1px;
+                border-top-style: none;
+                border-right-style: none;
+                border-bottom-style: solid;
+                border-left-style: none;
+                border-top-color: #D6EFB5;
+                border-right-color: #D6EFB5;
+                border-bottom-color: #D6EFB5;
+                border-left-color: #D6EFB5;
+            }
+
+            .precode {
+                font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+                color:#C00;
+                text-decoration: line-through;
+                font-weight: bold;
+            }
+
+            .precopor {
+                font-size:large;
+                color: #090;
+                font-weight: bolder;
+
+            }
+
+            .textorelat {
+                font-family: Verdana, Arial, Helvetica, sans-serif;
+                font-size: 10px;
+                color: #000000;
+            }
+
+            .link{
+                color:#666;
+                font-family:Verdana, Geneva, sans-serif;
+                text-decoration:none;
+                cursor: pointer;
+            }
+
+            .fechar {
+                cursor:pointer;
+                background:#669900;
+                font-weight:bold;
+                color:#FFFFFF;
+            }            
+        </style>
+
     </head>
     <body>
         <div class="container" align="center">
             <div id="top">
                 <form action="" method="POST" name="dados">
-                    <a href="NAOMEXEADM.php"><img src="../Imagens/dvdcabeca2.png" width="1205"/></a>
+                    <a href="sessaoCliente.php"><img src="../Imagens/dvdcabeca2.png" width="1205"/></a>
                     <table><tr><td height="2"/></tr></table>
-                    <table align="" width="1205px" border="0" cellpadding="0" cellspacing="0" bgcolor="#D1EEB4">
-                        <? if ($_SESSION["admin"]) { ?>
-                            <tr>
-                                <td width="77%" height="35" align="right">
-                                    <div class="sombraFab"><strong>Fabricante</strong>
-                                        <div><strong><a id="cadastrarFab" href="NAOMEXEADM.php?flag=jfab">Fabricante</a></strong>
-                                        </div></div>
-                                    <div class="sombraLoja"><strong>Loja</strong>
-                                        <div><strong><a id="cadastrarLoja" href="NAOMEXEADM.php?flag=jloj">Loja</a></strong>
-                                        </div></div>
-                                    <div class="sombraUsuario"><strong>Usuário</strong>
-                                        <div><strong><a id="cadastrarUsuario" href="NAOMEXEADM.php?flag=juse">Usuário</a></strong>
-                                        </div></div>
-                                    <div class="sombraProduto"><strong>Produto</strong>
-                                        <div><strong><a id="cadastrarProduto" href="NAOMEXEADM.php?flag=jpro">Produto</a></strong>
-                                        </div></div>
-                                    <div class="sombraFornecedor"><strong>Fornecedor</strong>
-                                        <div><strong><a id="cadastrarFornecedor" href="NAOMEXEADM.php?flag=jfor">Fornecedor</a></strong>
-                                        </div></div>
-                                </td>
-                            </tr>
-                        <? } ?>
 
+                    <table align="" width="1205px" border="0" cellpadding="0" cellspacing="0" bgcolor="#D1EEB4">
+                        <tr>
+
+                            <td height="25px">
+                                <div class="sombraFab"><strong>Fabricante</strong>
+                                    <div><strong><a id="cadastrarFab" href="sessaoCliente.php?flag=jfab">Fabricante</a></strong>
+                                    </div></div>
+
+                                <div class="sombraLoja"><strong>Loja</strong>
+                                    <div><strong><a id="cadastrarLoja" href="sessaoCliente.php?flag=jloj">Loja</a></strong>
+                                    </div></div>
+
+                                <div class="sombraUsuario"><strong>Usuário</strong>
+                                    <div><strong><a id="cadastrarUsuario" href="sessaoCliente.php?flag=juse">Usuário</a></strong>
+                                    </div></div>
+
+                                <div class="sombraProduto"><strong>Produto</strong>
+                                    <div><strong><a id="cadastrarProduto" href="sessaoCliente.php?flag=jpro">Produto</a></strong>
+                                    </div></div>
+
+                                <div class="sombraFornecedor"><strong>Fornecedor</strong>
+                                    <div><strong><a id="cadastrarFornecedor" href="sessaoCliente.php?flag=jfor">Fornecedor</a></strong>
+                                    </div></div>
+                            </td>
+
+                        </tr>
+                    </table>
+
+                    <table align="" width="1205px" border="0" cellpadding="0" cellspacing="0" bgcolor="#D1EEB4">
                         <tr>
                             <td width="" height="" bgcolor="#FFFFFF">
                                 <table align="" width="1205px" border="0" cellpadding="0" cellspacing="0" bgcolor="#D1EEB4">
@@ -50,14 +375,15 @@
                                         <? if (isset($_SESSION['codigo'])) { ?>
                                             <td align="right" width="105">
                                                 <a href="logout.php" class="login">logout</a>
+                                                &nbsp
                                             </td>
                                         <? } else if (!isset($_SESSION['codigo'])) { ?>
                                             <td align="right" width="105">
-                                                <a href="NAOMEXEADM.php?flag=jlogin" class="login">login</a>
+                                                <a href="sessaoCliente.php?flag=jlogin" class="login">login</a>
                                                 &nbsp &nbsp
                                             </td>
                                             <div class="sombra"><strong>Cadastrar</strong>
-                                                <div><strong><a id="cadastrar" href="NAOMEXEADM.php?flag=jcad">Cadastrar</a></strong>
+                                                <div><strong><a id="cadastrar" href="sessaoCliente.php?flag=jcad">Cadastrar</a></strong>
                                                 </div>
                                             </div>
                                         <? } ?>
@@ -67,46 +393,6 @@
                         </tr>
                     </table>
                 </form>
-            </div>
-
-            <div id="main">
-                <?
-                if (isset($_POST["Submit"]) || isset($_POST["Submit2"]) || isset($_GET["pg"])) {
-                    include_once "inicio.php";
-                } else if (isset($_GET["id"])) {
-                    $_SESSION["idProduto"] = $_GET["id"];
-                    session_commit();
-                    include_once "detalhes.php";
-                } else {
-                    $page = (isset($_GET['flag'])) ? $_GET['flag'] : "home";
-                    switch ($page) {
-                        case "jlogin":
-                            $page = "login.php";
-                            break;
-                        case "jcad":
-                            $page = "cadastroUsuario.php";
-                            break;
-                        case "jfab":
-                            $page = "fabricantes.php";
-                            break;
-                        case "jfor":
-                            $page = "fornecedores.php";
-                            break;
-                        case "juse":
-                            $page = "usuarios.php";
-                            break;
-                        case "jpro":
-                            $page = "produtos.php";
-                            break;
-                        case "jloj":
-                            $page = "lojas.php";
-                            break;
-                        default :
-                            $page = "sessaoCliente.php";
-                    }
-                    include_once $page;
-                }
-                ?>
             </div>
 
             <div id="menu" align="left">
@@ -226,6 +512,47 @@
                     </table>
                 </form>
             </div>
+
+            <div id="main">
+                <?
+                if (isset($_POST["Submit"]) || isset($_POST["Submit2"]) || isset($_GET["pg"])) {
+                    include_once "inicio.php";
+                } else if (isset($_GET["id"])) {
+                    $_SESSION["idProduto"] = $_GET["id"];
+                    session_commit();
+                    include_once "detalhes.php";
+                } else {
+                    $page = (isset($_GET['flag'])) ? $_GET['flag'] : "home";
+                    switch ($page) {
+                        case "jlogin":
+                            $page = "login.php";
+                            break;
+                        case "jcad":
+                            $page = "cadastroUsuario.php";
+                            break;
+                        case "jfab":
+                            $page = "fabricantes.php";
+                            break;
+                        case "jfor":
+                            $page = "fornecedores.php";
+                            break;
+                        case "juse":
+                            $page = "usuarios.php";
+                            break;
+                        case "jpro":
+                            $page = "produtos.php";
+                            break;
+                        case "jloj":
+                            $page = "lojas.php";
+                            break;
+                        default :
+                            $page = "sessaoCliente.php";
+                    }
+                    include_once $page;
+                }
+                ?>
+            </div>
+
 
             <div id="footer">algo</div>
         </div>

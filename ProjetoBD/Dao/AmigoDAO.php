@@ -8,43 +8,43 @@ class AmigoDAO extends Amigo {
     private $conexao;
 
     function __construct() {
+        if (!isset($_SESSION)) {
+            session_start();
+        }
+
+        $_SESSION["codigo"] = 1;
+        session_commit();
         $this->conexao = new Banco();
         $this->conexao->open();
     }
 
     public function salvar() {
-        session_start();
-        $cod_usuario = $_SESSION['codigo'];        
+        $usuario = new Usuario();
+        $usuario = $this->getUsuario();
 
         $amigo = new Usuario();
         $amigo = $this->getAmigo();
 
-        $sql = "INSERT INTO tbamigos06 (cod_usuario, cod_amigo, nivel_amizade) values (".$cod_usuario.", ".$amigo->getCodigo().", '".$this->getNivelAmizade()."')";
-                
-        echo $sql;
-        
-        $result = pg_query($sql);                
-        
-        if($result){
-            return TRUE;
-        }else{
-            return FALSE;
-        }
+
+
+//        $sql = "INSERT INTO tbamigos06 (cod_usuario, cod_amigo, nivel_amizade) values (".$usuario->getCodigo().", ".$amigo->getCodigo().", '".$this->getNivelAmizade()."')";
+//        
+//        $result = pg_query($sql);                
+//        
+//        if($result){
+//            echo 'Amigos Agora';
+//        }else{
+//            echo 'Não Amigos';
+//        }
     }
 
     public function getAmigos() {
-        if (!isset($_SESSION)) {
-            session_start();
-        }
-        $_SESSION["codigo"] = 1;
-        session_commit();
-
         $sql = "SELECT usuarios2.nome AS nome_usuario, usuarios2.codigo AS cod_usuario, usuarios2.cpf AS cpf_usuario,
                 usuarios2.email as email_usuario, usuarios.nome AS nome_amigo, usuarios.codigo AS cod_amigo, 
                 usuarios.cpf AS cpf_amigo, usuarios.email as email_amigo, usuarios2.apelido as apelido_usuario, usuarios.apelido as apelido_amigo
                 FROM tbamigos06 AS amigos INNER JOIN tempusuarios AS usuarios ON amigos.cod_amigo = usuarios.codigo
                 INNER JOIN tempusuarios AS usuarios2 ON amigos.cod_usuario = usuarios2.codigo
-                WHERE usuarios2.codigo =".$_SESSION["codigo"]."ORDER BY nome_amigo";
+                WHERE usuarios2.codigo =" . $_SESSION["codigo"] . "ORDER BY nome_amigo";
 
         $result = pg_query($sql);
 
@@ -58,5 +58,6 @@ class AmigoDAO extends Amigo {
         return $array;
     }
 }
-$model = new AmigoDAO();
+
+$modelAmigo = new AmigoDAO();
 ?>

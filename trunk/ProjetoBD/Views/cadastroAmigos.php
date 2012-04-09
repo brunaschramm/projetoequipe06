@@ -28,7 +28,7 @@ if (!isset($_SESSION['codigo'])) {
     <body>
         <form action="../Controllers/AmigoController.php?acao=cadastrar" method="post" name="dados" onSubmit="return enviardados();" >
 
-            <table width="588" border="0" >
+            <table width="588" border="0" align="center">
                 <tr>
                     <td width="118"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Email do amigo:</font></td>
                     <td width="460">

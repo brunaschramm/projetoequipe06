@@ -5,14 +5,14 @@
     </head>
     <body>
         <?php
+        session_commit();
+        include_once ("../Dao/RecomendacaoDAO.php");
+        $modelRecomendacao = new RecomendacaoDAO();
         include_once ("../Dao/PerfilDAO.php");
         $modelPerfil = new PerfilDAO();
         include_once ("../Dao/ProdutoDAO.php");
         $model = new ProdutoDAO();
-        $produto = $model->getProduto($_SESSION['id']);
-        if (!isset($_SESSION)) {
-            session_start();
-        }
+        $produto = $model->getProduto($_SESSION["idProduto"]);
         $aux = $produto[0];
         $_SESSION["produto"] = $aux;
         session_commit();
@@ -81,6 +81,38 @@
                                 <? echo $aux['loja']; ?>
                             </td>
                         </tr>
+                        <tr>
+                            <td>
+                                Grupo:
+                            </td>
+                            <td>
+                                <? echo $aux['grupo']; ?>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Censura:
+                            </td>
+                            <td>
+                                <? echo $aux['censura']; ?>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Formato:
+                            </td>
+                            <td>
+                                <? echo $aux['formato']; ?>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Região:
+                            </td>
+                            <td>
+                                <? echo $aux['regiao']; ?>
+                            </td>
+                        </tr>
                     </table>
                 </td>
             </tr>
@@ -90,53 +122,97 @@
                 </td>
             </tr>
         </table>
-        <table width="100%" align = center>
-            <tr>
-                <td align = center>
-                    Sugerimos para você:
-                </td>
-            </tr>
-            <tr>
-                <?php
-                $perfil = $modelPerfil->getPerfilParecido($aux);
-                //print_r($perfil);
-                $amigo = $modelPerfil->getPerfilAmigo($perfil);
-                //print_r($amigo);
-                $recomendacoes = $model->getRecomendacoes($perfil, $amigo, $aux);
-                //print_r($recomendacoes);
-                $tam = count($recomendacoes); // Qntd de recomendacoes exibidas
-                if ($tam > 4)
-                    $tam = 4;
-                for ($i = 0; $i < $tam; $i++) {
-                    $aux = $recomendacoes[$i];
-                    ?>
-                    <td align="center">
-                        <table>
-                            <tr height="20%">
-                                <td align = center width= "200px">
-                                    <!--<a href="javascript:abrir('detalhes.php?id=<? echo $aux['codigo'] ?>');"><img src="../Imagens/loja.png" width="70" height="35"></a>-->
-                                    <a href="sessaoCliente.php?id=<? echo $aux['codigo'] ?>"><img src="../Imagens/loja.png" width="70" height="35"></a>
-                                    <a href=""><img src="../Imagens/iraloja.png" width="90" height="35"></a>
-                                    </br></br>
-                                </td>
-                            </tr>
-                            <tr height="80%">
-                                <td align = center>
-                                    <div class="css do produto" id="">
-                                        <a href="link do produto" class="css de link">
-                                            <img src="../Imagens/Produtos/<? echo $aux["imagem"]; ?>" width="97" height="132"/>
-                                        </a>
-                                        </br>
-                                        <span class="link"><strong class=""><? echo $aux["titulo"]; ?></strong></span>
-                                        </a>
-                                        </br>
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
+        <!-- Área somente para usuários cadastrados -->
+        <?php
+        session_start();
+        if (isset($_SESSION['codigo'])) {
+            ?>  
+            <table width="100%" align = center>
+                <tr>
+                    <td align = center>
+                        Sugerimos a você:
                     </td>
-                <? } ?>
-            </tr>
-        </table>
+                </tr>
+                <tr>
+                    <?php
+                    $perfil = $modelPerfil->getPerfilParecido($aux);
+                    $amigo = $modelPerfil->getPerfilAmigo($perfil);
+                    $sugestoes = $model->getRecomendacoes($perfil, $amigo, $aux);
+                    $tam = count($sugestoes); // Qntd de sugestoes exibidas
+                    if ($tam > 4)
+                        $tam = 4;
+                    for ($i = 0; $i < $tam; $i++) {
+                        $aux = $sugestoes[$i];
+                        ?>
+                        <td align="center">
+                            <table>
+                                <tr height="20%">
+                                    <td align = center width= "200px">
+                                        <a href="sessaoCliente.php?id=<? echo $aux['codigo'] ?>"><img src="../Imagens/loja.png" width="70" height="35"></a>
+                                        <a href=""><img src="../Imagens/iraloja.png" width="90" height="35"></a>
+                                        </br></br>
+                                    </td>
+                                </tr>
+                                <tr height="80%">
+                                    <td align = center>
+                                        <div class="css do produto" id="">
+                                            <a href="link do produto" class="css de link">
+                                                <img src="../Imagens/Produtos/<? echo $aux["imagem"]; ?>" width="97" height="132"/>
+                                            </a>
+                                            </br>
+                                            <span class="link"><strong class=""><? echo $aux["titulo"]; ?></strong></span>
+                                            </br>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    <? } ?>
+                </tr>
+            </table>
+            <table width="100%" align = center>
+                <tr>
+                    <td align = center>
+                        Recomendações para você:
+                    </td>
+                </tr>
+                <tr>
+                    <?php
+                    $recomendacoes = $modelRecomendacao->getRecomendacoesUsuario($aux);
+                    $tam = count($recomendacoes); // Qntd de recomendacoes exibidas
+                    if ($tam > 4)
+                        $tam = 4;
+                    for ($i = 0; $i < $tam; $i++) {
+                        $aux = $recomendacoes[$i];
+                        ?>
+                        <td align="center">
+                            <table>
+                                <tr height="20%">
+                                    <td align = center width= "200px">
+                                        <a href="sessaoCliente.php?id=<? echo $aux['codigo'] ?>"><img src="../Imagens/loja.png" width="70" height="35"></a>
+                                        <a href=""><img src="../Imagens/iraloja.png" width="90" height="35"></a>
+                                        </br></br>
+                                    </td>
+                                </tr>
+                                <tr height="80%">
+                                    <td align = center>
+                                        <div class="css do produto" id="">
+                                            <a href="link do produto" class="css de link">
+                                                <img src="../Imagens/Produtos/<? echo $aux["imagem"]; ?>" width="97" height="132"/>
+                                            </a>
+                                            </br>
+                                            <span class="link"><strong class=""><? echo $aux["titulo"]; ?></strong></span>
+                                            </br>
+                                            <span class="link"><strong class="">Por:<? echo $aux["amigo"]; ?></strong></span>
+                                            </br>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    <? } ?>
+                </tr>
+            </table>
+        <? } ?>
     </body>
 </html>

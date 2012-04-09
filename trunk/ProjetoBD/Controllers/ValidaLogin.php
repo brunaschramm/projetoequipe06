@@ -1,5 +1,4 @@
 <?php
-
 include_once ("../Dao/UsuarioDAO.php");
 
 class ValidaLogin {
@@ -13,9 +12,10 @@ class ValidaLogin {
         $resultado = $model->valida($email, $cpf);
 
         if ($resultado) {
-            header("Location: ../Views/sessaoCliente.php");
+            include_once '../Views/sessaoCliente.php';
         } else {
-            echo "Erro no Login";
+            setcookie("erro");
+            include_once '../Views/login.php';
         }
     }
 }

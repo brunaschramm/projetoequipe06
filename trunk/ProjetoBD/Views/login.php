@@ -1,11 +1,3 @@
-
-<?php
-    session_start();
-    if(isset($_SESSION['codigo'])){
-        header("Location: ../Views/sessaoCliente.php");
-    }
-?>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
@@ -80,9 +72,13 @@
                     <td align="center">
                         <input name="Submit" type="submit" class="formobjects" value="Entrar"/>
                     </td>
-
                 </tr>
             </table>
+            <?
+            if(isset($_COOKIE["erro"])){
+                echo "<font size=\"2\" face=\"Verdana, Arial, Helvetica, sans-serif\" color=\"#FF0000\">Verifique se o EMAIL e o CPF informados estão corretos!</font>";
+            }
+            ?>
         </form>
     </body>
 </html>

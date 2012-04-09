@@ -8,6 +8,7 @@ class UsuarioDAO extends Usuario {
     private $conexao;
 
     public function __construct() {
+        session_start();
         $this->conexao = new Banco();
         $this->conexao->open();
     }
@@ -44,7 +45,7 @@ class UsuarioDAO extends Usuario {
 
         $result = pg_query($sql);
 
-        if (!pg_num_rows($result)) {              
+        if (!pg_num_rows($result)) {
             return null;
         } else {            
             session_start();

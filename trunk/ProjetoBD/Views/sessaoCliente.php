@@ -1,79 +1,115 @@
-<?php
-session_start();
-if (isset($_SESSION['codigo'])) {
-    echo "Codigo usuario = ". $_SESSION['codigo'];
-}
-?>
-
-
+<? session_start(); ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>Principal</title>
         <link href="estilos.css" rel="stylesheet" type="text/css"/>
-        <style>
-            .container {
-                border: 1px solid blue;
-                width: 1206px;
-                height: 800px;
-                margin-top: 0px;
-                margin: auto;
-                margin-bottom: auto;
 
-            }
-
-            #top {
-                height: 136px;
-                border: 0px solid blue;
-            }
-
-            #menu {
-                width: 190px;
-                margin-top: 5px;
-                border: 1px solid red;
-                float: left;
-                height: 360px;
-            }
-
-            #main {
-                width: 1010px;
-                margin-top: 5px;
-                border: 1px solid green;
-                float: right;
-                height: auto;
-            }
-
-            #footer {
-                clear: both;
-                padding: 5px 10px;
-                color: #bbb;
-                text-align: center;
-                border-top: 1px dotted #bbb;
-                height: 30px;
-
-
-
-
-            }
-        </style>        
-    </head> 
-    <!--
-        <frameset rows="136,500" cols="*" frameborder="0" >
-            <frame name="head" id="head" SRC="cabecalho.html" NORESIZE SCROLLING="NO"   >
-            <frameset rows="*" cols="17%,83%">
-        <frame name="esq" id="esq" SRC="colunaCliente.html" NORESIZE SCROLLING="NO" >
-        <frame name="main" id="main" SRC="inicio.html" NORESIZE SCROLLING="YES">
-        </frameset>
-                    </frameset>
-    -->
-
+    </head>
     <body>
-        <div class="container">
+        <div class="container" align="center">
             <div id="top">
-                <img src="../Imagens/dvdcabeca2.png">
+                <form action="" method="POST" name="dados">
+                    <a href="NAOMEXEADM.php"><img src="../Imagens/dvdcabeca2.png" width="1205"/></a>
+                    <table><tr><td height="2"/></tr></table>
+                    <table align="" width="1205px" border="0" cellpadding="0" cellspacing="0" bgcolor="#D1EEB4">
+                        <? if ($_SESSION["admin"]) { ?>
+                            <tr>
+                                <td width="77%" height="35" align="right">
+                                    <div class="sombraFab"><strong>Fabricante</strong>
+                                        <div><strong><a id="cadastrarFab" href="NAOMEXEADM.php?flag=jfab">Fabricante</a></strong>
+                                        </div></div>
+                                    <div class="sombraLoja"><strong>Loja</strong>
+                                        <div><strong><a id="cadastrarLoja" href="NAOMEXEADM.php?flag=jloj">Loja</a></strong>
+                                        </div></div>
+                                    <div class="sombraUsuario"><strong>Usuário</strong>
+                                        <div><strong><a id="cadastrarUsuario" href="NAOMEXEADM.php?flag=juse">Usuário</a></strong>
+                                        </div></div>
+                                    <div class="sombraProduto"><strong>Produto</strong>
+                                        <div><strong><a id="cadastrarProduto" href="NAOMEXEADM.php?flag=jpro">Produto</a></strong>
+                                        </div></div>
+                                    <div class="sombraFornecedor"><strong>Fornecedor</strong>
+                                        <div><strong><a id="cadastrarFornecedor" href="NAOMEXEADM.php?flag=jfor">Fornecedor</a></strong>
+                                        </div></div>
+                                </td>
+                            </tr>
+                        <? } ?>
+
+                        <tr>
+                            <td width="" height="" bgcolor="#FFFFFF">
+                                <table align="" width="1205px" border="0" cellpadding="0" cellspacing="0" bgcolor="#D1EEB4">
+                                    <tr>
+                                        <td width="100px" height="40" bgcolor="#FFFFFF">
+                                            <input type="submit" value="" size="" name="Submit2" class="buscar2"/>
+                                        </td>
+                                        <td width="1000" align="">
+                                            <input name="busca" type="text" id="busca" size="100" align=""/>
+                                        </td>
+
+                                        <? if (isset($_SESSION['codigo'])) { ?>
+                                            <td align="right" width="105">
+                                                <a href="logout.php" class="login">logout</a>
+                                            </td>
+                                        <? } else if (!isset($_SESSION['codigo'])) { ?>
+                                            <td align="right" width="105">
+                                                <a href="NAOMEXEADM.php?flag=jlogin" class="login">login</a>
+                                                &nbsp &nbsp
+                                            </td>
+                                            <div class="sombra"><strong>Cadastrar</strong>
+                                                <div><strong><a id="cadastrar" href="NAOMEXEADM.php?flag=jcad">Cadastrar</a></strong>
+                                                </div>
+                                            </div>
+                                        <? } ?>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
             </div>
-            <div id="menu">
+
+            <div id="main">
+                <?
+                if (isset($_POST["Submit"]) || isset($_POST["Submit2"]) || isset($_GET["pg"])) {
+                    include_once "inicio.php";
+                } else if (isset($_GET["id"])) {
+                    $_SESSION["idProduto"] = $_GET["id"];
+                    session_commit();
+                    include_once "detalhes.php";
+                } else {
+                    $page = (isset($_GET['flag'])) ? $_GET['flag'] : "home";
+                    switch ($page) {
+                        case "jlogin":
+                            $page = "login.php";
+                            break;
+                        case "jcad":
+                            $page = "cadastroUsuario.php";
+                            break;
+                        case "jfab":
+                            $page = "fabricantes.php";
+                            break;
+                        case "jfor":
+                            $page = "fornecedores.php";
+                            break;
+                        case "juse":
+                            $page = "usuarios.php";
+                            break;
+                        case "jpro":
+                            $page = "produtos.php";
+                            break;
+                        case "jloj":
+                            $page = "lojas.php";
+                            break;
+                        default :
+                            $page = "sessaoCliente.php";
+                    }
+                    include_once $page;
+                }
+                ?>
+            </div>
+
+            <div id="menu" align="left">
                 <form action="" method="POST" name="dados">
                     <table bgcolor="#BFEFFF" align="" class="tabelas">
                         <tr>
@@ -189,21 +225,8 @@ if (isset($_SESSION['codigo'])) {
                         </tr>
                     </table>
                 </form>
+            </div>
 
-            </div>
-            <div id="main">
-                <?
-                if (isset($_POST["Submit"]) || isset($_POST["Submit2"]) || isset($_GET["pg"])) {
-                    include_once "inicio.php";
-                } else if (isset($_GET["id"])){
-                    $_SESSION['id'] = $_GET["id"];
-                    session_commit();
-                    include_once "detalhes.php";
-                } else {
-                    include_once "inicio.html";
-                }
-                ?>
-            </div>
             <div id="footer">algo</div>
         </div>
     </body>

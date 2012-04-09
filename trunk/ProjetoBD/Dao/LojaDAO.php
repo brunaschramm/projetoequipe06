@@ -7,6 +7,7 @@ class LojaDAO extends Loja {
     private $conexao;
 
     public function __construct() {
+        session_start();
         $this->conexao = new Banco();
         $this->conexao->open();
     }

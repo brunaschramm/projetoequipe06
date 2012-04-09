@@ -27,31 +27,29 @@
 
             <table width="588" border="0" align="center">
                 <tr>
+                    <td width="118"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Nome:</font></td>
+                    <td width="460">
+                        <input name="loj_nome" type="text" class="formbutton" id="loj_nome" size="52" maxlength="150"/></td>
+                </tr>
 
-                    <tr>
-                        <td width="118"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Nome:</font></td>
-                        <td width="460">
-                            <input name="loj_nome" type="text" class="formbutton" id="loj_nome" size="52" maxlength="150"/></td>
-                    </tr>
+                <tr>
+                    <td><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Endereço:</font></td>
+                    <td><font size="2">
+                            <input name="loj_endereco" type="text" id="loj_endereco" size="52" maxlength="150" class="formbutton"/></font></td>
+                </tr>
 
-                    <tr>
-                        <td><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Endereço:</font></td>
-                        <td><font size="2">
-                                <input name="loj_endereco" type="text" id="loj_endereco" size="52" maxlength="150" class="formbutton"/></font></td>
-                    </tr>
+                <tr>
+                </tr>
 
-                    <tr>
-                    </tr>
+                <tr>
+                    <td height="22"> </td>
 
-                    <tr>
-                        <td height="22"> </td>
+                    <td>
+                        <input name="Submit" type="submit" class="formobjects" value="Cadastrar"/>
+                        <input name="Reset" type="reset" class="formobjects" value="Limpar"/>
+                    </td>
 
-                        <td>
-                            <input name="Submit" type="submit" class="formobjects" value="Cadastrar"/>
-                            <input name="Reset" type="reset" class="formobjects" value="Limpar"/>
-                        </td>
-
-                    </tr>
+                </tr>
             </table>
             <?if($_GET['flag'] == "t"){
                 echo "<font size=\"2\" face=\"Verdana, Arial, Helvetica, sans-serif\" color=\"#FF0000\">Erro no cadastro, tente novamente!</font>";

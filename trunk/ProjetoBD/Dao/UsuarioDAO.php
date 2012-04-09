@@ -61,7 +61,7 @@ class UsuarioDAO extends Usuario {
     }
 
     public function getAll() {
-        $sql = "SELECT * FROM tempusuarios";
+        $sql = "SELECT * FROM tbsuarios";
 
         $result = pg_query($sql);
 

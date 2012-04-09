@@ -195,6 +195,10 @@ if (isset($_SESSION['codigo'])) {
                 <?
                 if (isset($_POST["Submit"]) || isset($_POST["Submit2"]) || isset($_GET["pg"])) {
                     include_once "inicio.php";
+                } else if (isset($_GET["id"])){
+                    $_SESSION['id'] = $_GET["id"];
+                    session_commit();
+                    include_once "detalhes.php";
                 } else {
                     include_once "inicio.html";
                 }

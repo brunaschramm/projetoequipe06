@@ -20,17 +20,16 @@
                     </td>
                 </tr>
             </form>
+        </table>
+        <table align="center" class="tabelas">
             <tr>
-                <td><a href="../Views/cadastroFornecedor.php?flag=f"><img src="../Imagens/adicionar.png" width="20" height="20"></a></td>
-            </tr>
-            <tr>
-                <td>Código</td>
                 <td>Fornecedor</td>
+                <td><a href="../Views/cadastroFornecedor.php?flag=f"><img src="../Imagens/adicionar.png" width="20" height="20"></a></td>
             </tr>
             <?php
             include_once ("../Dao/FornecedorDAO.php");
             $model = new FornecedorDAO();
-            if(isset($_POST["Submit"])) {
+            if (isset($_POST["Submit"])) {
                 $fornecedores = $model->consultar($_POST["consulta"]);
             } else {
                 $fornecedores = $model->getAll();

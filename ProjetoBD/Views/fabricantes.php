@@ -27,12 +27,12 @@
                 </tr>
                 
             </form>
-            <tr>
-                <td><a href="../Views/cadastroFabricante.php?flag=f"><img src="../Imagens/adicionar.png" width="20" height="20"></a></td>
-            </tr>
+        </table>
+        <table align="center" class="tabelas">
             <tr>
                 <td>Fabricantes</td>
                 <td>Nacionalidade</td>
+                <td><a href="../Views/cadastroFabricante.php?flag=f"><img src="../Imagens/adicionar.png" width="20" height="20"></a></td>
             </tr>
             <?php
             include_once ("../Dao/FabricanteDAO.php");

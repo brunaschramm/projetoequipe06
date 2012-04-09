@@ -229,12 +229,10 @@
                         <input name="Submit" type="submit" class="formobjects" value="Consultar"/>
                     </td>
                 </tr>
+                </br>
             </table>
         </form>
-        <table>
-            <tr>
-                <td><a href="../Views/cadastroProduto.php?flag=f"><img src="../Imagens/adicionar.png" width="20" height="20"></a></td>
-            </tr>
+        <table align="center" class="tabelas">
             <tr>
                 <td>Titulo</td>
                 <td>Ano</td>
@@ -248,6 +246,7 @@
                 <td>Loja</td>
                 <td>Fornecedor</td>
                 <td>Produtora</td>
+                <td><a href="../Views/cadastroProduto.php?flag=f"><img src="../Imagens/adicionar.png" width="20" height="20"></a></td>
             </tr>
             <?php
 

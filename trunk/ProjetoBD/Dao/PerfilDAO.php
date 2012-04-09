@@ -2,6 +2,7 @@
 
 include_once ("../Banco/Banco.php");
 include_once ("../Models/Perfil.php");
+include_once ("AmigoDAO.php");
 
 class PerfilDAO extends Perfil {
 
@@ -37,25 +38,25 @@ class PerfilDAO extends Perfil {
         $aux = $model->getProduto($cod_produto);
         $produto = $aux[0];
 
-        if($produto["preco"] <= 10){
+        if ($produto["preco"] <= 10) {
             $preco = 1;
-        } else if($produto["preco"] > 10 && $produto["preco"] <= 20){
+        } else if ($produto["preco"] > 10 && $produto["preco"] <= 20) {
             $preco = 2;
-        } else if($produto["preco"] > 20 && $produto["preco"] <= 30){
+        } else if ($produto["preco"] > 20 && $produto["preco"] <= 30) {
             $preco = 3;
-        } else if($produto["preco"] > 30 && $produto["preco"] <= 40){
+        } else if ($produto["preco"] > 30 && $produto["preco"] <= 40) {
             $preco = 4;
-        } else if($produto["preco"] > 40 && $produto["preco"] <= 50){
+        } else if ($produto["preco"] > 40 && $produto["preco"] <= 50) {
             $preco = 5;
-        } else if($produto["preco"] > 50 && $produto["preco"] <= 60){
+        } else if ($produto["preco"] > 50 && $produto["preco"] <= 60) {
             $preco = 6;
-        } else if($produto["preco"] > 60 && $produto["preco"] <= 70){
+        } else if ($produto["preco"] > 60 && $produto["preco"] <= 70) {
             $preco = 7;
-        } else if($produto["preco"] > 70 && $produto["preco"] <= 80){
+        } else if ($produto["preco"] > 70 && $produto["preco"] <= 80) {
             $preco = 8;
-        } else if($produto["preco"] > 80 && $produto["preco"] <= 90){
+        } else if ($produto["preco"] > 80 && $produto["preco"] <= 90) {
             $preco = 9;
-        } else if($produto["preco"] > 90){
+        } else if ($produto["preco"] > 90) {
             $preco = 10;
         }
 
@@ -181,7 +182,11 @@ class PerfilDAO extends Perfil {
         return $array;
     }
 
-    function getPerfil($codigo) {
+    /*
+     * Funcao que pega todos os perfis de determinado usuario
+     */
+
+    function getPerfis($codigo) {
         $sql = "SELECT * FROM tbperfis06 WHERE cod_usuario=" . $codigo;
         $result = pg_query($sql);
         $numeroLinhas = pg_num_rows($result);
@@ -200,7 +205,7 @@ class PerfilDAO extends Perfil {
      */
 
     public function getPerfilParecido($produto) {
-        $perfis = $this->getPerfil($_SESSION["codigo"]);
+        $perfis = $this->getPerfis($_SESSION["codigo"]);
 
         $tam = count($perfis);
 
@@ -210,13 +215,27 @@ class PerfilDAO extends Perfil {
             $distancias[] = $this->distancia($produto, $perfis[$i]);
         }
 
-        $dist_ordenadas = natsort($distancias);
 
-        $mais_parecido = $dist_ordenadas[0];
+        /*
+         *  Ordena as distancias e preserva os indices dos elementos.
+         * Ex.: [0] -> 2
+         *      [1] -> 1
+         * Depois de ordenar:
+         *      [1] -> 1
+         *      [0] -> 2
+         */
+        asort($distancias);
 
-        $ind = array_search($mais_parecido);
+        /*
+         * Pega a chave do primeiro elemento do array.
+         * Ex.: [3] -> 4
+         *      [1] -> 5
+         *      [2] -> 6
+         * Chave primeiro = 3
+         */
+        $chave_menor = key($distancias);
 
-        return $perfis[$ind];
+        return $perfis[$chave_menor];
     }
 
     /*
@@ -224,20 +243,97 @@ class PerfilDAO extends Perfil {
      */
 
     public function getPerfilAmigo($perfil) {
-        include_once ("AmigoDAO.php");
-        $model = AmigoDAO();
-        $amigos = $model->getAmigos();
+        $modelAmigo = new AmigoDAO();
+        $amigos = $modelAmigo->getAmigos();
+        
+        $tam = count($amigos);
+        $sql = "SELECT * FROM tbperfis06 WHERE cod_usuario IN (6,7)";
+//        if($tam) {
+//            $sql = "SELECT * FROM tbperfis06 WHERE cod_usuario IN (";
+//        
+//            for ($i = 0; $i < $tam; $i++) {
+//                $aux = $amigos[$i];
+//                $sql = $sql.$aux["cod_amigo"];
+//                if($i < $tam-1){
+//                    $sql = $sql.", ";
+//                }
+//            }
+//            $sql = $sql.")";
+//        }
+                
+        $result = pg_query($sql);
+
+        $numeroLinhas = pg_num_rows($result);
+
+        $array = array();
+
+        for ($i = 0; $i < $numeroLinhas; $i++) {
+            $array[] = pg_fetch_array($result);
+        }
+
+        $distancias = array();
+        
+        $tam = count($array);
+
+        for ($i = 0; $i < $tam; $i++) {
+            $distancias[] = $this->distancia($perfil, $array[$i]);
+        }
+
+        /*
+         *  Ordena as distancias e preserva os indices dos elementos.
+         * Ex.: [0] -> 2
+         *      [1] -> 1
+         * Depois de ordenar:
+         *      [1] -> 1
+         *      [0] -> 2
+         */
+        asort($distancias);
+
+        /*
+         * Pega a chave do primeiro elemento do array.
+         * Ex.: [3] -> 4
+         *      [1] -> 5
+         *      [2] -> 6
+         * Chave primeiro = 3
+         */
+        $chave_menor = key($distancias);
+
+        return $array[$chave_menor];
     }
 
-    private function distancia($param, $param2) {
-        return sqrt(pow(($param["preco"] - $param2["preco"]), 2) + pow(($param["ano"] - $param2["ano"]), 2)
+    function distancia($param, $param2) {
+        if ($param["preco"] <= 10) {
+            $preco = 1;
+        } else if ($param["preco"] > 10 && $param["preco"] <= 20) {
+            $preco = 2;
+        } else if ($param["preco"] > 20 && $param["preco"] <= 30) {
+            $preco = 3;
+        } else if ($param["preco"] > 30 && $param["preco"] <= 40) {
+            $preco = 4;
+        } else if ($param["preco"] > 40 && $param["preco"] <= 50) {
+            $preco = 5;
+        } else if ($param["preco"] > 50 && $param["preco"] <= 60) {
+            $preco = 6;
+        } else if ($param["preco"] > 60 && $param["preco"] <= 70) {
+            $preco = 7;
+        } else if ($param["preco"] > 70 && $param["preco"] <= 80) {
+            $preco = 8;
+        } else if ($param["preco"] > 80 && $param["preco"] <= 90) {
+            $preco = 9;
+        } else if ($param["preco"] > 90) {
+            $preco = 10;
+        }
+
+        return sqrt(pow(($preco - $param2["preco"]), 2) + pow(($param["ano"] - $param2["ano"]), 2)
                         + pow(($param["cod_loja"] - $param2["cod_loja"]), 2) + pow(($param["cod_produtora"] - $param2["cod_produtora"]), 2)
                         + pow(($param["cod_genero"] - $param2["cod_genero"]), 2) + pow(($param["cod_formato"] - $param2["cod_formato"]), 2)
                         + pow(($param["cod_censura"] - $param2["cod_censura"]), 2) + pow(($param["cod_grupo"] - $param2["cod_grupo"]), 2)
                         + pow(($param["regiao"] - $param2["regiao"]), 2));
+//        $aux = "regiao";
+//        return $param[$aux]." ".$param2[$aux];
     }
 
 }
 
-$perfil = new PerfilDAO();
+$modelPerfil = new PerfilDAO();
 ?>

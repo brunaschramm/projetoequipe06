@@ -14,7 +14,7 @@ class UsuarioDAO extends Usuario {
     }
 
     public function salvar() {
-        $sql = "INSERT INTO tempusuarios (nome, cpf, email, apelido) values ('" . $this->getNome() . "', '" . $this->getCpf() . "', '" . $this->getEmail() . "', '" . $this->getApelido() . "')";
+        $sql = "INSERT INTO tbusuario (nome, cpf, email, apelido) values ('" . $this->getNome() . "', '" . $this->getCpf() . "', '" . $this->getEmail() . "', '" . $this->getApelido() . "')";
 
         echo $sql;
 
@@ -28,7 +28,7 @@ class UsuarioDAO extends Usuario {
     }
 
     public function excluir() {
-        $sql = "DELETE FROM tempusuarios WHERE codigo=" . $this->getCodigo();
+        $sql = "DELETE FROM tbusuario WHERE codigo=" . $this->getCodigo();
 
         $result = pg_query($sql);
 
@@ -76,7 +76,7 @@ class UsuarioDAO extends Usuario {
     }
     
     public function consultar($nome, $cpf, $apelido, $email) {
-        $sql = "SELECT * FROM tempusuarios WHERE 1=1";
+        $sql = "SELECT * FROM tbusuario WHERE 1=1";
         if($nome != ""){
             $sql = $sql." AND nome LIKE '%".$nome."%'";
         }
@@ -105,7 +105,7 @@ class UsuarioDAO extends Usuario {
 
     public function getAmigos() {
         //$sql = "SELECT * FROM tbusuario";
-        $sql = "SELECT * FROM tempusuarios AS tbusuario, tbamigos06 WHERE tbusuario.codigo = '" . $_SESSION['codigo'] . "' 
+        $sql = "SELECT * FROM tbusuario AS tbusuario, tbamigos06 WHERE tbusuario.codigo = '" . $_SESSION['codigo'] . "' 
             AND tbamigos06.codigo = tbusuario.codigo";
 
         $result = pg_query($sql);
@@ -121,7 +121,7 @@ class UsuarioDAO extends Usuario {
     }
 
     public function adicionarAmigo() {
-        $sql = "SELECT * FROM tempusuarios WHERE email = " . 'email';
+        $sql = "SELECT * FROM tbusuario WHERE email = " . 'email';
         $result = pg_query($sql);
 
         $numeroLinhas = pg_num_rows($result);
@@ -152,7 +152,7 @@ class UsuarioDAO extends Usuario {
     }
     
     public function pesquisarUsuario($email){
-        $sql = "SELECT Codigo FROM tempusuarios WHERE email = '".$email."'";               
+        $sql = "SELECT Codigo FROM tbusuario WHERE email = '".$email."'";               
         
         $result = pg_query($sql);
         

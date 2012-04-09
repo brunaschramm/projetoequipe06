@@ -16,7 +16,7 @@
             function enviardados(){
                 if((document.dados.email.value=="" || document.dados.cpf.value=="") 
                     || (document.dados.email.value.indexOf('@')==-1 || document.dados.email.value.indexOf('.')==-1) 
-                    || (!vercpf(document.dados.us_cpf.value)))
+                    /*|| (!vercpf(document.dados.us_cpf.value))*/)
                 {
                     alert("Preencha os campos LOGIN e SENHA corretamente!");
                     document.dados.login.focus();

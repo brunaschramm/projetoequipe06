@@ -4,44 +4,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>Principal</title>
         <link href="estilos.css" rel="stylesheet" type="text/css"/>
-        <style>
-            .container {
-                border: 0px solid black;
-                width: 1206px;
-                height: 800px;
-                margin: 0px auto;
-            }
-
-            #top {
-                height: 200px;
-                border: 0px solid blue;
-            }
-
-            #menu {
-                width: 190px;
-                margin-top: 5px;
-                border: 0px solid red;
-                float: left;
-                height: 360px;
-            }
-
-            #main {
-                width: 1010px;
-                margin-top: 5px;
-                border: 0px solid green;
-                float: right;
-                height: auto;
-            }
-
-            #footer {
-                clear: both;
-                padding: 5px 10px;
-                color: #bbb;
-                text-align: center;
-                border-top: 1px dotted #bbb;
-
-            }
-        </style>
+        
     </head>
     <!--
         <frameset rows="136,500" cols="*" frameborder="0" >
@@ -99,7 +62,7 @@
                         <td>
                             Título:
                             <br/>
-                            <input name="tituloDVD" type="text" id="titulo" size="14px">
+                            <input name="tituloDVD" type="text" id="titulo" size="14px"/>
                         </td>
                     </tr>
                     <tr>
@@ -199,9 +162,11 @@
                         $page = "NAOMEXE.php";
                 }
 
-                include_once $page;
-                
+                    include_once("inicio.html");
+
                 ?>
+
+
 
             </div>
 

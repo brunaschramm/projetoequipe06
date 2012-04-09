@@ -47,10 +47,10 @@
         </table>
         <table align="center" class="tabelas">
             <tr>
-                <td>Nome</td>
-                <td>Apelido</td>
-                <td>Email</td>
-                <td>CPF</td>
+                <td><h3>Nome</h3></td>
+                <td><h3>Apelido</h3></td>
+                <td><h3>Email</h3></td>
+                <td><h3>CPF</h3></td>
                 <td><a href="../Views/cadastroUsuario.php?flag=f"><img src="../Imagens/adicionar.png" width="20" height="20"></a></td>
             </tr>
             <?php

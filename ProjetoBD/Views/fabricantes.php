@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 
     <head>
@@ -30,8 +30,8 @@
         </table>
         <table align="center" class="tabelas">
             <tr>
-                <td>Fabricantes</td>
-                <td>Nacionalidade</td>
+                <td><h3>Fabricantes</h3></td>
+                <td><h3>Nacionalidade</h3></td>
                 <td><a href="../Views/cadastroFabricante.php?flag=f"><img src="../Imagens/adicionar.png" width="20" height="20"></a></td>
             </tr>
             <?php

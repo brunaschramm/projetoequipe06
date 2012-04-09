@@ -9,7 +9,7 @@
         $modelPerfil = new PerfilDAO();
         include_once ("../Dao/ProdutoDAO.php");
         $model = new ProdutoDAO();
-        $produto = $model->getProduto($_GET["id"]);
+        $produto = $model->getProduto($_SESSION['id']);
         if (!isset($_SESSION)) {
             session_start();
         }
@@ -114,7 +114,8 @@
                         <table>
                             <tr height="20%">
                                 <td align = center width= "200px">
-                                    <a href="javascript:abrir('detalhes.php?id=<? echo $aux['codigo'] ?>');"><img src="../Imagens/loja.png" width="70" height="35"></a>
+                                    <!--<a href="javascript:abrir('detalhes.php?id=<? echo $aux['codigo'] ?>');"><img src="../Imagens/loja.png" width="70" height="35"></a>-->
+                                    <a href="sessaoCliente.php?id=<? echo $aux['codigo'] ?>"><img src="../Imagens/loja.png" width="70" height="35"></a>
                                     <a href=""><img src="../Imagens/iraloja.png" width="90" height="35"></a>
                                     </br></br>
                                 </td>

@@ -57,17 +57,19 @@
     <body>
         <form action="../Controllers/ValidaLogin.php" method="POST" name="dados" onSubmit="return enviardados();" >
 
-            <table width="588" border="0" >
+            <br/><br/><br/><br/>
+            
+            <table width="320" border="0" >
                 <tr>
-                    <td width="118"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">E-mail:</font></td>
-                    <td width="460">
-                        <input name="email" type="text" class="formbutton" id="email" size="52" maxlength="150"></td>
+                    <td width="70" align="center"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">E-mail:</font></td>
+                    <td width="250" align="right">
+                        <input name="email" type="text" class="formbutton" id="email" size="" maxlength="150"></td>
                 </tr>
 
                 <tr>
-                    <td><font size="1" face="Verdana, Arial, Helvetica, sans-serif">CPF:</font></td>
-                    <td><font size="2">
-                            <input name="cpf" type="text" id="cpf" size="52" maxlength="150" class="formbutton"></font></td>
+                    <td align="center"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">CPF:</font></td>
+                    <td align="right"><font size="2">
+                            <input name="cpf" type="text" id="cpf" size="" maxlength="150" class="formbutton"></font></td>
                 </tr>
                 <tr>
                 </tr>
@@ -75,8 +77,8 @@
                 <tr>
                     <td height="22"> </td>
 
-                    <td>
-                        <input name="Submit" type="submit" class="formobjects" value="Entrar">
+                    <td align="center">
+                        <input name="Submit" type="submit" class="formobjects" value="Entrar"/>
                     </td>
 
                 </tr>

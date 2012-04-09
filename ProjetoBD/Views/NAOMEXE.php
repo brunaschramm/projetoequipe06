@@ -20,7 +20,7 @@
             #menu {
                 width: 190px;
                 margin-top: 5px;
-                border: 1px solid red;
+                border: 0px solid red;
                 float: left;
                 height: 360px;
             }
@@ -28,9 +28,9 @@
             #main {
                 width: 1010px;
                 margin-top: 5px;
-                border: 1px solid green;
+                border: 0px solid green;
                 float: right;
-                height: 360px;
+                height: auto;
             }
 
             #footer {
@@ -57,34 +57,28 @@
         <div class="container" align="center">
             <div id="top">
                 <form action="" method="POST" name="dados">
-                    <img src="../Imagens/dvdcabeca2.png" width="1205"/>
+                    <a href="NAOMEXE.php"><img src="../Imagens/dvdcabeca2.png" width="1205"/></a>
                     <table><tr><td height="2"/></tr></table>
                     <table align="" width="1205px" border="0" cellpadding="0" cellspacing="0" bgcolor="#D1EEB4">
                         <tr>
-                            <td width="100px" height="" bgcolor="#FFFFFF">
-                                    <input type="submit" value="" size="" name="Submit2" class="buscar2"/>
+                            <td width="100px" height="40" bgcolor="#FFFFFF">
+                                <input type="submit" value="" size="" name="Submit2" class="buscar2"/>
                             </td>
-                            <td width="1040px">
-                                <input name="busca" type="text" id="busca" size="100%" align=""/>
-                                 &nbsp &nbsp &nbsp
-                                 &nbsp &nbsp &nbsp
-                                 &nbsp &nbsp &nbsp
-                                 &nbsp &nbsp &nbsp
-                                 &nbsp &nbsp &nbsp
-                                 &nbsp &nbsp &nbsp
-                                 
-                                <a href="login.php" target="main" class="login">login</a>
-                                <div class="sombra"><strong>Cadastrar</strong>
-                                    <div><strong><a class="cadastrar" href="">Cadastrar</a></strong>
-                                    </div>
+                            <td width="1000" align="">
+                                <input name="busca" type="text" id="busca" size="50" align=""/>
+                            </td>
+                            <td align="right" width="105">
+                                <a href="NAOMEXE.php?flag=jlogin" class="login">login</a>
+                                &nbsp &nbsp
+                            </td>
+                            <div class="sombra"><strong>Cadastrar</strong>
+                                <div><strong><a id="cadastrar" href="NAOMEXE.php?flag=jcad">Cadastrar</a></strong>
                                 </div>
-                            </td>
-                            <td width="50px" align="center">
-                                
-                            </td>
-                            
+                            </div>
+
                         </tr>
                     </table>
+
                 </form>
 
             </div>
@@ -189,7 +183,25 @@
             </div>
 
 
-            <div id="main">
+            <div id="main" >
+                <?
+                
+                $page = (isset($_GET['flag'])) ? $_GET['flag'] : "home";
+                
+                switch ($page) {
+                    case "jlogin":
+                        $page = "login.php";
+                        break;
+                    case "jcad":
+                        $page = "usuarios.php";
+                        break;
+                    default :
+                        $page = "NAOMEXE.php";
+                }
+
+                include_once $page;
+                
+                ?>
 
             </div>
 

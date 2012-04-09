@@ -33,7 +33,7 @@
                 margin-top: 5px;
                 border: 0px solid green;
                 float: right;
-                height: 360px;
+                height: auto;
             }
 
             #footer {
@@ -116,37 +116,7 @@
                 </form>
 
             </div>
-
-
-            <div id="main">
-                <?
-                $page = (isset($_GET['flag'])) ? $_GET['flag'] : "home";
-
-
-                switch ($page) {
-                    case "jfab":
-                        $page = "fabricantes.php";
-                        break;
-                    case "jfor":
-                        $page = "fornecedores.php";
-                        break;
-                    case "juse":
-                        $page = "usuarios.php";
-                        break;
-                    case "jpro":
-                        $page = "produtos.php";
-                        break;
-                    case "jloj":
-                        $page = "lojas.php";
-                        break;
-                    default :
-                        $page = "NAOMEXEADM.php";
-                }
-
-                include_once $page;
-                ?>
-            </div>
-
+            
             <div id="menu" align="left">
                 <table bgcolor="#BFEFFF" align="" class="tabelas">
                     <tr>
@@ -245,6 +215,38 @@
                     </tr>
                 </table>
             </div>
+
+
+            <div id="main">
+                <?
+                $page = (isset($_GET['flag'])) ? $_GET['flag'] : "home";
+
+
+                switch ($page) {
+                    case "jfab":
+                        $page = "fabricantes.php";
+                        break;
+                    case "jfor":
+                        $page = "fornecedores.php";
+                        break;
+                    case "juse":
+                        $page = "usuarios.php";
+                        break;
+                    case "jpro":
+                        $page = "produtos.php";
+                        break;
+                    case "jloj":
+                        $page = "lojas.php";
+                        break;
+                    default :
+                        $page = "";
+                }
+
+                include_once $page;
+                ?>
+            </div>
+
+            
 
             <div id="footer">algo</div>
         </div>

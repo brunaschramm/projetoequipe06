@@ -51,7 +51,8 @@
                     $aux = $result[$i];
                     ?>
                     <td align="center" width="200px">
-                        <a href="javascript:abrir('detalhes.php?id=<?echo $aux['codigo']?>');"><img src="../Imagens/loja.png" width="70" height="35"></a>
+                        <!--<a href="javascript:abrir('detalhes.php?id=<?echo $aux['codigo']?>');"><img src="../Imagens/loja.png" width="70" height="35"></a>-->
+                        <a href="sessaoCliente.php?id=<? echo $aux['codigo'] ?>"><img src="../Imagens/loja.png" width="70" height="35"></a>
                         <a href=""><img src="../Imagens/iraloja.png" width="90" height="35"></a>
                         </br></br>
                         <div class="css do produto" id="">

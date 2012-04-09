@@ -1,15 +1,5 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- * Description of Amigo
- *
- * @author thiago
- */
 class Amigo {
     private $usuario;
     private $amigo;
@@ -39,5 +29,4 @@ class Amigo {
         $this->nivelAmizade = $nivelAmizade;
     }
 }
-
 ?>

@@ -315,33 +315,33 @@ class ProdutoDAO extends Produto {
             $diferenca = true;
             $sql = $sql . " OR ano =" . $amigo["ano"];
         }
-        if ($perfil["loja"] != $amigo["loja"]) {
+        if ($perfil["cod_loja"] != $amigo["cod_loja"]) {
             $diferenca = true;
-            $sql = $sql . " OR cod_loja =" . $amigo["loja"];
+            $sql = $sql . " OR cod_loja =" . $amigo["cod_loja"];
         }
-        if ($perfil["produtora"] != $amigo["produtora"]) {
+        if ($perfil["cod_produtora"] != $amigo["cod_produtora"]) {
             $diferenca = true;
-            $sql = $sql . " OR cod_produtora =" . $amigo["produtora"];
+            $sql = $sql . " OR cod_produtora =" . $amigo["cod_produtora"];
         }
-        if ($perfil["genero"] != $amigo["genero"]) {
+        if ($perfil["cod_genero"] != $amigo["cod_genero"]) {
             $diferenca = true;
-            $sql = $sql . " OR cod_genero =" . $amigo["genero"];
+            $sql = $sql . " OR cod_genero =" . $amigo["cod_genero"];
         }
-        if ($perfil["formato"] != $amigo["formato"]) {
+        if ($perfil["cod_formato"] != $amigo["cod_formato"]) {
             $diferenca = true;
-            $sql = $sql . " OR cod_formato =" . $amigo["formato"];
+            $sql = $sql . " OR cod_formato =" . $amigo["cod_formato"];
         }
-        if ($perfil["censura"] != $amigo["censura"]) {
+        if ($perfil["cod_censura"] != $amigo["cod_censura"]) {
             $diferenca = true;
-            $sql = $sql . " OR cod_censura =" . $amigo["censura"];
+            $sql = $sql . " OR cod_censura =" . $amigo["cod_censura"];
         }
-        if ($perfil["grupo"] != $amigo["grupo"]) {
+        if ($perfil["cod_grupo"] != $amigo["cod_grupo"]) {
             $diferenca = true;
-            $sql = $sql . " OR cod_grupo =" . $amigo["grupo"];
+            $sql = $sql . " OR cod_grupo =" . $amigo["cod_grupo"];
         }
         if ($perfil["regiao"] != $amigo["regiao"]) {
             $diferenca = true;
-            $sql = $sql . " OR cod_regiao =" . $amigo["regiao"];
+            $sql = $sql . " OR regiao =" . $amigo["regiao"];
         }
         /*
          * Se não houver diferenca entre os perfis,

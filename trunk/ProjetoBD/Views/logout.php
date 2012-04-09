@@ -1,5 +1,5 @@
 <?php
 
 session_destroy();
-header("Location: ../Views/sessaoCliente.html");
+header("Location: ../Views/NAOMEXE.php");
 ?>

@@ -60,7 +60,7 @@
 
 
 
-.cadastrar {
+#cadastrar {
     position:absolute;
     top:-1px;
     left:0px;
@@ -71,8 +71,8 @@
 
 .sombra  {
     position:absolute;
-    top:169px;
-    left:835px;
+    margin-top:15px;
+    margin-left:1050px;
     color:#006;
     font: 16px Arial, Helvetica, sans-serif
 }

@@ -1,18 +1,18 @@
 <?php
 
 class Banco {
-//    private $host = "localhost";
-//    private $user = "equipe6";
-//    private $password = "ufam@06";
-//    private $dbname = "1db012012";
+    private $host = "localhost";
+    private $user = "equipe6";
+    private $password = "ufam@06";
+    private $dbname = "1db012012";
 //    private $host = "localhost";
 //    private $user = "postgres";
 //    private $password = "postgres";
 //    private $dbname = "postgres";
-    private $host = "10.208.200.9";
-    private $user = "equipe6";
-    private $password = "ufam@06";
-    private $dbname = "1db012012";
+//    private $host = "10.208.200.9";
+//    private $user = "equipe6";
+//    private $password = "ufam@06";
+//    private $dbname = "1db012012";
     protected $con = null;
 
     public function __construct() {}

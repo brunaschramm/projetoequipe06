@@ -26,7 +26,7 @@
                         <a href="../Controllers/PerfilController.php?acao=gostar&id=<? echo $aux['codigo']; ?>"><img src="../Imagens/gostar.png" width="35" height="35"></a>
                     </td>
                     <td align="center">
-                        <a href="recomendar.php?id=<? echo $aux['codigo']; ?>"><img src="../Imagens/recomendar.jpg" width="35" height="35"></a>
+                        <a href="sessaoCliente.php?flag=jrec"><img src="../Imagens/recomendar.jpg" width="35" height="35"></a>
                     </td>
                 </tr>
             <? } ?>
@@ -163,17 +163,10 @@
                         ?>
                         <td align="center">
                             <table>
-                                <tr height="20%">
-                                    <td align = center width= "200px">
-                                        <a href="sessaoCliente.php?id=<? echo $aux['codigo'] ?>"><img src="../Imagens/loja.png" width="70" height="35"></a>
-                                        <a href=""><img src="../Imagens/iraloja.png" width="90" height="35"></a>
-                                        </br></br>
-                                    </td>
-                                </tr>
-                                <tr height="80%">
+                                <tr>
                                     <td align = center>
                                         <div class="css do produto" id="">
-                                            <a href="link do produto" class="css de link">
+                                            <a href="sessaoCliente.php?id=<? echo $aux['codigo'] ?>" class="link">
                                                 <img src="../Imagens/Produtos/<? echo $aux["imagem"]; ?>" width="97" height="132"/>
                                             </a>
                                             </br>
@@ -207,17 +200,10 @@
                             ?>
                             <td align="center">
                                 <table>
-                                    <tr height="20%">
-                                        <td align = center width= "200px">
-                                            <a href="sessaoCliente.php?id=<? echo $aux['codigo'] ?>"><img src="../Imagens/loja.png" width="70" height="35"></a>
-                                            <a href=""><img src="../Imagens/iraloja.png" width="90" height="35"></a>
-                                            </br></br>
-                                        </td>
-                                    </tr>
-                                    <tr height="80%">
+                                    <tr>
                                         <td align = center>
                                             <div class="css do produto" id="">
-                                                <a href="link do produto" class="css de link">
+                                                <a href="sessaoCliente.php?id=<? echo $aux['codigo'] ?>" class="link">
                                                     <img src="../Imagens/Produtos/<? echo $aux["imagem"]; ?>" width="97" height="132"/>
                                                 </a>
                                                 </br>

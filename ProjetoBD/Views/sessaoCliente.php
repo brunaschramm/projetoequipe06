@@ -326,7 +326,7 @@
     <body>
         <div class="container" align="center">
             <div id="top">
-                <form action="" method="POST" name="dados">
+                <form action="?flag=busca2" method="POST" name="dados">
                     <a href="sessaoCliente.php"><img src="../Imagens/dvdcabeca2.png" width="1205"/></a>
                     <table><tr><td height="2"/></tr></table>
                     <? if (isset($_SESSION['admin']) && $_SESSION['admin'] == t) { ?>
@@ -398,7 +398,7 @@
             </div>
 
             <div id="menu" align="left">
-                <form action="" method="POST" name="dados">
+                <form action="?flag=busca" method="POST" name="dados">
                     <table bgcolor="#BFEFFF" align="" class="tabelas">
                         <tr>
                             <td>
@@ -517,7 +517,7 @@
 
             <div id="main">
                 <?
-                if (isset($_POST["Busca"]) || isset($_POST["BuscaA"]) || isset($_GET["pg"])) {
+                if (isset($_GET["pg"])) {
                     include_once "inicio.php";
                 } else if (isset($_GET["id"])) {
                     $_SESSION["idProduto"] = $_GET["id"];
@@ -528,6 +528,15 @@
                 } else {
                     $page = (isset($_GET['flag'])) ? $_GET['flag'] : "home";
                     switch ($page) {
+                        case "busca":
+                            include_once "inicio.php";
+                            break;
+                        case "busca2":
+                            include_once "inicio.php";
+                            break;
+                        case "jrec":
+                            include_once "recomendar.php";
+                            break;
                         case "jlogin":
                             $page = "login.php";
                             break;

@@ -363,7 +363,7 @@
                                     <table align="" width="1205px" border="0" cellpadding="0" cellspacing="0" bgcolor="#D1EEB4">
                                         <tr>
                                             <td width="100px" height="40" bgcolor="#FFFFFF">
-                                                <input type="submit" value="" size="" name="Submit2" class="buscar2"/>
+                                                <input type="submit" value="" size="" name="BuscaA" class="buscar2"/>
                                             </td>
                                             <td width="1000" align="">
                                                 <input name="busca" type="text" id="busca" size="100" align=""/>
@@ -372,8 +372,12 @@
                                             <? if (isset($_SESSION['codigo'])) { ?>
                                                 <td align="right" width="105">
                                                     <a href="logout.php" class="login">logout</a>
-                                                    &nbsp
+                                                    &nbsp &nbsp
                                                 </td>
+                                                <div class="sombra"><strong>Perfil</strong>
+                                                    <div><strong><a id="cadastrar" href="sessaoCliente.php?flag=jperf">Perfil</a></strong>
+                                                    </div>
+                                                </div>
                                             <? } else if (!isset($_SESSION['codigo'])) { ?>
                                                 <td align="right" width="105">
                                                     <a href="sessaoCliente.php?flag=jlogin" class="login">login</a>
@@ -504,7 +508,7 @@
                         </tr>
                         <tr align="center">
                             <td align="center">
-                                <input  name="Submit" type="submit" class="buscar" value="" size=""/>
+                                <input  name="Busca" type="submit" class="buscar" value="" size=""/>
                             </td>
                         </tr>
                     </table>
@@ -513,12 +517,14 @@
 
             <div id="main">
                 <?
-                if (isset($_POST["Submit"]) || isset($_POST["Submit2"]) || isset($_GET["pg"])) {
+                if (isset($_POST["Busca"]) || isset($_POST["BuscaA"]) || isset($_GET["pg"])) {
                     include_once "inicio.php";
                 } else if (isset($_GET["id"])) {
                     $_SESSION["idProduto"] = $_GET["id"];
                     session_commit();
                     include_once "detalhes.php";
+                } if(isset($_SESSION["perfis"])){
+                    include_once 'perfisUsuario.php';
                 } else {
                     $page = (isset($_GET['flag'])) ? $_GET['flag'] : "home";
                     switch ($page) {
@@ -528,20 +534,39 @@
                         case "jcad":
                             $page = "cadastroUsuario.php";
                             break;
+                        case "jcadLoja":
+                            $page = "cadastroLoja.php";
+                            break;
+                        case "jcadFab":
+                            $page = "cadastroFabricante.php";
+                            break;
+                        case "jcadForn":
+                            $page = "cadastroFornecedor.php";
+                            break;
+                        case "jcadProd":
+                            $page = "cadastroProduto.php";
+                            break;
                         case "jfab":
+                            if(isset($_GET["erro"])) $_SESSION["erro"] = true;
                             $page = "fabricantes.php";
                             break;
                         case "jfor":
+                            if(isset($_GET["erro"])) $_SESSION["erro"] = true;
                             $page = "fornecedores.php";
                             break;
                         case "juse":
                             $page = "usuarios.php";
                             break;
                         case "jpro":
+                            if(isset($_GET["erro"])) $_SESSION["erro"] = true;
                             $page = "produtos.php";
                             break;
                         case "jloj":
+                            if(isset($_GET["erro"])) $_SESSION["erro"] = true;
                             $page = "lojas.php";
+                            break;
+                        case "jperf":///////////////////////////////////////////////////////////////
+                            $page = "perfisUsuario.php";
                             break;
                         default :
                             $page = "sessaoCliente.php";

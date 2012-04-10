@@ -23,7 +23,7 @@ class UsuarioController {
                 if ($resultado == 1) {
                     header("Location: ../Views/usuarios.php?flag=f");
                 } else {
-                    header("Location: ../Views/cadastroUsuario.php?flag=t");
+                    header("Location: ../Views/usuarios.php?flag=t");
                 }
                 break;
             case 'excluir':
@@ -61,8 +61,6 @@ class UsuarioController {
                 break;
         }
     }
-
 }
-
 $controller = new UsuarioController();
 ?>

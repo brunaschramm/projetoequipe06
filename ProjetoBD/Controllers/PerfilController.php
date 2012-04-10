@@ -37,7 +37,7 @@ class PerfilController {
                 $_SESSION['perfis'] = $resultado;
                 session_commit();
 
-                header("Location: ../Views/perfisUsuario.php");
+                header("Location: ../Views/sessaoCliente.php");
                 break;
             case 'gostar':
                 $resultado = $model->inserirGosto($_GET["id"]);

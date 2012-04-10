@@ -15,21 +15,18 @@ class LojaController {
                 $resultado = $model->salvar();
 
                 if ($resultado == 1) {
-                    header("Location: ../Views/lojas.php?flag=f");
+                    header("Location: ../Views/sessaoCliente.php?flag=jloj");
                 } else {
-                    header("Location: ../Views/cadastroLoja.php?flag=t");
+                    header("Location: ../Views/sessaoCliente.php?flag=jloj&erro");
                 }
+                
                 break;
             case 'excluir':
                 $model->setCodigo($_GET['id']);
 
                 $resultado = $model->excluir();
 
-                if ($resultado == 1) {
-                    header("Location: ../Views/lojas.php?flag=f");
-                } else {
-                    header("Location: ../Views/lojas.php?flag=t");
-                }
+                header("Location: ../Views/sessaoCliente.php?flag=jloj");
                 break;
         }
     }

@@ -7,7 +7,7 @@
 
     <body>
         <table align="center">
-            <form action="" method="POST" name="dados">
+            <form action="?flag=jloj" method="POST" name="dados">
                 <tr>
                     <td width="118"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Loja:</font></td>
                     <td width="460">
@@ -24,11 +24,17 @@
                 </tr>
             </form>
         </table>
+        <?
+        if (isset($_SESSION["erro"])) {
+            echo "<font size=\"2\" face=\"Verdana, Arial, Helvetica, sans-serif\" color=\"#FF0000\">Erro no cadastro!</font>";
+            unset($_SESSION["erro"]);
+        }
+        ?>
         <table align="center" class="tabelas">
             <tr>
                 <td><h3>Loja</h3></td>
                 <td><h3>Endereco</h3></td>
-                <td><a href="../Views/cadastroLoja.php?flag=f"><img src="../Imagens/adicionar.png" width="20" height="20"></a></td>
+                <td><a href="../Views/sessaoCliente.php?flag=jcadLoja"><img src="../Imagens/adicionar.png" width="20" height="20"></a></td>
             </tr>
             <?php
             include_once ("../Dao/LojaDAO.php");

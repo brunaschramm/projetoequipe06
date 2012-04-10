@@ -28,9 +28,9 @@ class ProdutoController {
                 $resultado = $model->salvar();
 
                 if ($resultado == 1) {
-                    header("Location: ../Views/produtos.php?flag=f");
+                    header("Location: ../Views/sessaoCliente.php?flag=jprod");
                 } else {
-                    header("Location: ../Views/cadastroProduto.php?flag=t");
+                    header("Location: ../Views/sessaoCliente.php?flag=jprod&erro");
                 }
                 break;
             case 'excluir':
@@ -38,11 +38,7 @@ class ProdutoController {
 
                 $resultado = $model->excluir();
 
-                if ($resultado == 1) {
-                    header("Location: ../Views/produtos.php?flag=f");
-                } else {
-                    header("Location: ../Views/produtos.php?flag=t");
-                }
+                header("Location: ../Views/sessaoCliente.php?flag=jprod");
                 break;
         }
     }

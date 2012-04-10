@@ -8,7 +8,7 @@
 
     <body>
         <table align="center">
-            <form action="" method="POST" name="dados">
+            <form action="?flag=jfab" method="POST" name="dados">
                 <tr>
                     <td width="118"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Fabricante:</font></td>
                     <td width="460">
@@ -25,14 +25,20 @@
                         <input name="Submit" type="submit" class="formobjects" value="Consultar"/>
                     </td>
                 </tr>
-                
+
             </form>
         </table>
+        <?
+        if (isset($_SESSION["erro"])) {
+            echo "<font size=\"2\" face=\"Verdana, Arial, Helvetica, sans-serif\" color=\"#FF0000\">Erro no cadastro!</font>";
+            unset($_SESSION["erro"]);
+        }
+        ?>
         <table align="center" class="tabelas">
             <tr>
                 <td><h3>Fabricantes</h3></td>
                 <td><h3>Nacionalidade</h3></td>
-                <td><a href="../Views/cadastroFabricante.php?flag=f"><img src="../Imagens/adicionar.png" width="20" height="20"></a></td>
+                <td><a href="../Views/sessaoCliente.php?flag=jcadFab"><img src="../Imagens/adicionar.png" width="20" height="20"></a></td>
             </tr>
             <?php
             include_once ("../Dao/FabricanteDAO.php");

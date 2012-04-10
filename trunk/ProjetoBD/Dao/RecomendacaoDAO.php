@@ -14,8 +14,6 @@ class RecomendacaoDAO extends Recomendacao {
     }
 
     public function salvar($amigo, $usuario, $produto) {
-        $amigo += 4; // tirar isso
-
         /* cod_usuario = $amigo (usuario que recebe/possui a recomendacao)
          * cod_amigo = $usuario (amigo que recomendou o produto)
          */
@@ -31,7 +29,6 @@ class RecomendacaoDAO extends Recomendacao {
     }
 
     public function getRecomendacoesUsuario($produto) {
-        //$sql = "SELECT * FROM tbrecomendacoes06 WHERE cod_usuario=".$_SESSION["codigo"];
         $sql = "SELECT produto.codigo, produto.imagem, produto.titulo, produto.descricao, produto.ano, produto.preco,
                 produto.regiao, produto.cod_genero, genero.genero, produto.cod_produtora,
                 produtora.produtora, produto.cod_loja, loja.nome AS loja, produto.cod_grupo,
@@ -48,7 +45,7 @@ class RecomendacaoDAO extends Recomendacao {
                 INNER JOIN tbfabricantes06 AS fabricante ON fabricante.codigo = produto.cod_fabricante
                 INNER JOIN tbfornecedor AS fornecedor ON fornecedor.codigo = produto.cod_fornecedor
                 INNER JOIN tbusuario AS usuario ON usuario.codigo = cod_amigo
-                WHERE cod_usuario = 7";
+                WHERE cod_usuario =".$_SESSION["codigo"];
 
         $result = pg_query($sql);
 

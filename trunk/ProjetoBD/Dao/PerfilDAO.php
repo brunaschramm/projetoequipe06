@@ -20,7 +20,7 @@ class PerfilDAO extends Perfil {
                 "values ('" . $this->getAno() . "','" . $this->getPreco() . "','" . $this->getFormato() .
                 "','" . $this->getGenero() . "','" . $this->getCensura() . "','"
                 . $this->getRegiao() . "','" . $this->getGrupo() . "','"
-                . $this->getLoja() . "','" . $this->getProdutora() . "' , 6)";
+                . $this->getLoja() . "','" . $this->getProdutora() . "' , ". $_SESSION["codigo"]. ")";
 
         $result = pg_query($sql);
 

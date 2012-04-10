@@ -5,20 +5,10 @@
     </head>
     <body>
         <?php
-        if (!isset($_SESSION)) {
-            session_start();
-        }
+        session_start();
         $aux = $_SESSION["produto"];
         ?>
         <table width=500 height=100>
-            <tr>
-                <td align="center">
-                    <a href="../Controllers/PerfilController.php?acao=gostar&id=<? echo $aux['codigo']; ?>"><img src="../Imagens/gostar.png" width="35" height="35"></a>
-                </td>
-                <td align="center">
-                    <a href="recomendar.php?id=<? echo $aux['codigo']; ?>"><img src="../Imagens/recomendar.jpg" width="35" height="35"></a>
-                </td>
-            </tr>
             </br></br>
             <tr>
                 <td align = center>
@@ -84,28 +74,32 @@
             </tr>
         </table>
         <form action="../Controllers/RecomendacaoController.php?acao=recomendar" name="dados" method="POST" >
-            <table>
-                <tr>
-                    <td>
-                        Recomendar para:
-                    </td>
-                </tr>
-                <?
-                include_once ("../Dao/AmigoDAO.php");
-                $model = new AmigoDAO();
-                $amigos = $model->getAmigos();
-                $tam = count($amigos);
-                for ($i = 0; $i < $tam; $i++) {
-                    $aux = $amigos[$i];
-                    echo "<tr><td><input type=\"checkbox\" name=\"amigo[]\" value=\"" . $aux["cod_amigo"] . "\">" . $aux["nome_amigo"] . "</td></tr>";
-                }
+            <?
+            include_once ("../Dao/AmigoDAO.php");
+            $model = new AmigoDAO();
+            $amigos = $model->getAmigos();
+            $tam = count($amigos);
+            if ($amigos) {
                 ?>
-                <tr>
-                    <td>
-                        <input type="submit" name="recomendar" value="Recomendar"/>
-                    </td>
-                </tr>
-            </table>
+                <table>
+                    <tr>
+                        <td>
+                            Recomendar para:
+                        </td>
+                    </tr>
+                    <?
+                    for ($i = 0; $i < $tam; $i++) {
+                        $aux = $amigos[$i];
+                        echo "<tr><td><input type=\"checkbox\" name=\"amigo[]\" value=\"" . $aux["cod_amigo"] . "\">" . $aux["nome_amigo"] . "</td></tr>";
+                    }
+                    ?>
+                    <tr>
+                        <td>
+                            <input type="submit" name="recomendar" value="Recomendar"/>
+                        </td>
+                    </tr>
+                </table>
+            <? } ?>
         </form>
     </body>
 </html>

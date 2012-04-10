@@ -1,5 +1,6 @@
 <?php
-
+session_start();
 session_destroy();
-header("Location: ../Views/NAOMEXE.php");
+session_unset();
+header("Location: ../Views/sessaoCliente.php");
 ?>

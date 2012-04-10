@@ -1,12 +1,11 @@
 
-<? session_start(); ?>
+<?session_start();?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>Principal</title>
         <link href="estilos.css" rel="stylesheet" type="text/css"/>
-
         <style>
             .conteudo {
                 background-image: url(../JPEG/conteudo.gif);
@@ -323,7 +322,6 @@
                 color:#FFFFFF;
             }            
         </style>
-
     </head>
     <body>
         <div class="container" align="center">
@@ -331,35 +329,33 @@
                 <form action="" method="POST" name="dados">
                     <a href="sessaoCliente.php"><img src="../Imagens/dvdcabeca2.png" width="1205"/></a>
                     <table><tr><td height="2"/></tr></table>
+                    <? if (isset($_SESSION['admin']) && $_SESSION['admin'] == t) { ?>
+                        <table align="" width="1205px" border="0" cellpadding="0" cellspacing="0" bgcolor="#D1EEB4">
+                            <tr>
+                                <td height="25px">
+                                    <div class="sombraFab"><strong>Fabricante</strong>
+                                        <div><strong><a id="cadastrarFab" href="sessaoCliente.php?flag=jfab">Fabricante</a></strong>
+                                        </div></div>
 
-                    <table align="" width="1205px" border="0" cellpadding="0" cellspacing="0" bgcolor="#D1EEB4">
-                        <tr>
+                                    <div class="sombraLoja"><strong>Loja</strong>
+                                        <div><strong><a id="cadastrarLoja" href="sessaoCliente.php?flag=jloj">Loja</a></strong>
+                                        </div></div>
 
-                            <td height="25px">
-                                <div class="sombraFab"><strong>Fabricante</strong>
-                                    <div><strong><a id="cadastrarFab" href="sessaoCliente.php?flag=jfab">Fabricante</a></strong>
-                                    </div></div>
+                                    <div class="sombraUsuario"><strong>Usuário</strong>
+                                        <div><strong><a id="cadastrarUsuario" href="sessaoCliente.php?flag=juse">Usuário</a></strong>
+                                        </div></div>
 
-                                <div class="sombraLoja"><strong>Loja</strong>
-                                    <div><strong><a id="cadastrarLoja" href="sessaoCliente.php?flag=jloj">Loja</a></strong>
-                                    </div></div>
+                                    <div class="sombraProduto"><strong>Produto</strong>
+                                        <div><strong><a id="cadastrarProduto" href="sessaoCliente.php?flag=jpro">Produto</a></strong>
+                                        </div></div>
 
-                                <div class="sombraUsuario"><strong>Usuário</strong>
-                                    <div><strong><a id="cadastrarUsuario" href="sessaoCliente.php?flag=juse">Usuário</a></strong>
-                                    </div></div>
-
-                                <div class="sombraProduto"><strong>Produto</strong>
-                                    <div><strong><a id="cadastrarProduto" href="sessaoCliente.php?flag=jpro">Produto</a></strong>
-                                    </div></div>
-
-                                <div class="sombraFornecedor"><strong>Fornecedor</strong>
-                                    <div><strong><a id="cadastrarFornecedor" href="sessaoCliente.php?flag=jfor">Fornecedor</a></strong>
-                                    </div></div>
-                            </td>
-
-                        </tr>
-                    </table>
-
+                                    <div class="sombraFornecedor"><strong>Fornecedor</strong>
+                                        <div><strong><a id="cadastrarFornecedor" href="sessaoCliente.php?flag=jfor">Fornecedor</a></strong>
+                                        </div></div>
+                                </td>
+                            </tr>
+                        </table>
+                    <? } ?>
                     <table align="" width="1205px" border="0" cellpadding="0" cellspacing="0" bgcolor="#D1EEB4">
                         <tr>
                             <td width="" height="" bgcolor="#FFFFFF">

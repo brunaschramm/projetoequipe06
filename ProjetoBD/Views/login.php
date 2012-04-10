@@ -44,7 +44,7 @@
                 </tr>
             </table>
             <?
-            if(isset($_COOKIE["erro"])){
+            if(isset($_SESSION["login"])){
                 echo "<font size=\"2\" face=\"Verdana, Arial, Helvetica, sans-serif\" color=\"#FF0000\">Verifique se o EMAIL e o CPF informados estão corretos!</font>";
             }
             ?>

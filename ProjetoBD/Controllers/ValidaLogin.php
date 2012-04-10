@@ -1,4 +1,5 @@
 <?php
+session_start();
 include_once ("../Dao/UsuarioDAO.php");
 
 class ValidaLogin {
@@ -12,10 +13,11 @@ class ValidaLogin {
         $resultado = $model->valida($email, $cpf);
 
         if ($resultado) {
-            include_once '../Views/sessaoCliente.php';
+            header ('Location: ../Views/sessaoCliente.php');
         } else {
-            setcookie("erro");
-            include_once '../Views/login.php';
+            $_SESSION["login"] = false;
+            session_commit();
+            header ('Location: ../Views/sessaoCliente.php?flag=jlogin');
         }
     }
 }

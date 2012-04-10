@@ -1,4 +1,5 @@
 <?php
+
 include_once ("../Banco/Banco.php");
 include_once ("../Models/Perfil.php");
 include_once ("AmigoDAO.php");
@@ -327,6 +328,29 @@ class PerfilDAO extends Perfil {
                         + pow(($param["cod_genero"] - $param2["cod_genero"]), 2) + pow(($param["cod_formato"] - $param2["cod_formato"]), 2)
                         + pow(($param["cod_censura"] - $param2["cod_censura"]), 2) + pow(($param["cod_grupo"] - $param2["cod_grupo"]), 2)
                         + pow(($param["regiao"] - $param2["regiao"]), 2));
+    }
+
+    public function getPerfisUsuario($codigo) {
+        $sql = "SELECT perfis.preco, perfis.ano, lojas.nome AS loja, produtoras.produtora,formatos.formato, 
+                generos.genero, censuras.censura, perfis.regiao, grupos.grupo, perfis.codigo
+                FROM tbperfis06 AS perfis INNER JOIN tbloja AS lojas ON perfis.cod_loja = lojas.codigo
+                INNER JOIN tbprodutoras06 AS produtoras ON perfis.cod_produtora = produtoras.codigo
+                INNER JOIN tbgeneros06 AS generos ON perfis.cod_genero = generos.codigo
+                INNER JOIN tbformatostela06 AS formatos ON perfis.cod_formato = formatos.codigo
+                INNER JOIN tbcensuras06 AS censuras ON perfis.cod_censura = censuras.codigo
+                INNER JOIN tbgrupos06 AS grupos ON perfis.cod_grupo = grupos.codigo
+                WHERE perfis.cod_usuario =" . $codigo;
+
+        $result = pg_query($sql);
+
+        $numeroLinhas = pg_num_rows($result);
+
+        $array = array();
+
+        for ($i = 0; $i < $numeroLinhas; $i++) {
+            $array[] = pg_fetch_array($result);
+        }
+        return $array;
     }
 
 }

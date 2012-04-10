@@ -51,13 +51,14 @@
                 <td><h3>Apelido</h3></td>
                 <td><h3>Email</h3></td>
                 <td><h3>CPF</h3></td>
+                <td><h3>Perfis</h3></td>
                 <td><a href="../Views/cadastroUsuario.php?flag=f"><img src="../Imagens/adicionar.png" width="20" height="20"></a></td>
             </tr>
             <?php
             include_once ("../Dao/UsuarioDAO.php");
             include_once ("../Controller/UsuarioController.php");
             $model = new UsuarioDAO();
-            if(isset($_POST["Submit"])){
+            if (isset($_POST["Submit"])) {
                 $usuarios = $model->consultar($_POST["nome"], $_POST["cpf"], $_POST["apelido"], $_POST["email"]);
             } else {
                 $usuarios = $model->getAll();
@@ -65,7 +66,9 @@
             $tam = count($usuarios);
             for ($i = 0; $i < $tam; $i++) {
                 $aux = $usuarios[$i];
-                echo "<tr><td>" . $aux["nome"] . "</td><td>" . $aux["apelido"] . "</td><td>" . $aux["email"] . "</td><td>" . $aux["cpf"] . "</td><td><a href=\"../Controllers/UsuarioController.php?acao=excluir&id=" . $aux["codigo"] . "\"><img src=\"../Imagens/excluir.png\" width=\"20\" height=\"20\"></a></td></tr>\n";
+                echo "<tr><td>" . $aux["nome"] . "</td><td>" . $aux["apelido"] . "</td><td>" . $aux["email"] . "</td><td>" . $aux["cpf"] . "</td>";
+                echo "<td align=\"center\"><a href=\"../Controllers/PerfilController.php?acao=perfis&id=" . $aux["codigo"] . "\"><img src=\"../Imagens/perfil.gif\" width=\"20\" height=\"20\"></a></td>";
+                echo "<td><a href=\"../Controllers/UsuarioController.php?acao=excluir&id=" . $aux["codigo"] . "\"><img src=\"../Imagens/excluir.png\" width=\"20\" height=\"20\"></a></td></tr>\n";
             }
             ?>
         </table>

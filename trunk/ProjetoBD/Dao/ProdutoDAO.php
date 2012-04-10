@@ -239,21 +239,21 @@ class ProdutoDAO extends Produto {
     }
 
     public function buscaSimples($busca) {
-        $sql = "SELECT produtos.titulo, produtos.descricao, produtos.preco, produtos.ano,
-            fabricantes.nome AS fabricante, lojas.nome AS loja, produtoras.produtora,formatos.formato, 
-            generos.genero, censuras.censura, produtos.regiao, grupos.grupo, fornecedores.nome AS fornecedor, 
-            produtos.codigo
-            FROM tbprodutos06 AS produtos INNER JOIN tbfabricantes06 AS fabricantes ON produtos.cod_fabricante = fabricantes.codigo
-            INNER JOIN tbloja AS lojas ON produtos.cod_loja = lojas.codigo
-            INNER JOIN tbprodutoras06 AS produtoras ON produtos.cod_produtora = produtoras.codigo
-            INNER JOIN tbgeneros06 AS generos ON produtos.cod_genero = generos.codigo
-            INNER JOIN tbformatostela06 AS formatos ON produtos.cod_formato = formatos.codigo
-            INNER JOIN tbcensuras06 AS censuras ON produtos.cod_censura = censuras.codigo
-            INNER JOIN tbgrupos06 AS grupos ON produtos.cod_grupo = grupos.codigo
-            INNER JOIN tbfornecedor as fornecedores ON produtos.cod_fornecedor = fornecedores.codigo
-            WHERE produtos.titulo LIKE '%" . $busca . "%' OR produtos.preco = " . $busca . " OR produtos.ano = " . $ano
-                . " OR genero LIKE '%" . $genero . "%' OR loja LIKE '%" . $loja . "%' OR produtora LIKE '%" . $produtora . "%'"
-                . " ORDER BY produtos.titulo";
+        $sql = "SELECT produtos.codigo, produtos.imagem, produtos.titulo, produtos.descricao, produtos.preco, produtos.ano,
+                fabricantes.nome AS fabricante, lojas.nome AS loja, produtoras.produtora,formatos.formato, 
+                generos.genero, censuras.censura, produtos.regiao, grupos.grupo, fornecedores.nome AS fornecedor, 
+                produtos.codigo
+                FROM tbprodutos06 AS produtos INNER JOIN tbfabricantes06 AS fabricantes ON produtos.cod_fabricante = fabricantes.codigo
+                INNER JOIN tbloja AS lojas ON produtos.cod_loja = lojas.codigo
+                INNER JOIN tbprodutoras06 AS produtoras ON produtos.cod_produtora = produtoras.codigo
+                INNER JOIN tbgeneros06 AS generos ON produtos.cod_genero = generos.codigo
+                INNER JOIN tbformatostela06 AS formatos ON produtos.cod_formato = formatos.codigo
+                INNER JOIN tbcensuras06 AS censuras ON produtos.cod_censura = censuras.codigo
+                INNER JOIN tbgrupos06 AS grupos ON produtos.cod_grupo = grupos.codigo
+                INNER JOIN tbfornecedor as fornecedores ON produtos.cod_fornecedor = fornecedores.codigo
+                WHERE produtos.titulo LIKE '%" . $busca . "%' OR genero LIKE '%" . $busca . "%'
+                OR lojas.nome LIKE '%" . $busca . "%' OR produtora LIKE '%" . $busca . "%'
+                ORDER BY produtos.titulo";
 
         $result = pg_query($sql);
 
@@ -355,7 +355,7 @@ class ProdutoDAO extends Produto {
                     . " OR cod_grupo=" . $amigo["grupo"];
         }
         $sql = $sql . ") AND codigo <> " . $produto["codigo"];
-        
+
         $result = pg_query($sql);
 
         $numeroLinhas = pg_num_rows($result);

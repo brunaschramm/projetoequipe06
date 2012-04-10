@@ -31,26 +31,22 @@ class PerfilController {
                     header("Location: ../Views/cadastroPerfil.php?flag=t");
                 }
                 break;
-//            case 'excluir':
-//                $model->setCodigo($_GET['id']);
-//
-//                $resultado = $model->excluir();
-//
-//                if ($resultado == 1) {
-//                    header("Location: ../Views/usuarios.php?flag=f");
-//                } else {
-//                    header("Location: ../Views/usuarios.php?flag=t");
-//                }
-//                break;
+            case 'perfis':
+                $resultado = $model->getPerfisUsuario($_GET['id']);
+                
+                $_SESSION['perfis'] = $resultado;
+                session_commit();
+
+                header("Location: ../Views/perfisUsuario.php");
+                break;
             case 'gostar':
                 $resultado = $model->inserirGosto($_GET["id"]);
 
-                header("Location: ../Views/detalhes.php?id=" . $_GET["id"] . "");
+                header("Location: ../Views/detalhes.php?id=" . $_GET["id"]);
 
                 break;
         }
     }
-
 }
 
 $controller = new PerfilController();

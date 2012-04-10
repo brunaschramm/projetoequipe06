@@ -1,5 +1,5 @@
 
-<?session_start();?>
+<? session_start(); ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
@@ -359,32 +359,34 @@
                     <table align="" width="1205px" border="0" cellpadding="0" cellspacing="0" bgcolor="#D1EEB4">
                         <tr>
                             <td width="" height="" bgcolor="#FFFFFF">
-                                <table align="" width="1205px" border="0" cellpadding="0" cellspacing="0" bgcolor="#D1EEB4">
-                                    <tr>
-                                        <td width="100px" height="40" bgcolor="#FFFFFF">
-                                            <input type="submit" value="" size="" name="Submit2" class="buscar2"/>
-                                        </td>
-                                        <td width="1000" align="">
-                                            <input name="busca" type="text" id="busca" size="100" align=""/>
-                                        </td>
+                                <form action="" method="POST" name="dados">
+                                    <table align="" width="1205px" border="0" cellpadding="0" cellspacing="0" bgcolor="#D1EEB4">
+                                        <tr>
+                                            <td width="100px" height="40" bgcolor="#FFFFFF">
+                                                <input type="submit" value="" size="" name="Submit2" class="buscar2"/>
+                                            </td>
+                                            <td width="1000" align="">
+                                                <input name="busca" type="text" id="busca" size="100" align=""/>
+                                            </td>
 
-                                        <? if (isset($_SESSION['codigo'])) { ?>
-                                            <td align="right" width="105">
-                                                <a href="logout.php" class="login">logout</a>
-                                                &nbsp
-                                            </td>
-                                        <? } else if (!isset($_SESSION['codigo'])) { ?>
-                                            <td align="right" width="105">
-                                                <a href="sessaoCliente.php?flag=jlogin" class="login">login</a>
-                                                &nbsp &nbsp
-                                            </td>
-                                            <div class="sombra"><strong>Cadastrar</strong>
-                                                <div><strong><a id="cadastrar" href="sessaoCliente.php?flag=jcad">Cadastrar</a></strong>
+                                            <? if (isset($_SESSION['codigo'])) { ?>
+                                                <td align="right" width="105">
+                                                    <a href="logout.php" class="login">logout</a>
+                                                    &nbsp
+                                                </td>
+                                            <? } else if (!isset($_SESSION['codigo'])) { ?>
+                                                <td align="right" width="105">
+                                                    <a href="sessaoCliente.php?flag=jlogin" class="login">login</a>
+                                                    &nbsp &nbsp
+                                                </td>
+                                                <div class="sombra"><strong>Cadastrar</strong>
+                                                    <div><strong><a id="cadastrar" href="sessaoCliente.php?flag=jcad">Cadastrar</a></strong>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        <? } ?>
-                                    </tr>
-                                </table>
+                                            <? } ?>
+                                        </tr>
+                                    </table>
+                                </form>
                             </td>
                         </tr>
                     </table>

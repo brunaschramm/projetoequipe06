@@ -61,7 +61,7 @@ class UsuarioDAO extends Usuario {
     }
 
     public function getAll() {
-        $sql = "SELECT * FROM tbsuarios";
+        $sql = "SELECT * FROM tbusuario ORDER BY nome";
 
         $result = pg_query($sql);
 

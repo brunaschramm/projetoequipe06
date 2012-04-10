@@ -15,9 +15,9 @@ class FabricanteController {
                 $resultado = $model->salvar();
 
                 if ($resultado == 1) {
-                    header("Location: ../Views/fabricantes.php?flag=f");
+                    header("Location: ../Views/sessaoCliente.php?flag=jfab");
                 } else {
-                    header("Location: ../Views/cadastroFabricante.php?flag=t");
+                    header("Location: ../Views/sessaoCliente.php?flag=jfab&erro");
                 }
                 break;
             case 'excluir':
@@ -25,11 +25,7 @@ class FabricanteController {
 
                 $resultado = $model->excluir();
 
-                if ($resultado == 1) {
-                    header("Location: ../Views/fabricantes.php?flag=f");
-                } else {
-                    header("Location: ../Views/fabricantes.php?flag=t");
-                }
+                header("Location: ../Views/sessaoCliente.php?flag=jfab");
                 break;
         }
     }

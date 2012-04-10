@@ -16,9 +16,9 @@ class FornecedorController {
                 $resultado = $model->salvar();
 
                 if ($resultado == 1) {
-                    header("Location: ../Views/fornecedores.php?flag=f");
+                    header("Location: ../Views/sessaoCliente.php?flag=jfor");
                 } else {
-                    header("Location: ../Views/cadastroFornecedor.php?flag=t");
+                    header("Location: ../Views/sessaoCliente.php?flag=jfor&erro");
                 }
                 break;
             case 'excluir':
@@ -26,11 +26,7 @@ class FornecedorController {
 
                 $resultado = $model->excluir();
 
-                if ($resultado == 1) {
-                    header("Location: ../Views/fornecedores.php?flag=f");
-                } else {
-                    header("Location: ../Views/fornecedores.php?flag=f");
-                }
+                header("Location: ../Views/sessaoCliente.php?flag=jfor");
                 break;
         }
     }

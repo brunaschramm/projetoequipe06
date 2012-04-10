@@ -52,7 +52,7 @@
                 <td><h3>Email</h3></td>
                 <td><h3>CPF</h3></td>
                 <td><h3>Perfis</h3></td>
-                <td><a href="../Views/cadastroUsuario.php?flag=f"><img src="../Imagens/adicionar.png" width="20" height="20"></a></td>
+                <td><a href="../Views/sessaoCliente.php?flag=jcad"><img src="../Imagens/adicionar.png" width="20" height="20"></a></td>
             </tr>
             <?php
             include_once ("../Dao/UsuarioDAO.php");

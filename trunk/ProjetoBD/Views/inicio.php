@@ -10,11 +10,11 @@
             <?
             include_once ("../Dao/ProdutoDAO.php");
             $model = new ProdutoDAO();
-            if (isset($_POST["Submit2"])) {
+            if (isset($_POST["BuscaA"])) {
                 $produtos = $model->buscaSimples($_POST["busca"]);
                 $_SESSION["produtos"] = $produtos;
                 session_commit();
-            } else if (isset($_POST["Submit"])) {
+            } else if (isset($_POST["Busca"])) {
                 $produtos = $model->buscaAvancada($_POST["titulo"], $_POST["genero"], $_POST["preco"], $_POST["ano"], $_POST["loja"], $_POST["produtora"]);
                 $_SESSION["produtos"] = $produtos;
                 session_commit();

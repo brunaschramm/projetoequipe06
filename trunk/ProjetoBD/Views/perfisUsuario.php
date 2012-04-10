@@ -1,8 +1,13 @@
 <?php
+session_start();
 $perfis = $_SESSION['perfis'];
+unset($_SESSION["perfis"]);
 
-if ($perfis) {
-    echo "Nenhum produto encontrado!";
+if(!$perfis) {
+    
+}
+if (!$perfis) {
+    echo "<font size=\"1\" face=\"Verdana, Arial, Helvetica, sans-serif\">Nenhum perfil cadastrado!</font>";
 } else {
     $tam = count($perfis);
     ?>
@@ -17,18 +22,13 @@ if ($perfis) {
             <td><h3>Região</h3></td>
             <td><h3>Formato Tela</h3></td>
             <td><h3>Preço</h3></td>
+            <td><a href="../Views/cadastroPerfil.php"><img src="../Imagens/adicionar.png" width="20" height="20"></a></td>
         </tr>
         <?php
-        include_once ("../Dao/LojaDAO.php");
-        $model = new LojaDAO();
-        if (isset($_POST["Submit"])) {
-            $lojas = $model->consultar($_POST["nome"], $_POST["endereco"]);
-        } else {
-            $lojas = $model->getAll();
-        }
-        $tam = count($lojas);
+        include_once ("../Dao/PerfilDAO.php");
+        $tam = count($perfis);
         for ($i = 0; $i < $tam; $i++) {
-            $aux = $lojas[$i];
+            $aux = $perfis[$i];
             echo "<tr><td>" . $aux["genero"] . "</td><td>" . $aux["produtora"] . "</td><td>" . $aux["loja"] . "</td>\n";
             echo "<td>" . $aux["ano"] . "</td><td>" . $aux["grupo"] . "</td><td>" . $aux["censura"] . "</td>\n";
             echo "<td>" . $aux["regiao"] . "</td><td>" . $aux["formato"] . "</td>\n";

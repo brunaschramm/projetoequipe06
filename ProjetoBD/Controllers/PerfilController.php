@@ -26,9 +26,9 @@ class PerfilController {
                 $resultado = $model->salvar();
 
                 if ($resultado == 1) {
-                    header("Location: ../Views/cadastroPerfil.php?flag=f");
+                    header("Location: ../Views/sessaoCliente.php?flag=jperf");
                 } else {
-                    header("Location: ../Views/cadastroPerfil.php?flag=t");
+                    header("Location: ../Views/sessaoCliente.php?flag=jperf&erro");
                 }
                 break;
             case 'perfis':
@@ -42,7 +42,7 @@ class PerfilController {
             case 'gostar':
                 $resultado = $model->inserirGosto($_GET["id"]);
 
-                header("Location: ../Views/detalhes.php?id=" . $_GET["id"]);
+                header("Location: ../Views/sessaoCliente.php?flag=jdetal&id=" . $_GET["id"]);
 
                 break;
         }

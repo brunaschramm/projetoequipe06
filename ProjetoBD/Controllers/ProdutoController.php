@@ -28,9 +28,9 @@ class ProdutoController {
                 $resultado = $model->salvar();
 
                 if ($resultado == 1) {
-                    header("Location: ../Views/sessaoCliente.php?flag=jprod");
+                    header("Location: ../Views/sessaoCliente.php?flag=jpro");
                 } else {
-                    header("Location: ../Views/sessaoCliente.php?flag=jprod&erro");
+                    header("Location: ../Views/sessaoCliente.php?flag=jpro&erro");
                 }
                 break;
             case 'excluir':
@@ -38,7 +38,7 @@ class ProdutoController {
 
                 $resultado = $model->excluir();
 
-                header("Location: ../Views/sessaoCliente.php?flag=jprod");
+                header("Location: ../Views/sessaoCliente.php?flag=jpro");
                 break;
         }
     }

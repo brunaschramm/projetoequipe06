@@ -25,7 +25,7 @@
                 echo "Nenhum produto encontrado!";
             } else {
                 //================ Paginação ==============================
-                $qntd = 5; // qntd de produtos exibidos por pagina
+                $qntd = 12; // qntd de produtos exibidos por pagina
                 $atual = (isset($_GET["pg"])) ? intval($_GET["pg"]) : 1;
                 $pagproduto = array_chunk($produtos, $qntd);
                 $totalPag = count($pagproduto);
@@ -39,11 +39,9 @@
                     ?>
                     <td align="center" width="200px">
                         <!--<a href="javascript:abrir('detalhes.php?id=<?echo $aux['codigo']?>');"><img src="../Imagens/loja.png" width="70" height="35"></a>-->
-                        <a href="sessaoCliente.php?id=<? echo $aux['codigo'] ?>"><img src="../Imagens/loja.png" width="70" height="35"></a>
-                        <a href=""><img src="../Imagens/iraloja.png" width="90" height="35"></a>
                         </br></br>
                         <div class="css do produto" id="">
-                            <a href="link do produto" class="css de link">
+                            <a href="sessaoCliente.php?id=<? echo $aux['codigo'] ?>" class="link">
                                 <img src="../Imagens/Produtos/<? echo $aux["imagem"]; ?>" width="97" height="132"/>
                             </a>
                             </br>

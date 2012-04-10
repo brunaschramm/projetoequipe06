@@ -2,6 +2,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>Produto</title>
+        <script language="JavaScript" >            
+        </script>
     </head>
     <body>
         <?php
@@ -18,14 +20,16 @@
         session_commit();
         ?>
         <table width=500 height=100 align = center>
-            <tr>
-                <td align="center">
-                    <a href="../Controllers/PerfilController.php?acao=gostar&id=<? echo $aux['codigo']; ?>"><img src="../Imagens/gostar.png" width="35" height="35"></a>
-                </td>
-                <td align="center">
-                    <a href="recomendar.php?id=<? echo $aux['codigo']; ?>"><img src="../Imagens/recomendar.jpg" width="35" height="35"></a>
-                </td>
-            </tr>
+            <? if (isset($_SESSION["codigo"])) { ?>
+                <tr>
+                    <td align="center">
+                        <a href="../Controllers/PerfilController.php?acao=gostar&id=<? echo $aux['codigo']; ?>"><img src="../Imagens/gostar.png" width="35" height="35"></a>
+                    </td>
+                    <td align="center">
+                        <a href="recomendar.php?id=<? echo $aux['codigo']; ?>"><img src="../Imagens/recomendar.jpg" width="35" height="35"></a>
+                    </td>
+                </tr>
+            <? } ?>
             </br></br>
             <tr>
                 <td align = center>
@@ -122,7 +126,7 @@
                 </td>
             </tr>
         </table>
-        <!-- Área somente para usuários cadastrados -->
+        <!-- Área somente para usuários logados -->
         <?php
         session_start();
         if (isset($_SESSION['codigo'])) {
@@ -137,8 +141,21 @@
                     <?php
                     $perfil = $modelPerfil->getPerfilParecido($aux);
                     $amigo = $modelPerfil->getPerfilAmigo($perfil);
-                    $sugestoes = $model->getRecomendacoes($perfil, $amigo, $aux);
+                    if ($perfil && $amigo) {
+                        //echo "1";
+                        $sugestoes = $model->getRecomendacoes($perfil, $amigo, $aux, 1);
+                    } else if (!$perfil && $amigo){
+                        $sugestoes = $model->getRecomendacoes($aux, $amigo, $aux, 2);
+                        //echo "2";
+                    } else if ($perfil && !$amigo){
+                        $sugestoes = $model->getRecomendacoes($perfil, $aux, $aux, 3);
+                        //echo "3";
+                    } else if (!$perfil && !$amigo) {
+                        $sugestoes = $model->getRecomendacoes($aux, $aux, $aux, 4);
+                        //echo "4";
+                    }
                     $tam = count($sugestoes); // Qntd de sugestoes exibidas
+                    
                     if ($tam > 4)
                         $tam = 4;
                     for ($i = 0; $i < $tam; $i++) {
@@ -170,49 +187,54 @@
                     <? } ?>
                 </tr>
             </table>
-            <table width="100%" align = center>
-                <tr>
-                    <td align = center>
-                        Recomendações para você:
-                    </td>
-                </tr>
-                <tr>
-                    <?php
-                    $recomendacoes = $modelRecomendacao->getRecomendacoesUsuario($aux);
-                    $tam = count($recomendacoes); // Qntd de recomendacoes exibidas
-                    if ($tam > 4)
-                        $tam = 4;
-                    for ($i = 0; $i < $tam; $i++) {
-                        $aux = $recomendacoes[$i];
-                        ?>
-                        <td align="center">
-                            <table>
-                                <tr height="20%">
-                                    <td align = center width= "200px">
-                                        <a href="sessaoCliente.php?id=<? echo $aux['codigo'] ?>"><img src="../Imagens/loja.png" width="70" height="35"></a>
-                                        <a href=""><img src="../Imagens/iraloja.png" width="90" height="35"></a>
-                                        </br></br>
-                                    </td>
-                                </tr>
-                                <tr height="80%">
-                                    <td align = center>
-                                        <div class="css do produto" id="">
-                                            <a href="link do produto" class="css de link">
-                                                <img src="../Imagens/Produtos/<? echo $aux["imagem"]; ?>" width="97" height="132"/>
-                                            </a>
-                                            </br>
-                                            <span class="link"><strong class=""><? echo $aux["titulo"]; ?></strong></span>
-                                            </br>
-                                            <span class="link"><strong class="">Por:<? echo $aux["amigo"]; ?></strong></span>
-                                            </br>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </table>
+            <?
+            $recomendacoes = $modelRecomendacao->getRecomendacoesUsuario($aux);
+            $tam = count($recomendacoes); // Qntd de recomendacoes exibidas
+            if ($tam) {
+                ?>       
+                <table width="100%" align = center>
+                    <tr>
+                        <td align = center>
+                            Recomendações para você:
                         </td>
-                    <? } ?>
-                </tr>
-            </table>
-        <? } ?>
+                    </tr>
+                    <tr>
+                        <?php
+                        if ($tam > 4)
+                            $tam = 4;
+                        for ($i = 0; $i < $tam; $i++) {
+                            $aux = $recomendacoes[$i];
+                            ?>
+                            <td align="center">
+                                <table>
+                                    <tr height="20%">
+                                        <td align = center width= "200px">
+                                            <a href="sessaoCliente.php?id=<? echo $aux['codigo'] ?>"><img src="../Imagens/loja.png" width="70" height="35"></a>
+                                            <a href=""><img src="../Imagens/iraloja.png" width="90" height="35"></a>
+                                            </br></br>
+                                        </td>
+                                    </tr>
+                                    <tr height="80%">
+                                        <td align = center>
+                                            <div class="css do produto" id="">
+                                                <a href="link do produto" class="css de link">
+                                                    <img src="../Imagens/Produtos/<? echo $aux["imagem"]; ?>" width="97" height="132"/>
+                                                </a>
+                                                </br>
+                                                <span class="link"><strong class=""><? echo $aux["titulo"]; ?></strong></span>
+                                                </br>
+                                                <span class="link"><strong class="">Por:<? echo $aux["amigo"]; ?></strong></span>
+                                                </br>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        <? } ?>
+                    </tr>
+                </table>
+            <? }
+        }
+        ?>
     </body>
 </html>

@@ -1,15 +1,19 @@
 <?php
 session_start();
 
-$perfis = $_SESSION['perfis'];
-unset($_SESSION["perfis"]);
+include_once '../Dao/PerfilDAO.php';
+$model = new PerfilDAO();
+$perfis = $model->getAll();
 
 if (!$perfis) {
     echo "<font size=\"1\" face=\"Verdana, Arial, Helvetica, sans-serif\">Nenhum perfil cadastrado!</font>";
 } else {
     $tam = count($perfis);
+    if (isset($_SESSION["erro"])) {
+        echo "<font size=\"2\" face=\"Verdana, Arial, Helvetica, sans-serif\" color=\"#FF0000\">Erro no cadastro!</font>";
+        unset($_SESSION["erro"]);
+    }
     ?>
-    <a href="sessaoCliente.php?flag=juse">Voltar</a>
     <table align="center" class="tabelas">
         <tr>
             <td><h3>Gênero</h3></td>
@@ -21,9 +25,9 @@ if (!$perfis) {
             <td><h3>Região</h3></td>
             <td><h3>Formato Tela</h3></td>
             <td><h3>Preço</h3></td>
+            <td><a href="../Views/sessaoCliente.php?flag=jcadPerf"><img src="../Imagens/adicionar.png" width="20" height="20"></a></td>
         </tr>
-        <?php
-        include_once ("../Dao/PerfilDAO.php");
+        <?php       
         $tam = count($perfis);
         for ($i = 0; $i < $tam; $i++) {
             $aux = $perfis[$i];

@@ -272,13 +272,33 @@ class ProdutoDAO extends Produto {
      * o perfil do usuario logado e o perfil do amigo mais parecido com ele
      */
 
-    public function getRecomendacoes($perfil, $amigo, $produto) {
+    public function getRecomendacoes($perfil, $amigo, $produto, $caso) {
         $diferenca = false;
 
+        switch ($caso) {
+                case 1:
+                    $preco1 = $perfil["preco"];
+                    $preco2 = $amigo["preco"];
+                    break;
+                case 2:
+                    $preco1 = $this->getFaixaPreco($perfil["preco"]);
+                    $preco2 = $amigo["preco"];
+                    break;
+                case 3:
+                    $preco1 = $perfil["preco"];
+                    $preco2 = $this->getFaixaPreco($amigo["preco"]);
+                    break;
+                case 4:
+                    $preco1 = $this->getFaixaPreco($perfil["preco"]);
+                    $preco2 = $this->getFaixaPreco($amigo["preco"]);
+                    break;
+        }
+        
         $sql = "SELECT * FROM tbprodutos06 WHERE (1=0";
 
-        if ($perfil["preco"] != $amigo["preco"]) {
-            switch ($amigo["preco"]) {
+        if (($preco1 != $preco2)) {
+            $diferenca = true;
+            switch ($preco2) {
                 case '1':
                     $sql = $sql . " OR preco <= 10";
                     break;
@@ -350,9 +370,9 @@ class ProdutoDAO extends Produto {
          * Genero, Loja, Produtora, Grupo e Ano
          */
         if (!$diferenca) {
-            $sql = $sql . " OR ano =" . $amigo["regiao"] . " OR cod_loja=" . $amigo["loja"]
-                    . " OR cod_produtora=" . $amigo["produtora"] . " OR cod_genero=" . $amigo["genero"]
-                    . " OR cod_grupo=" . $amigo["grupo"];
+            $sql = $sql . " OR ano =" . $amigo["ano"] . " OR cod_loja=" . $amigo["cod_loja"]
+                    . " OR cod_produtora=" . $amigo["cod_produtora"] . " OR cod_genero=" . $amigo["cod_genero"]
+                    . " OR cod_grupo=" . $amigo["cod_grupo"];
         }
         $sql = $sql . ") AND codigo <> " . $produto["codigo"];
 
@@ -368,6 +388,30 @@ class ProdutoDAO extends Produto {
         return $array;
     }
 
+    private function getFaixaPreco($preco){
+        if ($preco <= 10) {
+            $preco = 1;
+        } else if ($preco > 10 && $preco <= 20) {
+            $preco = 2;
+        } else if ($preco > 20 && $preco <= 30) {
+            $preco = 3;
+        } else if ($preco > 30 && $preco <= 40) {
+            $preco = 4;
+        } else if ($preco > 40 && $preco <= 50) {
+            $preco = 5;
+        } else if ($preco > 50 && $preco <= 60) {
+            $preco = 6;
+        } else if ($preco > 60 && $preco <= 70) {
+            $preco = 7;
+        } else if ($preco > 70 && $preco <= 80) {
+            $preco = 8;
+        } else if ($preco > 80 && $preco <= 90) {
+            $preco = 9;
+        } else if ($preco > 90) {
+            $preco = 10;
+        }
+        return $preco;
+    }
 }
 
 $model = new ProdutoDAO();

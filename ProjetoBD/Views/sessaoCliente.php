@@ -523,7 +523,7 @@
                     $_SESSION["idProduto"] = $_GET["id"];
                     session_commit();
                     include_once "detalhes.php";
-                } if(isset($_SESSION["perfis"])){
+                } if (isset($_SESSION["perfis"])) {
                     include_once 'perfisUsuario.php';
                 } else {
                     $page = (isset($_GET['flag'])) ? $_GET['flag'] : "home";
@@ -533,6 +533,9 @@
                             break;
                         case "jcad":
                             $page = "cadastroUsuario.php";
+                            break;
+                        case "jcadPerf":
+                            $page = "cadastroPerfil.php";
                             break;
                         case "jcadLoja":
                             $page = "cadastroLoja.php";
@@ -547,26 +550,37 @@
                             $page = "cadastroProduto.php";
                             break;
                         case "jfab":
-                            if(isset($_GET["erro"])) $_SESSION["erro"] = true;
+                            if (isset($_GET["erro"]))
+                                $_SESSION["erro"] = true;
                             $page = "fabricantes.php";
                             break;
                         case "jfor":
-                            if(isset($_GET["erro"])) $_SESSION["erro"] = true;
+                            if (isset($_GET["erro"]))
+                                $_SESSION["erro"] = true;
                             $page = "fornecedores.php";
                             break;
                         case "juse":
                             $page = "usuarios.php";
                             break;
                         case "jpro":
-                            if(isset($_GET["erro"])) $_SESSION["erro"] = true;
+                            if (isset($_GET["erro"]))
+                                $_SESSION["erro"] = true;
                             $page = "produtos.php";
                             break;
                         case "jloj":
-                            if(isset($_GET["erro"])) $_SESSION["erro"] = true;
+                            if (isset($_GET["erro"]))
+                                $_SESSION["erro"] = true;
                             $page = "lojas.php";
                             break;
-                        case "jperf":///////////////////////////////////////////////////////////////
-                            $page = "perfisUsuario.php";
+                        case "jperf":
+                            if (isset($_GET["erro"]))
+                                $_SESSION["erro"] = true;
+                            $page = "perfisUsuarioLogado.php";
+                            break;
+                        case "jdetal":
+                            if (isset($_GET["id"]))
+                                $_SESSION["idProduto"] = $_GET["id"];
+                            $page = "detalhes.php";
                             break;
                         default :
                             $page = "sessaoCliente.php";

@@ -1,5 +1,7 @@
 <?php
-
+if (!isset($_SESSION)) {
+    session_start();
+}
 include_once ("../Banco/Banco.php");
 include_once ("../Models/Recomendacao.php");
 
@@ -8,7 +10,6 @@ class RecomendacaoDAO extends Recomendacao {
     private $conexao;
 
     public function __construct() {
-        session_start();
         $this->conexao = new Banco();
         $this->conexao->open();
     }
@@ -45,7 +46,7 @@ class RecomendacaoDAO extends Recomendacao {
                 INNER JOIN tbfabricantes06 AS fabricante ON fabricante.codigo = produto.cod_fabricante
                 INNER JOIN tbfornecedor AS fornecedor ON fornecedor.codigo = produto.cod_fornecedor
                 INNER JOIN tbusuario AS usuario ON usuario.codigo = cod_amigo
-                WHERE cod_usuario = ".$_SESSION["codigo"]. " AND produto.codigo <> ".$produto['codigo'];
+                WHERE cod_usuario = " . $_SESSION["codigo"] . " AND produto.codigo <> " . $produto['codigo'];
 
         $result = pg_query($sql);
 
@@ -56,15 +57,15 @@ class RecomendacaoDAO extends Recomendacao {
         for ($i = 0; $i < $numeroLinhas; $i++) {
             $array[] = pg_fetch_array($result);
         }
-        
+
         $tam = count($array);
-        
+
         $distancias = array();
-        
-        for($i = 0; $i < $tam; $i++){
+
+        for ($i = 0; $i < $tam; $i++) {
             $distancias[] = $this->distancia($produto, $array[$i]);
         }
-        
+
         /*
          *  Ordena as distancias e preserva os indices dos elementos.
          * Ex.: [0] -> 2
@@ -85,6 +86,7 @@ class RecomendacaoDAO extends Recomendacao {
                         + pow(($param["cod_censura"] - $param2["cod_censura"]), 2) + pow(($param["cod_grupo"] - $param2["cod_grupo"]), 2)
                         + pow(($param["regiao"] - $param2["regiao"]), 2));
     }
+
 }
 
 $recomendacao = new RecomendacaoDAO();

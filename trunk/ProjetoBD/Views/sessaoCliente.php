@@ -1,5 +1,9 @@
 
-<? session_start(); ?>
+<?
+if (!isset($_SESSION)) {
+    session_start();
+}
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
@@ -344,7 +348,7 @@
                 <form action="?flag=busca2" method="POST" name="dados">
                     <a href="sessaoCliente.php"><img src="../Imagens/dvdcabeca2.png" width="1205"/></a>
                     <table><tr><td height="2"/></tr></table>
-                    <? if (isset($_SESSION['admin']) && $_SESSION['admin'] == t) { ?>
+                    <? if (isset($_SESSION['admin']) && $_SESSION['admin'] == "t") { ?>
                         <table align="" width="1205px" border="0" cellpadding="0" cellspacing="0" bgcolor="#D1EEB4">
                             <tr>
                                 <td height="25px">
@@ -553,6 +557,10 @@
                                 $page = "inicio.php";
                                 break;
                             case "jrec":
+                                if (isset($_GET["idP"])) {
+                                    $_SESSION["idProd"] = $_GET["idP"];
+                                    session_commit();
+                                }
                                 $page = "recomendar.php";
                                 break;
                             case "jam":
@@ -598,6 +606,10 @@
                                 $page = "fornecedores.php";
                                 break;
                             case "juse":
+                                if (isset($_GET["erro"])) {
+                                    $_SESSION["erro"] = true;
+                                    session_commit();
+                                }
                                 $page = "usuarios.php";
                                 break;
                             case "jpro":

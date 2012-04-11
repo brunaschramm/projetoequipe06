@@ -1,14 +1,12 @@
 <?php
-
+if (!isset($_SESSION)) {
+    session_start();
+}
 include_once("../Dao/RecomendacaoDAO.php");
 
 class RecomendacaoController {
 
     function __construct() {
-        if (!isset($_SESSION)) {
-            session_start();
-        }
-        
         $acao = $_GET['acao'];
 
         $model = new RecomendacaoDAO();
@@ -37,20 +35,14 @@ class RecomendacaoController {
                     header("Location: ../Views/lojas.php?flag=t");
                 }
                 break;
-            case 'recomendar':
-                $_SESSION["codigo"] = 1;
-                session_commit();
-                
-                $aux = $_SESSION["produto"];
-                $produto = $aux[0];
-                
+            case 'recomendar':                
                 $usuario = $_SESSION["codigo"];
                 
                 foreach ($_POST["amigo"] as $campo => $valor) {
                     $$campo = $valor;
-                    $resultado = $model->salvar($valor, $usuario, $produto["codigo"]);
+                    $resultado = $model->salvar($valor, $usuario, $_GET["id"]);
                 }
-                
+
                 header("Location: ../Views/sessaoCliente.php?flag=jdetal&id=" . $_GET["id"]);
                 
                 break;

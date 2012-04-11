@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (!isset($_SESSION)) {
+    session_start();
+}
 if (!isset($_SESSION['codigo'])) {
     header("Location: ../Views/login.php");
 } else {
@@ -35,10 +37,10 @@ if (!isset($_SESSION['codigo'])) {
                         <input name="am_email" type="text" class="formbutton" id="am_email" size="52" maxlength="150"/></td>
                     <td width="118"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Nível de Amizade:</font></td>
                     <td><select  name="niv_amizade">
-                        <option selected value="Selecione"></option>
-                        <option value="Amigos">Amigos</option>
-                        <option value="Super Amigos">Super Amigos</option>
-                    </select></td>
+                            <option selected value="Selecione"></option>
+                            <option value="Amigos">Amigos</option>
+                            <option value="Super Amigos">Super Amigos</option>
+                        </select></td>
                 </tr>
 
                 <tr>

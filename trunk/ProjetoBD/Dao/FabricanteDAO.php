@@ -1,5 +1,4 @@
 <?php
-
 include_once ("../Banco/Banco.php");
 include_once ("../Models/Fabricante.php");
 

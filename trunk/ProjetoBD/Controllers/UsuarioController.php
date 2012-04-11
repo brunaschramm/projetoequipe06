@@ -1,5 +1,7 @@
 <?php
-
+if (!isset($_SESSION)) {
+    session_start();
+}
 include_once ("../Dao/UsuarioDAO.php");
 
 class UsuarioController {
@@ -20,10 +22,12 @@ class UsuarioController {
 
                 $resultado = $model->salvar();
 
-                if ($resultado == 1) {
-                    header("Location: ../Views/usuarios.php?flag=f");
+                if (!isset($_SESSION["codigo"])){
+                    header("Location: ../Views/sessaoCliente.php?flag=jlogin");
+                } else if ($resultado == 1) {
+                    header("Location: ../Views/sessaoCliente.php?flag=juse");
                 } else {
-                    header("Location: ../Views/usuarios.php?flag=t");
+                    header("Location: ../Views/sessaoCliente.php?flag=juse&erro");
                 }
                 break;
             case 'excluir':
@@ -31,11 +35,7 @@ class UsuarioController {
 
                 $resultado = $model->excluir();
 
-                if ($resultado == 1) {
-                    header("Location: ../Views/usuarios.php?flag=f");
-                } else {
-                    header("Location: ../Views/usuarios.php?flag=t");
-                }
+                header("Location: ../Views/sessaoCliente.php?flag=juse");
                 break;
             case 'amigo':
                 $model->setEmail($_POST['am_email']);

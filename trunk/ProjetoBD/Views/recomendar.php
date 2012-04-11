@@ -5,8 +5,16 @@
     </head>
     <body>
         <?php
-        session_start();
-        $aux = $_SESSION["produto"];
+        if (!isset($_SESSION)) {
+            session_start();
+        }
+        //$aux = $_SESSION["produto"];
+        include_once ("../Dao/ProdutoDAO.php");
+        $model = new ProdutoDAO();
+        $produto = $model->getProduto($_SESSION["idProd"]);
+        $aux = $produto[0];
+        $_SESSION["produto"] = $aux;
+        session_commit();
         ?>
         <table width=500 height=100>
             </br></br>
@@ -73,7 +81,7 @@
                 </td>
             </tr>
         </table>
-        <form action="../Controllers/RecomendacaoController.php?acao=recomendar&id=<?echo $aux["codigo"]?>" name="dados" method="POST" >
+        <form action="../Controllers/RecomendacaoController.php?acao=recomendar&id=<? echo $aux["codigo"] ?>" name="dados" method="POST" >
             <?
             include_once ("../Dao/AmigoDAO.php");
             $model = new AmigoDAO();

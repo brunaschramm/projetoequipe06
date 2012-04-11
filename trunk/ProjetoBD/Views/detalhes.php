@@ -7,7 +7,9 @@
     </head>
     <body>
         <?php
-        session_commit();
+        if (!isset($_SESSION)) {
+            session_start();
+        }
         include_once ("../Dao/RecomendacaoDAO.php");
         $modelRecomendacao = new RecomendacaoDAO();
         include_once ("../Dao/PerfilDAO.php");
@@ -26,7 +28,7 @@
                         <a href="../Controllers/PerfilController.php?acao=gostar&id=<? echo $prod['codigo']; ?>"><img src="../Imagens/gostar.png" width="35" height="35"></a>
                     </td>
                     <td align="center">
-                        <a href="sessaoCliente.php?flag=jrec"><img src="../Imagens/recomendar.jpg" width="35" height="35"></a>
+                        <a href="sessaoCliente.php?flag=jrec&idP=<? echo $prod['codigo']; ?>"><img src="../Imagens/recomendar.jpg" width="35" height="35"></a>
                     </td>
                 </tr>
             <? } ?>
@@ -128,7 +130,6 @@
         </table>
         <!-- Área somente para usuários logados -->
         <?php
-        session_start();
         if (isset($_SESSION['codigo'])) {
             ?>  
             <table width="100%" align = center>
@@ -144,10 +145,10 @@
                     if ($perfil && $amigo) {
                         //echo "1";
                         $sugestoes = $model->getRecomendacoes($perfil, $amigo, $prod, 1);
-                    } else if (!$perfil && $amigo){
+                    } else if (!$perfil && $amigo) {
                         $sugestoes = $model->getRecomendacoes($prod, $amigo, $prod, 2);
                         //echo "2";
-                    } else if ($perfil && !$amigo){
+                    } else if ($perfil && !$amigo) {
                         $sugestoes = $model->getRecomendacoes($perfil, $prod, $prod, 3);
                         //echo "3";
                     } else if (!$perfil && !$amigo) {
@@ -155,7 +156,7 @@
                         //echo "4";
                     }
                     $tam = count($sugestoes); // Qntd de sugestoes exibidas
-                    
+
                     if ($tam > 4)
                         $tam = 4;
                     for ($i = 0; $i < $tam; $i++) {
@@ -219,7 +220,8 @@
                         <? } ?>
                     </tr>
                 </table>
-            <? }
+            <?
+            }
         }
         ?>
     </body>

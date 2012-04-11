@@ -18,7 +18,7 @@
 
     <body>
         <table align="center">
-            <form action="" method="POST" name="dados">
+            <form action="?flag=juse" method="POST" name="dados">
                 <tr>
                     <td width="118"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Nome:</font></td>
                     <td width="460">
@@ -45,6 +45,12 @@
                 </tr>
             </form>
         </table>
+        <?
+        if (isset($_SESSION["erro"])) {
+            echo "<font size=\"2\" face=\"Verdana, Arial, Helvetica, sans-serif\" color=\"#FF0000\">Erro no cadastro!</font>";
+            unset($_SESSION["erro"]);
+        }
+        ?>
         <table align="center" class="tabelas">
             <tr>
                 <td><h3>Nome</h3></td>

@@ -5,7 +5,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>Principal</title>
-        <link href="estilos.css" rel="stylesheet" type="text/css"/>
+        
         <style>
             .conteudo {
                 background-image: url(../JPEG/conteudo.gif);
@@ -63,7 +63,22 @@
             }
 
 
+            #perfil {
+                position:absolute;
+                top:-1px;
+                left:0px;
+                color:#69F;
+                text-decoration: none;
+                font: Arial, Helvetica, sans-serif;
+            }
 
+            .sombraPerfil  {
+                position:absolute;
+                margin-top:15px;
+                margin-left:1000px;
+                color: green;
+                font: 16px Arial, Helvetica, sans-serif
+            }
 
 
             #cadastrar {
@@ -329,32 +344,32 @@
                 <form action="?flag=busca2" method="POST" name="dados">
                     <a href="sessaoCliente.php"><img src="../Imagens/dvdcabeca2.png" width="1205"/></a>
                     <table><tr><td height="2"/></tr></table>
-                    <? if (isset($_SESSION['admin']) && $_SESSION['admin'] == t) { ?>
-                        <table align="" width="1205px" border="0" cellpadding="0" cellspacing="0" bgcolor="#D1EEB4">
-                            <tr>
-                                <td height="25px">
-                                    <div class="sombraFab"><strong>Fabricante</strong>
-                                        <div><strong><a id="cadastrarFab" href="sessaoCliente.php?flag=jfab">Fabricante</a></strong>
-                                        </div></div>
+                    <?  if (isset($_SESSION['admin']) && $_SESSION['admin'] == t) { ?>
+                    <table align="" width="1205px" border="0" cellpadding="0" cellspacing="0" bgcolor="#D1EEB4">
+                        <tr>
+                            <td height="25px">
+                                <div class="sombraFab"><strong>Fabricante</strong>
+                                    <div><strong><a id="cadastrarFab" href="sessaoCliente.php?flag=jfab">Fabricante</a></strong>
+                                    </div></div>
 
-                                    <div class="sombraLoja"><strong>Loja</strong>
-                                        <div><strong><a id="cadastrarLoja" href="sessaoCliente.php?flag=jloj">Loja</a></strong>
-                                        </div></div>
+                                <div class="sombraLoja"><strong>Loja</strong>
+                                    <div><strong><a id="cadastrarLoja" href="sessaoCliente.php?flag=jloj">Loja</a></strong>
+                                    </div></div>
 
-                                    <div class="sombraUsuario"><strong>Usuário</strong>
-                                        <div><strong><a id="cadastrarUsuario" href="sessaoCliente.php?flag=juse">Usuário</a></strong>
-                                        </div></div>
+                                <div class="sombraUsuario"><strong>Usuário</strong>
+                                    <div><strong><a id="cadastrarUsuario" href="sessaoCliente.php?flag=juse">Usuário</a></strong>
+                                    </div></div>
 
-                                    <div class="sombraProduto"><strong>Produto</strong>
-                                        <div><strong><a id="cadastrarProduto" href="sessaoCliente.php?flag=jpro">Produto</a></strong>
-                                        </div></div>
+                                <div class="sombraProduto"><strong>Produto</strong>
+                                    <div><strong><a id="cadastrarProduto" href="sessaoCliente.php?flag=jpro">Produto</a></strong>
+                                    </div></div>
 
-                                    <div class="sombraFornecedor"><strong>Fornecedor</strong>
-                                        <div><strong><a id="cadastrarFornecedor" href="sessaoCliente.php?flag=jfor">Fornecedor</a></strong>
-                                        </div></div>
-                                </td>
-                            </tr>
-                        </table>
+                                <div class="sombraFornecedor"><strong>Fornecedor</strong>
+                                    <div><strong><a id="cadastrarFornecedor" href="sessaoCliente.php?flag=jfor">Fornecedor</a></strong>
+                                    </div></div>
+                            </td>
+                        </tr>
+                    </table>
                     <? } ?>
                     <table align="" width="1205px" border="0" cellpadding="0" cellspacing="0" bgcolor="#D1EEB4">
                         <tr>
@@ -369,29 +384,29 @@
                                                 <input name="busca" type="text" id="busca" size="100" align=""/>
                                             </td>
 
-                                            <? if (isset($_SESSION['codigo'])) { ?>
-                                                <td align="right" width="105">
-                                                    <a href="logout.php" class="login">logout</a>
-                                                    &nbsp &nbsp
-                                                </td>
-                                                <div class="sombra"><strong>Perfil</strong>
-                                                    <div><strong><a id="cadastrar" href="sessaoCliente.php?flag=jperf">Perfil</a></strong>
-                                                    </div>
+                                            <?  if (isset($_SESSION['codigo'])) { ?>
+                                            <td align="right" width="105">
+                                                <a href="logout.php" class="login">logout</a>
+                                                &nbsp &nbsp
+                                            </td>
+                                            <div class="sombraPerfil"><strong>Perfil</strong>
+                                                <div><strong><a id="perfil" href="sessaoCliente.php?flag=jperf">Perfil</a></strong>
                                                 </div>
-                                                <div class="sombra"><strong>Amigos</strong>
-                                                    <div><strong><a id="cadastrar" href="sessaoCliente.php?flag=jam">Amigos</a></strong>
-                                                    </div>
+                                            </div>
+                                            <div class="sombra"><strong>Amigos</strong>
+                                                <div><strong><a id="cadastrar" href="sessaoCliente.php?flag=jam">Amigos</a></strong>
                                                 </div>
+                                            </div>
                                             <? } else if (!isset($_SESSION['codigo'])) { ?>
-                                                <td align="right" width="105">
-                                                    <a href="sessaoCliente.php?flag=jlogin" class="login">login</a>
-                                                    &nbsp &nbsp
-                                                </td>
-                                                <div class="sombra"><strong>Cadastrar</strong>
-                                                    <div><strong><a id="cadastrar" href="sessaoCliente.php?flag=jcad">Cadastrar</a></strong>
-                                                    </div>
+                                            <td align="right" width="105">
+                                                <a href="sessaoCliente.php?flag=jlogin" class="login">login</a>
+                                                &nbsp &nbsp
+                                            </td>
+                                            <div class="sombra"><strong>Cadastrar</strong>
+                                                <div><strong><a id="cadastrar" href="sessaoCliente.php?flag=jcad">Cadastrar</a></strong>
                                                 </div>
-                                            <? } ?>
+                                            </div>
+                                            <?  } ?>
                                         </tr>
                                     </table>
                                 </form>
@@ -427,199 +442,199 @@
                                     <br/>
                                     <select name="genero" id="genero">
                                         <?php
-                                        include_once ("../Dao/CaracteristicasDAO.php");
-                                        $model = new CaracteristicasDAO();
-                                        $generos = $model->getGeneros();
-                                        $tam = count($generos);
-                                        echo "<option value=\"\">Selecione</option>\n";
-                                        for ($i = 0; $i < $tam; $i++) {
-                                            $aux = $generos[$i];
-                                            echo "<option value=\"" . $aux["codigo"] . "\">" . $aux["genero"] . "</option>\n";
-                                        }
+                                            include_once ("../Dao/CaracteristicasDAO.php");
+                                            $model = new CaracteristicasDAO();
+                                            $generos = $model->getGeneros();
+                                            $tam = count($generos);
+                                            echo "<option value=\"\">Selecione</option>\n";
+                                            for ($i = 0; $i < $tam; $i++) {
+                                                $aux = $generos[$i];
+                                                echo "<option value=\"" . $aux["codigo"] . "\">" . $aux["genero"] . "</option>\n";
+                                            }
                                         ?>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Preço:
-                                    <br/>
-                                    <select size="1" name="preco">
-                                        <option selected value="">Selecione</option>
-                                        <option value="1">até R$ 10,00</option>
-                                        <option value="2">R$ 10,01 à R$ 20,00</option>
-                                        <option value="3">R$ 20,01 à R$ 30,00</option>
-                                        <option value="4">R$ 30,01 à R$ 40,00</option>
-                                        <option value="5">R$ 40,01 à R$ 50,00</option>
-                                        <option value="6">R$ 50,01 à R$ 60,00</option>
-                                        <option value="7">R$ 60,01 à R$ 70,00</option>
-                                        <option value="8">R$ 70,01 à R$ 80,00</option>
-                                        <option value="9">R$ 80,01 à R$ 90,00</option>
-                                        <option value="10">mais de R$ 90,01</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Ano:
-                                    <br/>
-                                    <select name="ano" id="ano">
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Preço:
+                                        <br/>
+                                        <select size="1" name="preco">
+                                            <option selected value="">Selecione</option>
+                                            <option value="1">até R$ 10,00</option>
+                                            <option value="2">R$ 10,01 à R$ 20,00</option>
+                                            <option value="3">R$ 20,01 à R$ 30,00</option>
+                                            <option value="4">R$ 30,01 à R$ 40,00</option>
+                                            <option value="5">R$ 40,01 à R$ 50,00</option>
+                                            <option value="6">R$ 50,01 à R$ 60,00</option>
+                                            <option value="7">R$ 60,01 à R$ 70,00</option>
+                                            <option value="8">R$ 70,01 à R$ 80,00</option>
+                                            <option value="9">R$ 80,01 à R$ 90,00</option>
+                                            <option value="10">mais de R$ 90,01</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Ano:
+                                        <br/>
+                                        <select name="ano" id="ano">
                                         <?php
-                                        echo "<option value=\"\">Selecione</option>\n";
-                                        for ($i = 2012; $i >= 1960; $i--) {
-                                            echo "<option value=\"" . $i . "\">" . $i . "</option>\n";
-                                        }
+                                            echo "<option value=\"\">Selecione</option>\n";
+                                            for ($i = 2012; $i >= 1960; $i--) {
+                                                echo "<option value=\"" . $i . "\">" . $i . "</option>\n";
+                                            }
                                         ?>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td> 
-                                    Loja:
-                                    <br/>
-                                    <select name="loja" id="loja">
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Loja:
+                                        <br/>
+                                        <select name="loja" id="loja">
                                         <?php
-                                        include_once ("../Dao/LojaDAO.php");
-                                        $model = new LojaDAO();
-                                        $lojas = $model->getAll();
-                                        $tam = count($lojas);
-                                        echo "<option value=\"\">Selecione</option>\n";
-                                        for ($i = 0; $i < $tam; $i++) {
-                                            $aux = $lojas[$i];
-                                            echo "<option value=\"" . $aux["codigo"] . "\">" . $aux["nome"] . "</option>\n";
-                                        }
+                                            include_once ("../Dao/LojaDAO.php");
+                                            $model = new LojaDAO();
+                                            $lojas = $model->getAll();
+                                            $tam = count($lojas);
+                                            echo "<option value=\"\">Selecione</option>\n";
+                                            for ($i = 0; $i < $tam; $i++) {
+                                                $aux = $lojas[$i];
+                                                echo "<option value=\"" . $aux["codigo"] . "\">" . $aux["nome"] . "</option>\n";
+                                            }
                                         ?>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Produtora:
-                                    <br/>
-                                    <select name="produtora" id="produtora">
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Produtora:
+                                        <br/>
+                                        <select name="produtora" id="produtora">
                                         <?php
-                                        include_once ("../Dao/CaracteristicasDAO.php");
-                                        $model = new CaracteristicasDAO();
-                                        $produtores = $model->getProdutoras();
-                                        $tam = count($produtores);
-                                        echo "<option value=\"\">Selecione</option>\n";
-                                        for ($i = 0; $i < $tam; $i++) {
-                                            $aux = $produtores[$i];
-                                            echo "<option value=\"" . $aux["codigo"] . "\">" . $aux["produtora"] . "</option>\n";
-                                        }
+                                            include_once ("../Dao/CaracteristicasDAO.php");
+                                            $model = new CaracteristicasDAO();
+                                            $produtores = $model->getProdutoras();
+                                            $tam = count($produtores);
+                                            echo "<option value=\"\">Selecione</option>\n";
+                                            for ($i = 0; $i < $tam; $i++) {
+                                                $aux = $produtores[$i];
+                                                echo "<option value=\"" . $aux["codigo"] . "\">" . $aux["produtora"] . "</option>\n";
+                                            }
                                         ?>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr align="center">
-                                <td align="center">
-                                    <input  name="Busca" type="submit" class="buscar" value="" size=""/>
-                                </td>
-                            </tr>
-                        </table>
-                    </form>
-                </div>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr align="center">
+                                    <td align="center">
+                                        <input  name="Busca" type="submit" class="buscar" value="" size=""/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
+                    </div>
 
-                <div id="main">
+                    <div id="main">
                     <?
-                    if (isset($_GET["pg"])) {
-                        include_once "inicio.php";
-                    } else if (isset($_GET["id"])) {
-                        $_SESSION["idProduto"] = $_GET["id"];
-                        session_commit();
-                        include_once "detalhes.php";
-                    } if (isset($_SESSION["perfis"])) {
-                        include_once 'perfisUsuario.php';
-                    } else {
-                        $page = (isset($_GET['flag'])) ? $_GET['flag'] : "home";
-                        switch ($page) {
-                            case "busca":
-                                $page = "inicio.php";
-                                break;
-                            case "busca2":
-                                $page = "inicio.php";
-                                break;
-                            case "jrec":
-                                $page = "recomendar.php";
-                                break;
-                            case "jam":
-                                if (isset($_GET["am"])) {
-                                    $_SESSION["am"] = true;
-                                    session_commit();
-                                }
-                                $page = "amigos.php";
-                                break;
-                            case "jlogin":
-                                $page = "login.php";
-                                break;
-                            case "jcad":
-                                $page = "cadastroUsuario.php";
-                                break;
-                            case "jcadPerf":
-                                $page = "cadastroPerfil.php";
-                                break;
-                            case "jcadLoja":
-                                $page = "cadastroLoja.php";
-                                break;
-                            case "jcadFab":
-                                $page = "cadastroFabricante.php";
-                                break;
-                            case "jcadForn":
-                                $page = "cadastroFornecedor.php";
-                                break;
-                            case "jcadProd":
-                                $page = "cadastroProduto.php";
-                                break;
-                            case "jfab":
-                                if (isset($_GET["erro"])) {
-                                    $_SESSION["erro"] = true;
-                                    session_commit();
-                                }
-                                $page = "fabricantes.php";
-                                break;
-                            case "jfor":
-                                if (isset($_GET["erro"])) {
-                                    $_SESSION["erro"] = true;
-                                    session_commit();
-                                }
-                                $page = "fornecedores.php";
-                                break;
-                            case "juse":
-                                $page = "usuarios.php";
-                                break;
-                            case "jpro":
-                                if (isset($_GET["erro"])) {
-                                    $_SESSION["erro"] = true;
-                                    session_commit();
-                                }
-                                $page = "produtos.php";
-                                break;
-                            case "jloj":
-                                if (isset($_GET["erro"])) {
-                                    $_SESSION["erro"] = true;
-                                    session_commit();
-                                }
-                                $page = "lojas.php";
-                                break;
-                            case "jperf":
-                                if (isset($_GET["erro"])) {
-                                    $_SESSION["erro"] = true;
-                                    session_commit();
-                                }
-                                $page = "perfisUsuarioLogado.php";
-                                break;
-                            case "jdetal":
-                                if (isset($_GET["id"])) {
-                                    $_SESSION["idProduto"] = $_GET["id"];
-                                    session_commit();
-                                }
-                                $page = "detalhes.php";
-                                break;
-                            default :
-                                $page = "sessaoCliente.php";
-                        }
-                        include_once $page;
-                    }
+                                            if (isset($_GET["pg"])) {
+                                                include_once "inicio.php";
+                                            } else if (isset($_GET["id"])) {
+                                                $_SESSION["idProduto"] = $_GET["id"];
+                                                session_commit();
+                                                include_once "detalhes.php";
+                                            } if (isset($_SESSION["perfis"])) {
+                                                include_once 'perfisUsuario.php';
+                                            } else {
+                                                $page = (isset($_GET['flag'])) ? $_GET['flag'] : "home";
+                                                switch ($page) {
+                                                    case "busca":
+                                                        $page = "inicio.php";
+                                                        break;
+                                                    case "busca2":
+                                                        $page = "inicio.php";
+                                                        break;
+                                                    case "jrec":
+                                                        $page = "recomendar.php";
+                                                        break;
+                                                    case "jam":
+                                                        if (isset($_GET["am"])) {
+                                                            $_SESSION["am"] = true;
+                                                            session_commit();
+                                                        }
+                                                        $page = "amigos.php";
+                                                        break;
+                                                    case "jlogin":
+                                                        $page = "login.php";
+                                                        break;
+                                                    case "jcad":
+                                                        $page = "cadastroUsuario.php";
+                                                        break;
+                                                    case "jcadPerf":
+                                                        $page = "cadastroPerfil.php";
+                                                        break;
+                                                    case "jcadLoja":
+                                                        $page = "cadastroLoja.php";
+                                                        break;
+                                                    case "jcadFab":
+                                                        $page = "cadastroFabricante.php";
+                                                        break;
+                                                    case "jcadForn":
+                                                        $page = "cadastroFornecedor.php";
+                                                        break;
+                                                    case "jcadProd":
+                                                        $page = "cadastroProduto.php";
+                                                        break;
+                                                    case "jfab":
+                                                        if (isset($_GET["erro"])) {
+                                                            $_SESSION["erro"] = true;
+                                                            session_commit();
+                                                        }
+                                                        $page = "fabricantes.php";
+                                                        break;
+                                                    case "jfor":
+                                                        if (isset($_GET["erro"])) {
+                                                            $_SESSION["erro"] = true;
+                                                            session_commit();
+                                                        }
+                                                        $page = "fornecedores.php";
+                                                        break;
+                                                    case "juse":
+                                                        $page = "usuarios.php";
+                                                        break;
+                                                    case "jpro":
+                                                        if (isset($_GET["erro"])) {
+                                                            $_SESSION["erro"] = true;
+                                                            session_commit();
+                                                        }
+                                                        $page = "produtos.php";
+                                                        break;
+                                                    case "jloj":
+                                                        if (isset($_GET["erro"])) {
+                                                            $_SESSION["erro"] = true;
+                                                            session_commit();
+                                                        }
+                                                        $page = "lojas.php";
+                                                        break;
+                                                    case "jperf":
+                                                        if (isset($_GET["erro"])) {
+                                                            $_SESSION["erro"] = true;
+                                                            session_commit();
+                                                        }
+                                                        $page = "perfisUsuarioLogado.php";
+                                                        break;
+                                                    case "jdetal":
+                                                        if (isset($_GET["id"])) {
+                                                            $_SESSION["idProduto"] = $_GET["id"];
+                                                            session_commit();
+                                                        }
+                                                        $page = "detalhes.php";
+                                                        break;
+                                                    default :
+                                                        $page = "sessaoCliente.php";
+                                                }
+                                                include_once $page;
+                                            }
                     ?>
                 </div>
 

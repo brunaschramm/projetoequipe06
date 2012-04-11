@@ -104,7 +104,6 @@ class UsuarioDAO extends Usuario {
     }
 
     public function getAmigos() {
-        //$sql = "SELECT * FROM tbusuario";
         $sql = "SELECT * FROM tbusuario AS tbusuario, tbamigos06 WHERE tbusuario.codigo = '" . $_SESSION['codigo'] . "' 
             AND tbamigos06.codigo = tbusuario.codigo";
 
@@ -140,7 +139,7 @@ class UsuarioDAO extends Usuario {
     }       
 
     public function removerAmigo() {
-        $sql = "DELETE FROM tempusuarios WHERE codigo=" . $_SESSION['codigo']. "AND cod_amigo".$this->getCodigo();
+        $sql = "DELETE FROM tbusuario WHERE codigo=" . $_SESSION['codigo']. "AND cod_amigo".$this->getCodigo();
 
         $result = pg_query($sql);
 
@@ -152,7 +151,7 @@ class UsuarioDAO extends Usuario {
     }
     
     public function pesquisarUsuario($email){
-        $sql = "SELECT Codigo FROM tbusuario WHERE email = '".$email."'";               
+        $sql = "SELECT codigo FROM tbusuario WHERE email = '".$email."'";               
         
         $result = pg_query($sql);
         

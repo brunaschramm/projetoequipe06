@@ -378,6 +378,10 @@
                                                     <div><strong><a id="cadastrar" href="sessaoCliente.php?flag=jperf">Perfil</a></strong>
                                                     </div>
                                                 </div>
+                                                <div class="sombra"><strong>Amigos</strong>
+                                                    <div><strong><a id="cadastrar" href="sessaoCliente.php?flag=jam">Amigos</a></strong>
+                                                    </div>
+                                                </div>
                                             <? } else if (!isset($_SESSION['codigo'])) { ?>
                                                 <td align="right" width="105">
                                                     <a href="sessaoCliente.php?flag=jlogin" class="login">login</a>
@@ -395,212 +399,232 @@
                         </tr>
                     </table>
                 </form>
-            </div>
+                <div><strong><a id="cadastrar" href="sessaoCliente.php?flag=jam">Amigos</a></strong>
+                </div>
 
-            <div id="menu" align="left">
-                <form action="?flag=busca" method="POST" name="dados">
-                    <table bgcolor="#BFEFFF" align="" class="tabelas">
-                        <tr>
-                            <td>
-                                <img src="../Imagens/dvdcol.png" width="158" height="31"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Título:
-                                <br/>
-                                <input name="titulo" type="text" id="titulo" size="14px">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Gênero:
-                                <br/>
-                                <select name="genero" id="genero">
-                                    <?php
-                                    include_once ("../Dao/CaracteristicasDAO.php");
-                                    $model = new CaracteristicasDAO();
-                                    $generos = $model->getGeneros();
-                                    $tam = count($generos);
-                                    echo "<option value=\"\">Selecione</option>\n";
-                                    for ($i = 0; $i < $tam; $i++) {
-                                        $aux = $generos[$i];
-                                        echo "<option value=\"" . $aux["codigo"] . "\">" . $aux["genero"] . "</option>\n";
-                                    }
-                                    ?>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Preço:
-                                <br/>
-                                <select size="1" name="preco">
-                                    <option selected value="">Selecione</option>
-                                    <option value="1">até R$ 10,00</option>
-                                    <option value="2">R$ 10,01 à R$ 20,00</option>
-                                    <option value="3">R$ 20,01 à R$ 30,00</option>
-                                    <option value="4">R$ 30,01 à R$ 40,00</option>
-                                    <option value="5">R$ 40,01 à R$ 50,00</option>
-                                    <option value="6">R$ 50,01 à R$ 60,00</option>
-                                    <option value="7">R$ 60,01 à R$ 70,00</option>
-                                    <option value="8">R$ 70,01 à R$ 80,00</option>
-                                    <option value="9">R$ 80,01 à R$ 90,00</option>
-                                    <option value="10">mais de R$ 90,01</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Ano:
-                                <br/>
-                                <select name="ano" id="ano">
-                                    <?php
-                                    echo "<option value=\"\">Selecione</option>\n";
-                                    for ($i = 2012; $i >= 1960; $i--) {
-                                        echo "<option value=\"" . $i . "\">" . $i . "</option>\n";
-                                    }
-                                    ?>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td> 
-                                Loja:
-                                <br/>
-                                <select name="loja" id="loja">
-                                    <?php
-                                    include_once ("../Dao/LojaDAO.php");
-                                    $model = new LojaDAO();
-                                    $lojas = $model->getAll();
-                                    $tam = count($lojas);
-                                    echo "<option value=\"\">Selecione</option>\n";
-                                    for ($i = 0; $i < $tam; $i++) {
-                                        $aux = $lojas[$i];
-                                        echo "<option value=\"" . $aux["codigo"] . "\">" . $aux["nome"] . "</option>\n";
-                                    }
-                                    ?>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Produtora:
-                                <br/>
-                                <select name="produtora" id="produtora">
-                                    <?php
-                                    include_once ("../Dao/CaracteristicasDAO.php");
-                                    $model = new CaracteristicasDAO();
-                                    $produtores = $model->getProdutoras();
-                                    $tam = count($produtores);
-                                    echo "<option value=\"\">Selecione</option>\n";
-                                    for ($i = 0; $i < $tam; $i++) {
-                                        $aux = $produtores[$i];
-                                        echo "<option value=\"" . $aux["codigo"] . "\">" . $aux["produtora"] . "</option>\n";
-                                    }
-                                    ?>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr align="center">
-                            <td align="center">
-                                <input  name="Busca" type="submit" class="buscar" value="" size=""/>
-                            </td>
-                        </tr>
-                    </table>
-                </form>
-            </div>
+                <div id="menu" align="left">
+                    <form action="?flag=busca" method="POST" name="dados">
+                        <table bgcolor="#BFEFFF" align="" class="tabelas">
+                            <tr>
+                                <td>
+                                    <img src="../Imagens/dvdcol.png" width="158" height="31"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Título:
+                                    <br/>
+                                    <input name="titulo" type="text" id="titulo" size="14px">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Gênero:
+                                    <br/>
+                                    <select name="genero" id="genero">
+                                        <?php
+                                        include_once ("../Dao/CaracteristicasDAO.php");
+                                        $model = new CaracteristicasDAO();
+                                        $generos = $model->getGeneros();
+                                        $tam = count($generos);
+                                        echo "<option value=\"\">Selecione</option>\n";
+                                        for ($i = 0; $i < $tam; $i++) {
+                                            $aux = $generos[$i];
+                                            echo "<option value=\"" . $aux["codigo"] . "\">" . $aux["genero"] . "</option>\n";
+                                        }
+                                        ?>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Preço:
+                                    <br/>
+                                    <select size="1" name="preco">
+                                        <option selected value="">Selecione</option>
+                                        <option value="1">até R$ 10,00</option>
+                                        <option value="2">R$ 10,01 à R$ 20,00</option>
+                                        <option value="3">R$ 20,01 à R$ 30,00</option>
+                                        <option value="4">R$ 30,01 à R$ 40,00</option>
+                                        <option value="5">R$ 40,01 à R$ 50,00</option>
+                                        <option value="6">R$ 50,01 à R$ 60,00</option>
+                                        <option value="7">R$ 60,01 à R$ 70,00</option>
+                                        <option value="8">R$ 70,01 à R$ 80,00</option>
+                                        <option value="9">R$ 80,01 à R$ 90,00</option>
+                                        <option value="10">mais de R$ 90,01</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Ano:
+                                    <br/>
+                                    <select name="ano" id="ano">
+                                        <?php
+                                        echo "<option value=\"\">Selecione</option>\n";
+                                        for ($i = 2012; $i >= 1960; $i--) {
+                                            echo "<option value=\"" . $i . "\">" . $i . "</option>\n";
+                                        }
+                                        ?>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td> 
+                                    Loja:
+                                    <br/>
+                                    <select name="loja" id="loja">
+                                        <?php
+                                        include_once ("../Dao/LojaDAO.php");
+                                        $model = new LojaDAO();
+                                        $lojas = $model->getAll();
+                                        $tam = count($lojas);
+                                        echo "<option value=\"\">Selecione</option>\n";
+                                        for ($i = 0; $i < $tam; $i++) {
+                                            $aux = $lojas[$i];
+                                            echo "<option value=\"" . $aux["codigo"] . "\">" . $aux["nome"] . "</option>\n";
+                                        }
+                                        ?>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Produtora:
+                                    <br/>
+                                    <select name="produtora" id="produtora">
+                                        <?php
+                                        include_once ("../Dao/CaracteristicasDAO.php");
+                                        $model = new CaracteristicasDAO();
+                                        $produtores = $model->getProdutoras();
+                                        $tam = count($produtores);
+                                        echo "<option value=\"\">Selecione</option>\n";
+                                        for ($i = 0; $i < $tam; $i++) {
+                                            $aux = $produtores[$i];
+                                            echo "<option value=\"" . $aux["codigo"] . "\">" . $aux["produtora"] . "</option>\n";
+                                        }
+                                        ?>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr align="center">
+                                <td align="center">
+                                    <input  name="Busca" type="submit" class="buscar" value="" size=""/>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
 
-            <div id="main">
-                <?
-                if (isset($_GET["pg"])) {
-                    include_once "inicio.php";
-                } else if (isset($_GET["id"])) {
-                    $_SESSION["idProduto"] = $_GET["id"];
-                    session_commit();
-                    include_once "detalhes.php";
-                } if (isset($_SESSION["perfis"])) {
-                    include_once 'perfisUsuario.php';
-                } else {
-                    $page = (isset($_GET['flag'])) ? $_GET['flag'] : "home";
-                    switch ($page) {
-                        case "busca":
-                            include_once "inicio.php";
-                            break;
-                        case "busca2":
-                            include_once "inicio.php";
-                            break;
-                        case "jrec":
-                            include_once "recomendar.php";
-                            break;
-                        case "jlogin":
-                            $page = "login.php";
-                            break;
-                        case "jcad":
-                            $page = "cadastroUsuario.php";
-                            break;
-                        case "jcadPerf":
-                            $page = "cadastroPerfil.php";
-                            break;
-                        case "jcadLoja":
-                            $page = "cadastroLoja.php";
-                            break;
-                        case "jcadFab":
-                            $page = "cadastroFabricante.php";
-                            break;
-                        case "jcadForn":
-                            $page = "cadastroFornecedor.php";
-                            break;
-                        case "jcadProd":
-                            $page = "cadastroProduto.php";
-                            break;
-                        case "jfab":
-                            if (isset($_GET["erro"]))
-                                $_SESSION["erro"] = true;
-                            $page = "fabricantes.php";
-                            break;
-                        case "jfor":
-                            if (isset($_GET["erro"]))
-                                $_SESSION["erro"] = true;
-                            $page = "fornecedores.php";
-                            break;
-                        case "juse":
-                            $page = "usuarios.php";
-                            break;
-                        case "jpro":
-                            if (isset($_GET["erro"]))
-                                $_SESSION["erro"] = true;
-                            $page = "produtos.php";
-                            break;
-                        case "jloj":
-                            if (isset($_GET["erro"]))
-                                $_SESSION["erro"] = true;
-                            $page = "lojas.php";
-                            break;
-                        case "jperf":
-                            if (isset($_GET["erro"]))
-                                $_SESSION["erro"] = true;
-                            $page = "perfisUsuarioLogado.php";
-                            break;
-                        case "jdetal":
-                            if (isset($_GET["id"]))
-                                $_SESSION["idProduto"] = $_GET["id"];
-                            $page = "detalhes.php";
-                            break;
-                        default :
-                            $page = "sessaoCliente.php";
+                <div id="main">
+                    <?
+                    if (isset($_GET["pg"])) {
+                        include_once "inicio.php";
+                    } else if (isset($_GET["id"])) {
+                        $_SESSION["idProduto"] = $_GET["id"];
+                        session_commit();
+                        include_once "detalhes.php";
+                    } if (isset($_SESSION["perfis"])) {
+                        include_once 'perfisUsuario.php';
+                    } else {
+                        $page = (isset($_GET['flag'])) ? $_GET['flag'] : "home";
+                        switch ($page) {
+                            case "busca":
+                                $page = "inicio.php";
+                                break;
+                            case "busca2":
+                                $page = "inicio.php";
+                                break;
+                            case "jrec":
+                                $page = "recomendar.php";
+                                break;
+                            case "jam":
+                                if (isset($_GET["am"])) {
+                                    $_SESSION["am"] = true;
+                                    session_commit();
+                                }
+                                $page = "amigos.php";
+                                break;
+                            case "jlogin":
+                                $page = "login.php";
+                                break;
+                            case "jcad":
+                                $page = "cadastroUsuario.php";
+                                break;
+                            case "jcadPerf":
+                                $page = "cadastroPerfil.php";
+                                break;
+                            case "jcadLoja":
+                                $page = "cadastroLoja.php";
+                                break;
+                            case "jcadFab":
+                                $page = "cadastroFabricante.php";
+                                break;
+                            case "jcadForn":
+                                $page = "cadastroFornecedor.php";
+                                break;
+                            case "jcadProd":
+                                $page = "cadastroProduto.php";
+                                break;
+                            case "jfab":
+                                if (isset($_GET["erro"])) {
+                                    $_SESSION["erro"] = true;
+                                    session_commit();
+                                }
+                                $page = "fabricantes.php";
+                                break;
+                            case "jfor":
+                                if (isset($_GET["erro"])) {
+                                    $_SESSION["erro"] = true;
+                                    session_commit();
+                                }
+                                $page = "fornecedores.php";
+                                break;
+                            case "juse":
+                                $page = "usuarios.php";
+                                break;
+                            case "jpro":
+                                if (isset($_GET["erro"])) {
+                                    $_SESSION["erro"] = true;
+                                    session_commit();
+                                }
+                                $page = "produtos.php";
+                                break;
+                            case "jloj":
+                                if (isset($_GET["erro"])) {
+                                    $_SESSION["erro"] = true;
+                                    session_commit();
+                                }
+                                $page = "lojas.php";
+                                break;
+                            case "jperf":
+                                if (isset($_GET["erro"])) {
+                                    $_SESSION["erro"] = true;
+                                    session_commit();
+                                }
+                                $page = "perfisUsuarioLogado.php";
+                                break;
+                            case "jdetal":
+                                if (isset($_GET["id"])) {
+                                    $_SESSION["idProduto"] = $_GET["id"];
+                                    session_commit();
+                                }
+                                $page = "detalhes.php";
+                                break;
+                            default :
+                                $page = "sessaoCliente.php";
+                        }
+                        include_once $page;
                     }
-                    include_once $page;
-                }
-                ?>
+                    ?>
+                </div>
+
+
+                <div id="footer">algo</div>
             </div>
-
-
-            <div id="footer">algo</div>
-        </div>
     </body>
 </html>

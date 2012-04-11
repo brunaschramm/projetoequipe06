@@ -45,7 +45,7 @@ class RecomendacaoDAO extends Recomendacao {
                 INNER JOIN tbfabricantes06 AS fabricante ON fabricante.codigo = produto.cod_fabricante
                 INNER JOIN tbfornecedor AS fornecedor ON fornecedor.codigo = produto.cod_fornecedor
                 INNER JOIN tbusuario AS usuario ON usuario.codigo = cod_amigo
-                WHERE cod_usuario =".$_SESSION["codigo"];
+                WHERE cod_usuario = ".$_SESSION["codigo"]. " AND produto.codigo <> ".$produto['codigo'];
 
         $result = pg_query($sql);
 

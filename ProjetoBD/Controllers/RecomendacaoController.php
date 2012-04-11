@@ -46,21 +46,16 @@ class RecomendacaoController {
                 
                 $usuario = $_SESSION["codigo"];
                 
-                //$recomendacoes = array();
-                
                 foreach ($_POST["amigo"] as $campo => $valor) {
                     $$campo = $valor;
-                    //$recomendacoes[] = $valor;
                     $resultado = $model->salvar($valor, $usuario, $produto["codigo"]);
                 }
                 
-                header("Location: ../Views/detalhes.php?id=".$produto["codigo"]);
+                header("Location: ../Views/sessaoCliente.php?flag=jdetal&id=" . $_GET["id"]);
                 
                 break;
         }
     }
-
 }
-
 $controle = new RecomendacaoController();
 ?>

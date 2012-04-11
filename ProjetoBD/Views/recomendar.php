@@ -73,7 +73,7 @@
                 </td>
             </tr>
         </table>
-        <form action="../Controllers/RecomendacaoController.php?acao=recomendar" name="dados" method="POST" >
+        <form action="../Controllers/RecomendacaoController.php?acao=recomendar&id=<?echo $aux["codigo"]?>" name="dados" method="POST" >
             <?
             include_once ("../Dao/AmigoDAO.php");
             $model = new AmigoDAO();

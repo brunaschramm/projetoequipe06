@@ -15,15 +15,15 @@
         include_once ("../Dao/ProdutoDAO.php");
         $model = new ProdutoDAO();
         $produto = $model->getProduto($_SESSION["idProduto"]);
-        $aux = $produto[0];
-        $_SESSION["produto"] = $aux;
+        $prod = $produto[0];
+        $_SESSION["produto"] = $prod;
         session_commit();
         ?>
         <table width=500 height=100 align = center>
             <? if (isset($_SESSION["codigo"])) { ?>
                 <tr>
                     <td align="center">
-                        <a href="../Controllers/PerfilController.php?acao=gostar&id=<? echo $aux['codigo']; ?>"><img src="../Imagens/gostar.png" width="35" height="35"></a>
+                        <a href="../Controllers/PerfilController.php?acao=gostar&id=<? echo $prod['codigo']; ?>"><img src="../Imagens/gostar.png" width="35" height="35"></a>
                     </td>
                     <td align="center">
                         <a href="sessaoCliente.php?flag=jrec"><img src="../Imagens/recomendar.jpg" width="35" height="35"></a>
@@ -33,7 +33,7 @@
             </br></br>
             <tr>
                 <td align = center>
-                    <img src="../Imagens/Produtos/<? echo $aux['imagem']; ?>" width="97" height="132"/>
+                    <img src="../Imagens/Produtos/<? echo $prod['imagem']; ?>" width="97" height="132"/>
                 </td>
                 <td align = center>
                     <table>
@@ -42,7 +42,7 @@
                                 Título:
                             </td>
                             <td>
-                                <? echo $aux['titulo']; ?>
+                                <? echo $prod['titulo']; ?>
                             </td>
                         </tr>
                         <tr>
@@ -50,7 +50,7 @@
                                 Gênero:
                             </td>
                             <td>
-                                <? echo $aux['genero']; ?>
+                                <? echo $prod['genero']; ?>
                             </td>
                         </tr>
                         <tr>
@@ -58,7 +58,7 @@
                                 Produtora:
                             </td>
                             <td>
-                                <? echo $aux['produtora']; ?>
+                                <? echo $prod['produtora']; ?>
                             </td>
                         </tr>
                         <tr>
@@ -66,7 +66,7 @@
                                 Ano:
                             </td>
                             <td>
-                                <? echo $aux['ano']; ?>
+                                <? echo $prod['ano']; ?>
                             </td>
                         </tr>
                         <tr>
@@ -74,7 +74,7 @@
                                 Preço:
                             </td>
                             <td>
-                                <? echo "R$" . $aux['preco']; ?>
+                                <? echo "R$" . $prod['preco']; ?>
                             </td>
                         </tr>
                         <tr>
@@ -82,7 +82,7 @@
                                 Loja:
                             </td>
                             <td>
-                                <? echo $aux['loja']; ?>
+                                <? echo $prod['loja']; ?>
                             </td>
                         </tr>
                         <tr>
@@ -90,7 +90,7 @@
                                 Grupo:
                             </td>
                             <td>
-                                <? echo $aux['grupo']; ?>
+                                <? echo $prod['grupo']; ?>
                             </td>
                         </tr>
                         <tr>
@@ -98,7 +98,7 @@
                                 Censura:
                             </td>
                             <td>
-                                <? echo $aux['censura']; ?>
+                                <? echo $prod['censura']; ?>
                             </td>
                         </tr>
                         <tr>
@@ -106,7 +106,7 @@
                                 Formato:
                             </td>
                             <td>
-                                <? echo $aux['formato']; ?>
+                                <? echo $prod['formato']; ?>
                             </td>
                         </tr>
                         <tr>
@@ -114,7 +114,7 @@
                                 Região:
                             </td>
                             <td>
-                                <? echo $aux['regiao']; ?>
+                                <? echo $prod['regiao']; ?>
                             </td>
                         </tr>
                     </table>
@@ -122,7 +122,7 @@
             </tr>
             <tr>
                 <td colspan = 2>
-                    <? echo $aux['descricao']; ?>
+                    <? echo $prod['descricao']; ?>
                 </td>
             </tr>
         </table>
@@ -133,25 +133,25 @@
             ?>  
             <table width="100%" align = center>
                 <tr>
-                    <td align = center>
+                    <td>
                         Sugerimos a você:
                     </td>
                 </tr>
                 <tr>
                     <?php
-                    $perfil = $modelPerfil->getPerfilParecido($aux);
+                    $perfil = $modelPerfil->getPerfilParecido($prod);
                     $amigo = $modelPerfil->getPerfilAmigo($perfil);
                     if ($perfil && $amigo) {
                         //echo "1";
-                        $sugestoes = $model->getRecomendacoes($perfil, $amigo, $aux, 1);
+                        $sugestoes = $model->getRecomendacoes($perfil, $amigo, $prod, 1);
                     } else if (!$perfil && $amigo){
-                        $sugestoes = $model->getRecomendacoes($aux, $amigo, $aux, 2);
+                        $sugestoes = $model->getRecomendacoes($prod, $amigo, $prod, 2);
                         //echo "2";
                     } else if ($perfil && !$amigo){
-                        $sugestoes = $model->getRecomendacoes($perfil, $aux, $aux, 3);
+                        $sugestoes = $model->getRecomendacoes($perfil, $prod, $prod, 3);
                         //echo "3";
                     } else if (!$perfil && !$amigo) {
-                        $sugestoes = $model->getRecomendacoes($aux, $aux, $aux, 4);
+                        $sugestoes = $model->getRecomendacoes($prod, $prod, $prod, 4);
                         //echo "4";
                     }
                     $tam = count($sugestoes); // Qntd de sugestoes exibidas
@@ -181,13 +181,13 @@
                 </tr>
             </table>
             <?
-            $recomendacoes = $modelRecomendacao->getRecomendacoesUsuario($aux);
+            $recomendacoes = $modelRecomendacao->getRecomendacoesUsuario($prod);
             $tam = count($recomendacoes); // Qntd de recomendacoes exibidas
             if ($tam) {
                 ?>       
                 <table width="100%" align = center>
                     <tr>
-                        <td align = center>
+                        <td>
                             Recomendações para você:
                         </td>
                     </tr>

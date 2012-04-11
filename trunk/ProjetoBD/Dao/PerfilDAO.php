@@ -246,19 +246,19 @@ class PerfilDAO extends Perfil {
         $amigos = $modelAmigo->getAmigos();
 
         $tam = count($amigos);
-        $sql = "SELECT * FROM tbperfis06 WHERE cod_usuario IN (6,7)";
-//        if($tam) {
-//            $sql = "SELECT * FROM tbperfis06 WHERE cod_usuario IN (";
-//        
-//            for ($i = 0; $i < $tam; $i++) {
-//                $aux = $amigos[$i];
-//                $sql = $sql.$aux["cod_amigo"];
-//                if($i < $tam-1){
-//                    $sql = $sql.", ";
-//                }
-//            }
-//            $sql = $sql.")";
-//        }
+        //$sql = "SELECT * FROM tbperfis06 WHERE cod_usuario IN (6,7)";
+        if($tam) {
+            $sql = "SELECT * FROM tbperfis06 WHERE cod_usuario IN (";
+        
+            for ($i = 0; $i < $tam; $i++) {
+                $aux = $amigos[$i];
+                $sql = $sql.$aux["cod_amigo"];
+                if($i < $tam-1){
+                    $sql = $sql.", ";
+                }
+            }
+            $sql = $sql.")";
+        }
 
         $result = pg_query($sql);
 

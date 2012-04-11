@@ -53,7 +53,6 @@ class FabricanteDAO extends Fabricante {
     }
     
     public function consultar($fabricante, $nacionalidade) {
-        //$sql = "SELECT * FROM tbfabricantes06 WHERE nome LIKE '%".$pesquisa."%' OR nacionalidade LIKE '%".$pesquisa."%' ORDER BY nome";
         $sql = "SELECT * FROM tbfabricantes06 WHERE nome LIKE '%".$fabricante."%' AND nacionalidade LIKE '%".$nacionalidade."%' ORDER BY nome";
 
         $result = pg_query($sql);

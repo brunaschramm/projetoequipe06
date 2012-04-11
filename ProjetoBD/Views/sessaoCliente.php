@@ -394,7 +394,7 @@ if (!isset($_SESSION)) {
                                                     &nbsp &nbsp
                                                 </td>
                                                 <div class="sombraPerfil"><strong>Perfil</strong>
-                                                    <div><strong><a id="perfil" href="sessaoCliente.php?flag=jcadPerf">Perfil</a></strong>
+                                                    <div><strong><a id="perfil" href="sessaoCliente.php?flag=jperf">Perfil</a></strong>
                                                     </div>
                                                 </div>
                                                 <div class="sombra"><strong>Amigos</strong>

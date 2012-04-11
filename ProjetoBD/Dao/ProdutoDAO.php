@@ -1,5 +1,7 @@
 <?php
-
+if (!isset($_SESSION)) {
+    session_start();
+}
 include_once ("../Banco/Banco.php");
 include_once ("../Models/Produto.php");
 
@@ -8,7 +10,6 @@ class ProdutoDAO extends Produto {
     private $conexao;
 
     public function __construct() {
-        session_start();
         $this->conexao = new Banco();
         $this->conexao->open();
     }
@@ -175,7 +176,7 @@ class ProdutoDAO extends Produto {
             INNER JOIN tbfornecedor as fornecedores ON produtos.cod_fornecedor = fornecedores.codigo
             WHERE 1 = 1";
         if ($titulo != "") {
-            $sql = $sql . " AND produtos.titulo LIKE '%" . $titulo . "%'";
+            $sql = $sql . " AND upper(produtos.titulo) LIKE upper('%" . $titulo . "%')";
         }
         if ($preco != null) {
             switch ($preco) {
@@ -251,8 +252,8 @@ class ProdutoDAO extends Produto {
                 INNER JOIN tbcensuras06 AS censuras ON produtos.cod_censura = censuras.codigo
                 INNER JOIN tbgrupos06 AS grupos ON produtos.cod_grupo = grupos.codigo
                 INNER JOIN tbfornecedor as fornecedores ON produtos.cod_fornecedor = fornecedores.codigo
-                WHERE produtos.titulo LIKE '%" . $busca . "%' OR genero LIKE '%" . $busca . "%'
-                OR lojas.nome LIKE '%" . $busca . "%' OR produtora LIKE '%" . $busca . "%'
+                WHERE upper(produtos.titulo) LIKE upper('%" . $busca . "%') OR upper(genero) LIKE upper('%" . $busca . "%')
+                OR upper(lojas.nome) LIKE upper('%" . $busca . "%') OR upper(produtora) LIKE upper('%" . $busca . "%')
                 ORDER BY produtos.titulo";
 
         $result = pg_query($sql);

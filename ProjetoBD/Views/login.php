@@ -16,7 +16,9 @@
             }
         </script>        
     </head>
-
+<?if (!isset($_SESSION)) {
+    session_start();
+}?>
     <body>
         <form action="../Controllers/ValidaLogin.php" method="POST" name="dados" onSubmit="return enviardados();" >
             <br/><br/><br/><br/>

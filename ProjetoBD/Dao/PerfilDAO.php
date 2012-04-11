@@ -1,5 +1,7 @@
 <?php
-
+if (!isset($_SESSION)) {
+    session_start();
+}
 include_once ("../Banco/Banco.php");
 include_once ("../Models/Perfil.php");
 include_once ("AmigoDAO.php");
@@ -9,7 +11,6 @@ class PerfilDAO extends Perfil {
     private $conexao;
 
     public function __construct() {
-        session_start();
         $this->conexao = new Banco();
         $this->conexao->open();
     }

@@ -1,4 +1,7 @@
 <?php
+if (!isset($_SESSION)) {
+    session_start();
+}
 include_once ("../Banco/Banco.php");
 include_once ("../Models/Loja.php");
 
@@ -7,7 +10,6 @@ class LojaDAO extends Loja {
     private $conexao;
 
     public function __construct() {
-        session_start();
         $this->conexao = new Banco();
         $this->conexao->open();
     }

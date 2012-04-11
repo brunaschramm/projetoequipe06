@@ -5,6 +5,11 @@
         <title>Documento sem título</title>
         <link href="estilos.css" rel="stylesheet" type="text/css">
     </head>
+    <?
+    if (!isset($_SESSION)) {
+        session_start();
+    }
+    ?>
     <body>
         <table width="100%" class="">
             <?
@@ -38,7 +43,7 @@
                     $aux = $result[$i];
                     ?>
                     <td align="center" width="200px">
-                        <!--<a href="javascript:abrir('detalhes.php?id=<?echo $aux['codigo']?>');"><img src="../Imagens/loja.png" width="70" height="35"></a>-->
+                        <!--<a href="javascript:abrir('detalhes.php?id=<? echo $aux['codigo'] ?>');"><img src="../Imagens/loja.png" width="70" height="35"></a>-->
                         </br></br>
                         <div class="css do produto" id="">
                             <a href="sessaoCliente.php?id=<? echo $aux['codigo'] ?>" class="link">

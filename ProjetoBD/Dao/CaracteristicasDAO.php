@@ -1,5 +1,7 @@
 <?php
-
+if (!isset($_SESSION)) {
+    session_start();
+}
 include_once ("../Banco/Banco.php");
 
 class CaracteristicasDAO {
@@ -7,7 +9,6 @@ class CaracteristicasDAO {
     private $conexao;
 
     public function __construct() {
-        session_start();
         $this->conexao = new Banco();
         $this->conexao->open();
     }

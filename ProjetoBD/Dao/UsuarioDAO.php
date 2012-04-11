@@ -1,5 +1,7 @@
 <?php
-
+if (!isset($_SESSION)) {
+    session_start();
+}
 include_once ("../Banco/Banco.php");
 include_once ("../Models/Usuario.php");
 
@@ -8,7 +10,6 @@ class UsuarioDAO extends Usuario {
     private $conexao;
 
     public function __construct() {
-        session_start();
         $this->conexao = new Banco();
         $this->conexao->open();
     }
@@ -47,8 +48,7 @@ class UsuarioDAO extends Usuario {
 
         if (!pg_num_rows($result)) {
             return null;
-        } else {            
-            session_start();
+        } else {
             $_SESSION['codigo'] = pg_result($result, 0, "CODIGO");            
             $_SESSION['nome'] = pg_result($result, 0, "NOME");
             $_SESSION['apelido'] = pg_result($result, 0, "APELIDO");
@@ -78,13 +78,13 @@ class UsuarioDAO extends Usuario {
     public function consultar($nome, $cpf, $apelido, $email) {
         $sql = "SELECT * FROM tbusuario WHERE 1=1";
         if($nome != ""){
-            $sql = $sql." AND nome LIKE '%".$nome."%'";
+            $sql = $sql." AND upper(nome) LIKE upper('%".$nome."%')";
         }
         if($cpf != ""){
             $sql = $sql." AND cpf = '".$cpf."'";
         }
         if($apelido != ""){
-            $sql = $sql." AND apelido LIKE '%".$apelido."%'";
+            $sql = $sql." AND upper(apelido) LIKE upper('%".$apelido."%')";
         }
         if($email != ""){
             $sql = $sql." AND email LIKE '%".$email."%'";
@@ -138,17 +138,17 @@ class UsuarioDAO extends Usuario {
         return false;
     }       
 
-    public function removerAmigo() {
-        $sql = "DELETE FROM tbusuario WHERE codigo=" . $_SESSION['codigo']. "AND cod_amigo".$this->getCodigo();
-
-        $result = pg_query($sql);
-
-        if (!$result) {
-            return false;
-        } else {
-            return true;
-        }
-    }
+//    public function removerAmigo() {
+//        $sql = "DELETE FROM tbusuario WHERE codigo=" . $_SESSION['codigo']. "AND cod_amigo".$this->getCodigo();
+//
+//        $result = pg_query($sql);
+//
+//        if (!$result) {
+//            return false;
+//        } else {
+//            return true;
+//        }
+//    }
     
     public function pesquisarUsuario($email){
         $sql = "SELECT codigo FROM tbusuario WHERE email = '".$email."'";               

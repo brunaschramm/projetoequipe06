@@ -5,7 +5,11 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>Fornecedor</title>
     </head>
-
+    <?
+    if (!isset($_SESSION)) {
+        session_start();
+    }
+    ?>
     <body>
         <table align="center">
             <form action="" method="POST" name="dados">

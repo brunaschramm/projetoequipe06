@@ -346,7 +346,7 @@ if (!isset($_SESSION)) {
         <div class="container" align="center">
             <div id="top">
                 <form action="?flag=busca2" method="POST" name="dados">
-                    <a href="sessaoCliente.php"><img src="../Imagens/dvdcabeca2.png" width="1205"/></a>
+                    <a href="sessaoCliente.php"><img src="../Imagens/cabecalhoDVD.png" width="1205"/></a>
                     <table><tr><td height="2"/></tr></table>
                     <? if (isset($_SESSION['admin']) && $_SESSION['admin'] == "t") { ?>
                         <table align="" width="1205px" border="0" cellpadding="0" cellspacing="0" bgcolor="#D1EEB4">

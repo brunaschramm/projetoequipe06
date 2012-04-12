@@ -221,7 +221,7 @@ if (!isset($_SESSION)) {
                 height: auto;
             }
 
-                        #footer {
+            #footer {
                 width: 1205px;
                 float: right;
 

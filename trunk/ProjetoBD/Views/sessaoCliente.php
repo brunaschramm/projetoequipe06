@@ -649,7 +649,13 @@ if (!isset($_SESSION)) {
                 </div>
 
 
-                <div id="footer">algo</div>
+                <div id="footer">
+                    <p>DVD indi Versão Beta - Seu indicador de DVDs na internet</p>
+                    &copy; Copyright 2011
+                    <br/>
+                    <br/>
+                    <img src="../Imagens/logo.jpg" width="140" height="60"/>
+                </div>
             </div>
     </body>
 </html>

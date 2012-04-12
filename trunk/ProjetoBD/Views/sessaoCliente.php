@@ -651,10 +651,12 @@ if (!isset($_SESSION)) {
 
                 <div id="footer">
                     <p>DVD indi Versão Beta - Seu indicador de DVDs na internet</p>
-                    &copy; Copyright 2011
+                    &copy; Copyright 2012
                     <br/>
                     <br/>
-                    <img src="../Imagens/logo.jpg" width="140" height="60"/>
+                    <a href="sessaoCliente.php"><img src="../Imagens/logo.jpg" width="140" height="60"/></a>
+                    <br/>
+                    <br/>
                 </div>
             </div>
     </body>

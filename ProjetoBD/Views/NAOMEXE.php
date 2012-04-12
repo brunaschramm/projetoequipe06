@@ -20,7 +20,7 @@
         <div class="container" align="center">
             <div id="top">
                 <form action="" method="POST" name="dados">
-                    <a href="NAOMEXE.php"><img src="../Imagens/dvdcabeca2.png" width="1205"/></a>
+                    <a href="NAOMEXE.php"><img src="../Imagens/cabecalhoDVD.png" width="1205"/></a>
                     <table><tr><td height="2"/></tr></table>
                     <table align="" width="1205px" border="0" cellpadding="0" cellspacing="0" bgcolor="#D1EEB4">
                         <tr>
